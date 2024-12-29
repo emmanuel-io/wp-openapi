@@ -1,0 +1,154 @@
+# schemas:
+#   category:
+#     $schema: https://json-schema.org/draft/2020-12/schema
+#     title: category
+#     type: object
+#     properties:
+#       id:
+#         description: Unique identifier for the term.
+#         type: integer
+#         x-context:
+#         - view
+#         - embed
+#         - edit
+#         readOnly: true
+#       count:
+#         description: Number of published posts for the term.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#         readOnly: true
+#       description:
+#         description: HTML description of the term.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#       link:
+#         description: URL of the term.
+#         type: string
+#         format: uri
+#         x-context:
+#         - view
+#         - embed
+#         - edit
+#         readOnly: true
+#       name:
+#         description: HTML title for the term.
+#         type: string
+#         x-context:
+#         - view
+#         - embed
+#         - edit
+#         # required: true
+#       slug:
+#         description: An alphanumeric identifier for the term unique to its type.
+#         type: string
+#         x-context:
+#         - view
+#         - embed
+#         - edit
+#       taxonomy:
+#         description: Type attribution for the term.
+#         type: string
+#         enum:
+#         - category
+#         x-context:
+#         - view
+#         - embed
+#         - edit
+#         readOnly: true
+#       parent:
+#         description: The parent term ID.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#       meta:
+#         description: Meta fields.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         # properties: []
+#     required:
+#     - name
+schemas:
+  CategoryBase:
+    type: object
+    properties:
+      id:
+        description: Unique identifier for the term.
+        type: integer
+        readOnly: true
+      link:
+        description: URL of the term.
+        type: string
+        format: uri
+        readOnly: true
+      name:
+        description: HTML title for the term.
+        type: string
+        # required: true
+      slug:
+        description: An alphanumeric identifier for the term unique to its type.
+        type: string
+      taxonomy:
+        description: Type attribution for the term.
+        type: string
+        enum:
+          - category
+        readOnly: true
+
+  CategoryView:
+    allOf:
+      - $ref: '#/schemas/CategoryBase'
+      - type: object
+        properties:
+          count:
+            description: Number of published posts for the term.
+            type: integer
+            readOnly: true
+          description:
+            description: HTML description of the term.
+            type: string
+          parent:
+            description: The parent term ID.
+            type: integer
+          meta:
+            description: Meta fields.
+            type: object
+
+  CategoryEmbed:
+    allOf:
+      - $ref: '#/schemas/CategoryBase'
+      - type: object
+        properties:
+          # Only fields allowed in embed
+          slug: {}
+
+  CategoryEdit:
+    allOf:
+      - $ref: '#/schemas/CategoryBase'
+      - type: object
+        properties:
+          count:
+            description: Number of published posts for the term.
+            type: integer
+            readOnly: true
+          description:
+            description: HTML description of the term.
+            type: string
+          parent:
+            description: The parent term ID.
+            type: integer
+          meta:
+            description: Meta fields.
+            type: object
+
+  CategoryResponse:
+    oneOf:
+      - $ref: '#/schemas/CategoryView'
+      - $ref: '#/schemas/CategoryEmbed'
+      - $ref: '#/schemas/CategoryEdit'

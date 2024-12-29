@@ -1,0 +1,532 @@
+schemas:
+  NavMenuItemRevisionBase:
+    type: object
+    properties:
+      author:
+        description: The ID for the author of the revision.
+        type: integer
+      date:
+        description: The date the revision was published, in the site's timezone.
+        type: string
+        format: date-time
+      date_gmt:
+        description: The date the revision was published, as GMT.
+        type: string
+        format: date-time
+      guid:
+        description: GUID for the revision, as it exists in the database.
+        type: string
+      id:
+        description: Unique identifier for the revision.
+        type: integer
+        readOnly: true
+      modified:
+        description: The date the revision was last modified, in the site's timezone.
+        type: string
+        format: date-time
+      modified_gmt:
+        description: The date the revision was last modified, as GMT.
+        type: string
+        format: date-time
+      parent:
+        description: The ID for the parent of the revision.
+        type: integer
+      slug:
+        description: An alphanumeric identifier for the revision unique to its type.
+        type: string
+      title:
+        description: The title for the object.
+        type:
+          - string
+          - object
+        properties:
+          raw:
+            description: Title for the object, as it exists in the database.
+            type: string
+          rendered:
+            description: HTML title for the object, transformed for display.
+            type: string
+            readOnly: true
+      meta:
+        description: Meta fields.
+        type: object
+      preview_link:
+        description: Preview link for the post.
+        type: string
+        format: uri
+        readOnly: true
+
+  NavMenuItemRevisionView:
+    allOf:
+      - $ref: '#/schemas/NavMenuItemRevisionBase'
+
+  NavMenuItemRevisionEmbed:
+    allOf:
+      - $ref: '#/schemas/NavMenuItemRevisionBase'
+
+  NavMenuItemRevisionEdit:
+    allOf:
+      - $ref: '#/schemas/NavMenuItemRevisionBase'
+
+  NavMenuItemRevisionResponse:
+    oneOf:
+      - $ref: '#/schemas/NavMenuItemRevisionView'
+      - $ref: '#/schemas/NavMenuItemRevisionEmbed'
+      - $ref: '#/schemas/NavMenuItemRevisionEdit'
+
+  NavMenuItemBase:
+    type: object
+    properties:
+      title:
+        description: The title for the object.
+        type:
+          - string
+          - object
+        properties:
+          raw:
+            description: Title for the object, as it exists in the database.
+            type: string
+          rendered:
+            description: HTML title for the object, transformed for display.
+            type: string
+            readOnly: true
+      id:
+        description: Unique identifier for the object.
+        type: integer
+        default: 0
+        minimum: 0
+        readOnly: true
+      type_label:
+        description: The singular label used to describe this type of menu item.
+        type: string
+        readOnly: true
+      type:
+        description: The family of objects originally represented, such as "post_type" or "taxonomy".
+        type: string
+        enum:
+          - taxonomy
+          - post_type
+          - post_type_archive
+          - custom
+        default: custom
+      status:
+        description: A named status for the object.
+        type: string
+        enum:
+          - publish
+          - future
+          - draft
+          - pending
+          - private
+        default: publish
+      parent:
+        description: The ID for the parent of the object.
+        type: integer
+        minimum: 0
+        default: 0
+      attr_title:
+        description: Text for the title attribute of the link element for this menu item.
+        type: string
+      classes:
+        description: Class names for the link element of this menu item.
+        type: array
+        items:
+          type: string
+      description:
+        description: The description of this menu item.
+        type: string
+      menu_order:
+        description: The DB ID of the nav_menu_item that is this item's menu parent, if any, otherwise 0.
+        type: integer
+        minimum: 1
+        default: 1
+      object:
+        description: The type of object originally represented, such as "category", "post", or "attachment".
+        type: string
+      object_id:
+        description: The database ID of the original object this menu item represents.
+        type: integer
+        minimum: 0
+        default: 0
+      target:
+        description: The target attribute of the link element for this menu item.
+        type: string
+        enum:
+          - _blank
+          - ''
+      url:
+        description: The URL to which this menu item points.
+        type: string
+        format: uri
+      xfn:
+        description: The XFN relationship expressed in the link of this menu item.
+        type: array
+        items:
+          type: string
+      invalid:
+        description: Whether the menu item represents an object that no longer exists.
+        type: boolean
+        readOnly: true
+      menus:
+        description: The terms assigned to the object in the nav_menu taxonomy.
+        type: integer
+      meta:
+        description: Meta fields.
+        type: object
+
+  NavMenuItemView:
+    allOf:
+      - $ref: '#/schemas/NavMenuItemBase'
+
+  NavMenuItemEmbed:
+    allOf:
+      - $ref: '#/schemas/NavMenuItemBase'
+
+  NavMenuItemEdit:
+    allOf:
+      - $ref: '#/schemas/NavMenuItemBase'
+
+  NavMenuItemResponse:
+    oneOf:
+      - $ref: '#/schemas/NavMenuItemView'
+      - $ref: '#/schemas/NavMenuItemEmbed'
+      - $ref: '#/schemas/NavMenuItemEdit'
+
+# schemas:
+#   nav_menu_item-revision:
+#     $schema: https://json-schema.org/draft/2020-12/schema
+#     title: nav_menu_item-revision
+#     type: object
+#     properties:
+#       author:
+#         description: The ID for the author of the revision.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       date:
+#         description: The date the revision was published, in the site's timezone.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       date_gmt:
+#         description: The date the revision was published, as GMT.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#       guid:
+#         description: GUID for the revision, as it exists in the database.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#       id:
+#         description: Unique identifier for the revision.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       modified:
+#         description: The date the revision was last modified, in the site's timezone.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#       modified_gmt:
+#         description: The date the revision was last modified, as GMT.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#       parent:
+#         description: The ID for the parent of the revision.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       slug:
+#         description: An alphanumeric identifier for the revision unique to its type.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       title:
+#         description: The title for the object.
+#         type:
+#         - string
+#         - object
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         properties:
+#           raw:
+#             description: Title for the object, as it exists in the database.
+#             type: string
+#             x-context:
+#             - edit
+#           rendered:
+#             description: HTML title for the object, transformed for display.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#             readOnly: true
+#       meta:
+#         description: Meta fields.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         # properties: []
+#       preview_link:
+#         description: Preview link for the post.
+#         type: string
+#         format: uri
+#         x-context:
+#         - edit
+#         readOnly: true
+#   nav_menu_item:
+#     $schema: https://json-schema.org/draft/2020-12/schema
+#     title: nav_menu_item
+#     type: object
+#     properties:
+#       title:
+#         description: The title for the object.
+#         type:
+#         - string
+#         - object
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         properties:
+#           raw:
+#             description: Title for the object, as it exists in the database.
+#             type: string
+#             x-context:
+#             - edit
+#           rendered:
+#             description: HTML title for the object, transformed for display.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#             readOnly: true
+#       id:
+#         description: Unique identifier for the object.
+#         type: integer
+#         default: 0
+#         minimum: 0
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         readOnly: true
+#       type_label:
+#         description: The singular label used to describe this type of menu item.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         readOnly: true
+#       type:
+#         description: The family of objects originally represented, such as "post_type"
+#           or "taxonomy".
+#         type: string
+#         enum:
+#         - taxonomy
+#         - post_type
+#         - post_type_archive
+#         - custom
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         default: custom
+#       status:
+#         description: A named status for the object.
+#         type: string
+#         enum:
+#         - publish
+#         - future
+#         - draft
+#         - pending
+#         - private
+#         default: publish
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       parent:
+#         description: The ID for the parent of the object.
+#         type: integer
+#         minimum: 0
+#         default: 0
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       attr_title:
+#         description: Text for the title attribute of the link element for this menu
+#           item.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       classes:
+#         description: Class names for the link element of this menu item.
+#         type: array
+#         items:
+#           type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       description:
+#         description: The description of this menu item.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       menu_order:
+#         description: The DB ID of the nav_menu_item that is this item's menu parent,
+#           if any, otherwise 0.
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         type: integer
+#         minimum: 1
+#         default: 1
+#       object:
+#         description: The type of object originally represented, such as "category",
+#           "post", or "attachment".
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         type: string
+#       object_id:
+#         description: The database ID of the original object this menu item represents,
+#           for example the ID for posts or the term_id for categories.
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         type: integer
+#         minimum: 0
+#         default: 0
+#       target:
+#         description: The target attribute of the link element for this menu item.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         enum:
+#         - _blank
+#         - ''
+#       url:
+#         description: The URL to which this menu item points.
+#         type: string
+#         format: uri
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       xfn:
+#         description: The XFN relationship expressed in the link of this menu item.
+#         type: array
+#         items:
+#           type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       invalid:
+#         description: Whether the menu item represents an object that no longer exists.
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         type: boolean
+#         readOnly: true
+#       menus:
+#         description: The terms assigned to the object in the nav_menu taxonomy.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#       meta:
+#         description: Meta fields.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         # properties: []
+#     # links:
+#     # - rel: https://api.w.org/action-publish
+#     #   title: The current user can publish this post.
+#     #   href: http://localhost:8080/index.php?rest_route=/wp/v2/menu-items/{id}
+#     #   targetSchema:
+#     #     type: object
+#     #     properties:
+#     #       status:
+#     #         type: string
+#     #         enum:
+#     #         - publish
+#     #         - future
+#     # - rel: https://api.w.org/action-unfiltered-html
+#     #   title: The current user can post unfiltered HTML markup and JavaScript.
+#     #   href: http://localhost:8080/index.php?rest_route=/wp/v2/menu-items/{id}
+#     #   targetSchema:
+#     #     type: object
+#     #     properties:
+#     #       content:
+#     #         raw:
+#     #           type: string
+#     # - rel: https://api.w.org/action-assign-menus
+#     #   title: The current user can assign terms in the nav_menu taxonomy.
+#     #   href: http://localhost:8080/index.php?rest_route=/wp/v2/menu-items/{id}
+#     #   targetSchema:
+#     #     type: object
+#     #     properties:
+#     #       menus:
+#     #         type: array
+#     #         items:
+#     #           type: integer
+#     # - rel: https://api.w.org/action-create-menus
+#     #   title: The current user can create terms in the nav_menu taxonomy.
+#     #   href: http://localhost:8080/index.php?rest_route=/wp/v2/menu-items/{id}
+#     #   targetSchema:
+#     #     type: object
+#     #     properties:
+#     #       menus:
+#     #         type: array
+#     #         items:
+#     #           type: integer
+#     # - rel: https://api.w.org/menu-item-object
+#     #   title: Get linked object.
+#     #   href: http://localhost:8080/index.php?rest_route=/wp/v2/menu-items/{id}
+#     #   targetSchema:
+#     #     type: object
+#     #     properties:
+#     #       object:
+#     #         type: integer

@@ -1,0 +1,32 @@
+paths:
+  /wp/v2/types:
+    get:
+      tags:
+      - Types
+      parameters:
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/TypeResponse'
+  /wp/v2/types/{type}:
+    get:
+      tags:
+      - Types
+      parameters:
+      - name: type
+        in: path
+        description: An alphanumeric identifier for the post type.
+        required: true
+        schema: {}
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/TypeResponse'

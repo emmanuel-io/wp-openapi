@@ -1,0 +1,37 @@
+paths:
+  /wp/v2/taxonomies:
+    get:
+      tags:
+      - Taxonomies
+      parameters:
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - name: type
+        in: query
+        description: Limit results to taxonomies associated with a specific post type.
+        required: false
+        schema: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/TaxonomyResponse'
+  /wp/v2/taxonomies/{taxonomy}:
+    get:
+      tags:
+      - Taxonomies
+      parameters:
+      - name: taxonomy
+        in: path
+        description: An alphanumeric identifier for the taxonomy.
+        required: true
+        schema: {}
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/TaxonomyResponse'

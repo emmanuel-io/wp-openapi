@@ -1,0 +1,60 @@
+paths:
+  /wp/v2/block-types:
+    get:
+      tags:
+      - block types
+      parameters:
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - name: namespace
+        in: query
+        description: Block namespace.
+        required: false
+        schema: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/BlockTypeResponse'
+  /wp/v2/block-types/{namespace}:
+    get:
+      tags:
+      - block types
+      parameters:
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - name: namespace
+        in: path
+        description: Block namespace.
+        required: true
+        schema: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/BlockTypeResponse'
+  /wp/v2/block-types/{namespace}/{name}:
+    get:
+      tags:
+      - block types
+      parameters:
+      - name: name
+        in: path
+        description: Block name.
+        required: true
+        schema: {}
+      - name: namespace
+        in: path
+        description: Block namespace.
+        required: true
+        schema: {}
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/BlockTypeResponse'

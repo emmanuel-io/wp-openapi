@@ -1,0 +1,32 @@
+name: Lint OpenAPI with Redocly
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  lint:
+    name: Run Redocly Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install Redocly CLI
+        run: npm install -g @redocly/cli
+
+      - name: Run Redocly lint
+        run: redocly lint wp-openapi
+
+      - name: Check for linting errors
+        if: failure()
+        run: |
+          echo "Linting failed. Please fix the issues before pushing."
+          exit 1

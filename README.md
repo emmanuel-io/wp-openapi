@@ -20,13 +20,13 @@
 1. Clone the repository:
 
 ```bash
-$ git clone https://github.com/your-username/wp-openapi.git
+$ git clone https://github.com/emmanuel-io/wp-openapi.git
 ```
 
-2. Navigate to the project directory:
+2. Switch to the `gh-pages` branch to access the published documentation and bundled files:
 
 ```bash
-$ cd wp-openapi
+$ git checkout gh-pages
 ```
 
 3. Use the bundled OpenAPI specification files located in `./bundles`:
@@ -36,6 +36,7 @@ $ cd wp-openapi
    These files can be used with your preferred API documentation or testing tool (e.g., Swagger UI, Postman).
 
 ---
+
 
 ## Usage
 
@@ -53,7 +54,7 @@ $ cd wp-openapi
 
 ## Documentation Hosting
 
-The full documentation is hosted on GitHub Pages and can be accessed here: [wp-openapi Documentation](https://your-username.github.io/wp-openapi/).
+The full documentation is hosted on GitHub Pages and can be accessed here: [wp-openapi Documentation](https://emmanuel-io.github.io/wp-openapi/).
 
 ---
 
@@ -129,7 +130,7 @@ Special thanks to the WordPress community for their ongoing contributions and su
 
 ## Contact
 
-If you have any questions or feedback, feel free to [open an issue](https://github.com/your-username/wp-openapi/issues).
+If you have any questions or feedback, feel free to [open an issue](https://github.com/emmanuel-io/wp-openapi/issues).
 
 ---
 

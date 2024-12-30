@@ -125,22 +125,9 @@ paths:
       tags:
         - block directory
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            default: 10
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContextView'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: term
           in: query
           description: Limit result set to blocks matching the search term.
@@ -251,7 +238,7 @@ paths:
       tags:
         - block types
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: namespace
           in: query
           description: Block namespace.
@@ -269,7 +256,7 @@ paths:
       tags:
         - block types
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: namespace
           in: path
           description: Block namespace.
@@ -297,7 +284,7 @@ paths:
           description: Block namespace.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK
@@ -317,22 +304,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/WPBlockResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            default: 10
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -388,15 +362,7 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
-          schema:
-            default: desc
-            enum:
-              - asc
-              - desc
+        - $ref: '#/components/parameters/QueryParameterOrder'
         - name: orderby
           in: query
           description: Sort collection by post attribute.
@@ -657,7 +623,7 @@ paths:
           description: Unique identifier for the post.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: excerpt_length
           in: query
           description: Override the default excerpt length.
@@ -1110,21 +1076,9 @@ paths:
           description: The ID for the parent of the revision.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -1149,15 +1103,7 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
-          schema:
-            default: desc
-            enum:
-              - asc
-              - desc
+        - $ref: '#/components/parameters/QueryParameterOrder'
         - name: orderby
           in: query
           description: Sort collection by object attribute.
@@ -1194,7 +1140,7 @@ paths:
           description: Unique identifier for the revision.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     delete:
       tags:
         - blocks
@@ -1243,7 +1189,7 @@ paths:
           description: The ID for the parent of the autosave.
           required: false
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: id
           in: path
           description: ''
@@ -1407,7 +1353,7 @@ paths:
           description: The ID for the autosave.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
   /wp/v2/categories:
     get:
       tags:
@@ -1420,22 +1366,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/CategoryResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            default: 10
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -1455,15 +1388,9 @@ paths:
           schema:
             items:
               type: integer
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
+        - $ref: '#/components/parameters/QueryParameterOrder'
           schema:
             default: asc
-            enum:
-              - asc
-              - desc
         - name: orderby
           in: query
           description: Sort collection by term attribute.
@@ -1551,7 +1478,7 @@ paths:
           description: Unique identifier for the term.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     post:
       tags:
         - categories
@@ -1701,22 +1628,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/CommentResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            default: 10
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -1773,15 +1687,7 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
-          schema:
-            default: desc
-            enum:
-              - asc
-              - desc
+        - $ref: '#/components/parameters/QueryParameterOrder'
         - name: orderby
           in: query
           description: Sort collection by comment attribute.
@@ -1927,7 +1833,7 @@ paths:
           description: Unique identifier for the comment.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: password
           in: query
           description: The password for the parent post of the comment (if the post is password protected).
@@ -2214,22 +2120,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/FontCollectionResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            default: 10
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
   /wp/v2/font-collections/{slug}:
     get:
       tags:
@@ -2242,7 +2135,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/FontCollectionResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: slug
           in: path
           description: ''
@@ -2260,22 +2153,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/WpFontFamilyResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            default: 10
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: exclude
           in: query
           description: Ensure result set excludes specific IDs.
@@ -2302,15 +2182,7 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
-          schema:
-            default: desc
-            enum:
-              - asc
-              - desc
+        - $ref: '#/components/parameters/QueryParameterOrder'
         - name: orderby
           in: query
           description: Sort collection by post attribute.
@@ -2371,7 +2243,7 @@ paths:
           description: Unique identifier for the post.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     post:
       tags:
         - font families
@@ -2514,22 +2386,9 @@ paths:
           description: The ID for the parent font family of the font face.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            default: 10
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: exclude
           in: query
           description: Ensure result set excludes specific IDs.
@@ -2556,15 +2415,7 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
-          schema:
-            default: desc
-            enum:
-              - asc
-              - desc
+        - $ref: '#/components/parameters/QueryParameterOrder'
         - name: orderby
           in: query
           description: Sort collection by post attribute.
@@ -2629,7 +2480,7 @@ paths:
           description: Unique identifier for the font face.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     delete:
       tags:
         - font families
@@ -2671,21 +2522,9 @@ paths:
           description: The ID for the parent of the revision.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: offset
           in: query
           description: Offset the result set by a specific number of items.
@@ -2713,7 +2552,7 @@ paths:
           description: Unique identifier for the global styles revision.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK
@@ -2922,22 +2761,9 @@ paths:
       tags:
         - media
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            default: 10
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -3007,15 +2833,7 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
-          schema:
-            default: desc
-            enum:
-              - asc
-              - desc
+        - $ref: '#/components/parameters/QueryParameterOrder'
         - name: orderby
           in: query
           description: Sort collection by post attribute.
@@ -3237,7 +3055,7 @@ paths:
           description: Unique identifier for the post.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     post:
       tags:
         - media
@@ -3784,22 +3602,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/NavMenuItemResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
           schema:
             default: 100
-            minimum: 1
-            maximum: 100
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -3855,15 +3662,9 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
+        - $ref: '#/components/parameters/QueryParameterOrder'
           schema:
             default: asc
-            enum:
-              - asc
-              - desc
         - name: orderby
           in: query
           description: Sort collection by object attribute.
@@ -4107,7 +3908,7 @@ paths:
           description: Unique identifier for the post.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     post:
       tags:
         - menu-items
@@ -4459,7 +4260,7 @@ paths:
           description: The ID for the parent of the autosave.
           required: false
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: id
           in: path
           description: ''
@@ -4592,7 +4393,7 @@ paths:
           description: The ID for the autosave.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK
@@ -4605,7 +4406,7 @@ paths:
       tags:
         - menu locations
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK
@@ -4623,7 +4424,7 @@ paths:
           description: An alphanumeric identifier for the menu location.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK
@@ -4643,22 +4444,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/NavMenuResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            default: 10
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -4683,15 +4471,9 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
+        - $ref: '#/components/parameters/QueryParameterOrder'
           schema:
             default: asc
-            enum:
-              - asc
-              - desc
         - name: orderby
           in: query
           description: Sort collection by term attribute.
@@ -4779,7 +4561,7 @@ paths:
           description: Unique identifier for the term.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     post:
       tags:
         - menus
@@ -4944,22 +4726,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/WPNavigationResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            default: 10
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -5015,15 +4784,7 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
-          schema:
-            default: desc
-            enum:
-              - asc
-              - desc
+        - $ref: '#/components/parameters/QueryParameterOrder'
         - name: orderby
           in: query
           description: Sort collection by post attribute.
@@ -5195,7 +4956,7 @@ paths:
           description: Unique identifier for the post.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: password
           in: query
           description: The password for the post if it is password protected.
@@ -5553,21 +5314,9 @@ paths:
           description: The ID for the parent of the revision.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -5592,15 +5341,7 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
-          schema:
-            default: desc
-            enum:
-              - asc
-              - desc
+        - $ref: '#/components/parameters/QueryParameterOrder'
         - name: orderby
           in: query
           description: Sort collection by object attribute.
@@ -5637,7 +5378,7 @@ paths:
           description: Unique identifier for the revision.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     delete:
       tags:
         - navigation
@@ -5686,7 +5427,7 @@ paths:
           description: The ID for the parent of the autosave.
           required: false
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: id
           in: path
           description: ''
@@ -5820,7 +5561,7 @@ paths:
           description: The ID for the autosave.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
   /wp/v2/pages:
     get:
       tags:
@@ -5833,22 +5574,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/PageResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            default: 10
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -5923,15 +5651,7 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
-          schema:
-            default: desc
-            enum:
-              - asc
-              - desc
+        - $ref: '#/components/parameters/QueryParameterOrder'
         - name: orderby
           in: query
           description: Sort collection by post attribute.
@@ -6172,7 +5892,7 @@ paths:
           description: Unique identifier for the post.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: excerpt_length
           in: query
           description: Override the default excerpt length.
@@ -6697,21 +6417,9 @@ paths:
           description: The ID for the parent of the revision.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -6736,15 +6444,7 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
-          schema:
-            default: desc
-            enum:
-              - asc
-              - desc
+        - $ref: '#/components/parameters/QueryParameterOrder'
         - name: orderby
           in: query
           description: Sort collection by object attribute.
@@ -6781,7 +6481,7 @@ paths:
           description: Unique identifier for the revision.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     delete:
       tags:
         - Pages
@@ -6830,7 +6530,7 @@ paths:
           description: The ID for the parent of the autosave.
           required: false
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: id
           in: path
           description: ''
@@ -7015,7 +6715,7 @@ paths:
           description: The ID for the autosave.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
   /wp/v2/pattern-directory/patterns:
     get:
       tags:
@@ -7028,22 +6728,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/PatternDirectoryItemResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
           schema:
             default: 100
-            minimum: 1
-            maximum: 100
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -7072,15 +6761,7 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
-          schema:
-            default: desc
-            enum:
-              - asc
-              - desc
+        - $ref: '#/components/parameters/QueryParameterOrder'
         - name: orderby
           in: query
           description: Sort collection by post attribute.
@@ -7111,7 +6792,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PluginResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -7168,7 +6849,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/PluginResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: plugin
           in: path
           description: ''
@@ -7324,22 +7005,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/PostResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            default: 10
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -7409,15 +7077,7 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
-          schema:
-            default: desc
-            enum:
-              - asc
-              - desc
+        - $ref: '#/components/parameters/QueryParameterOrder'
         - name: orderby
           in: query
           description: Sort collection by post attribute.
@@ -7806,7 +7466,7 @@ paths:
           description: Unique identifier for the post.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: excerpt_length
           in: query
           description: Override the default excerpt length.
@@ -8394,21 +8054,9 @@ paths:
           description: The ID for the parent of the revision.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -8433,15 +8081,7 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
-          schema:
-            default: desc
-            enum:
-              - asc
-              - desc
+        - $ref: '#/components/parameters/QueryParameterOrder'
         - name: orderby
           in: query
           description: Sort collection by object attribute.
@@ -8478,7 +8118,7 @@ paths:
           description: Unique identifier for the revision.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     delete:
       tags:
         - Posts
@@ -8527,7 +8167,7 @@ paths:
           description: The ID for the parent of the autosave.
           required: false
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: id
           in: path
           description: ''
@@ -8736,7 +8376,7 @@ paths:
           description: The ID for the autosave.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
   /wp/v2/search:
     get:
       tags:
@@ -8749,22 +8389,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/SearchResultResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            default: 10
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -9143,7 +8770,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/SidebarResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
   /wp/v2/sidebars/{id}:
     get:
       tags:
@@ -9161,7 +8788,7 @@ paths:
           description: The id of a registered sidebar
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     post:
       tags:
         - Sidebars
@@ -9261,7 +8888,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/StatusResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
   /wp/v2/statuses/{status}:
     get:
       tags:
@@ -9279,13 +8906,13 @@ paths:
           description: An alphanumeric identifier for the status.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
   /wp/v2/taxonomies:
     get:
       tags:
         - Taxonomies
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: type
           in: query
           description: Limit results to taxonomies associated with a specific post type.
@@ -9308,7 +8935,7 @@ paths:
           description: An alphanumeric identifier for the taxonomy.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK
@@ -9328,22 +8955,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/TagResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            default: 10
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -9368,15 +8982,9 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
+        - $ref: '#/components/parameters/QueryParameterOrder'
           schema:
             default: asc
-            enum:
-              - asc
-              - desc
         - name: orderby
           in: query
           description: Sort collection by term attribute.
@@ -9456,7 +9064,7 @@ paths:
           description: Unique identifier for the term.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     post:
       tags:
         - tags
@@ -9597,7 +9205,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/WpTemplatePartResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: wp_id
           in: query
           description: Limit to the specified post id.
@@ -9743,7 +9351,7 @@ paths:
           description: The id of a template
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     post:
       tags:
         - Template parts
@@ -10057,21 +9665,9 @@ paths:
           description: The id of a template
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -10096,15 +9692,7 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
-          schema:
-            default: desc
-            enum:
-              - asc
-              - desc
+        - $ref: '#/components/parameters/QueryParameterOrder'
         - name: orderby
           in: query
           description: Sort collection by object attribute.
@@ -10141,7 +9729,7 @@ paths:
           description: Unique identifier for the revision.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     delete:
       tags:
         - Template parts
@@ -10190,7 +9778,7 @@ paths:
           description: The id of a template
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     post:
       tags:
         - Template parts
@@ -10303,7 +9891,7 @@ paths:
           description: The ID for the autosave.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
   /wp/v2/templates:
     get:
       tags:
@@ -10316,7 +9904,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/WpTemplateResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: wp_id
           in: query
           description: Limit to the specified post id.
@@ -10459,7 +10047,7 @@ paths:
           description: The id of a template
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     post:
       tags:
         - Templates
@@ -10764,21 +10352,9 @@ paths:
           description: The id of a template
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -10803,15 +10379,7 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
-          schema:
-            default: desc
-            enum:
-              - asc
-              - desc
+        - $ref: '#/components/parameters/QueryParameterOrder'
         - name: orderby
           in: query
           description: Sort collection by object attribute.
@@ -10848,7 +10416,7 @@ paths:
           description: Unique identifier for the revision.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     delete:
       tags:
         - Templates
@@ -10897,7 +10465,7 @@ paths:
           description: The id of a template
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     post:
       tags:
         - Templates
@@ -11007,7 +10575,7 @@ paths:
           description: The ID for the autosave.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
   /wp/v2/themes:
     get:
       tags:
@@ -11052,7 +10620,7 @@ paths:
       tags:
         - Types
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK
@@ -11070,7 +10638,7 @@ paths:
           description: An alphanumeric identifier for the post type.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK
@@ -11090,22 +10658,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            default: 10
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -11130,15 +10685,9 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
+        - $ref: '#/components/parameters/QueryParameterOrder'
           schema:
             default: asc
-            enum:
-              - asc
-              - desc
         - name: orderby
           in: query
           description: Sort collection by user attribute.
@@ -11299,7 +10848,7 @@ paths:
           description: Unique identifier for the user.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     post:
       tags:
         - Users
@@ -11592,7 +11141,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
     post:
       tags:
         - Users
@@ -11861,7 +11410,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApplicationPasswordResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: user_id
           in: path
           description: ''
@@ -11928,7 +11477,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApplicationPasswordResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: user_id
           in: path
           description: ''
@@ -11946,7 +11495,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApplicationPasswordResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: user_id
           in: path
           description: ''
@@ -12091,7 +11640,7 @@ paths:
       tags:
         - Widget types
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK
@@ -12109,7 +11658,7 @@ paths:
           description: The widget type id.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK
@@ -12176,7 +11725,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/WidgetResponse'
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
         - name: sidebar
           in: query
           description: The sidebar to return widgets for.
@@ -12439,22 +11988,9 @@ paths:
       tags:
         - Pattern category
       parameters:
-        - $ref: '#/components/parameters/ContextQueryParameter'
-        - name: page
-          in: query
-          description: Current page of the collection.
-          required: false
-          schema:
-            default: 1
-            minimum: 1
-        - name: per_page
-          in: query
-          description: Maximum number of items to be returned in result set.
-          required: false
-          schema:
-            default: 10
-            minimum: 1
-            maximum: 100
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - $ref: '#/components/parameters/QueryParameterPage'
+        - $ref: '#/components/parameters/QueryParameterPerPage'
         - name: search
           in: query
           description: Limit results to those matching a string.
@@ -12479,15 +12015,9 @@ paths:
           description: Offset the result set by a specific number of items.
           required: false
           schema: {}
-        - name: order
-          in: query
-          description: Order sort attribute ascending or descending.
-          required: false
+        - $ref: '#/components/parameters/QueryParameterOrder'
           schema:
             default: asc
-            enum:
-              - asc
-              - desc
         - name: orderby
           in: query
           description: Sort collection by term attribute.
@@ -12567,7 +12097,7 @@ paths:
           description: Unique identifier for the term.
           required: true
           schema: {}
-        - $ref: '#/components/parameters/ContextQueryParameter'
+        - $ref: '#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK
@@ -12846,7 +12376,34 @@ paths:
           description: OK
 components:
   parameters:
-    ContextQueryParameter:
+    QueryParameterContextView:
+      name: context
+      in: query
+      description: |
+        Scope under which the request is made; determines fields present in response, limited to view.
+      required: false
+      schema:
+        default: view
+        enum:
+          - view
+    QueryParameterPage:
+      name: page
+      in: query
+      description: Current page of the collection.
+      required: false
+      schema:
+        default: 1
+        minimum: 1
+    QueryParameterPerPage:
+      name: per_page
+      in: query
+      description: Maximum number of items to be returned in result set.
+      required: false
+      schema:
+        default: 10
+        minimum: 1
+        maximum: 100
+    QueryParameterContext:
       name: context
       in: query
       description: Scope under which the request is made; determines fields present in response.
@@ -12857,6 +12414,16 @@ components:
           - view
           - embed
           - edit
+    QueryParameterOrder:
+      name: order
+      in: query
+      description: Order sort attribute ascending or descending.
+      required: false
+      schema:
+        default: desc
+        enum:
+          - asc
+          - desc
   schemas:
     BlockDirectoryItemBase:
       type: object

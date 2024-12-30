@@ -194,28 +194,13 @@
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContextView"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "default": 10,
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "term",
@@ -394,7 +379,7 @@
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "namespace",
@@ -425,7 +410,7 @@
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "namespace",
@@ -470,7 +455,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ],
         "responses": {
@@ -506,28 +491,13 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "default": 10,
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "search",
@@ -613,17 +583,7 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
-            "schema": {
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
-            }
+            "$ref": "#/components/parameters/QueryParameterOrder"
           },
           {
             "name": "orderby",
@@ -993,7 +953,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "excerpt_length",
@@ -1632,27 +1592,13 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "search",
@@ -1691,17 +1637,7 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
-            "schema": {
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
-            }
+            "$ref": "#/components/parameters/QueryParameterOrder"
           },
           {
             "name": "orderby",
@@ -1757,7 +1693,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -1837,7 +1773,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "id",
@@ -2070,7 +2006,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       }
@@ -2094,28 +2030,13 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "default": 10,
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "search",
@@ -2147,16 +2068,9 @@
             }
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
+            "$ref": "#/components/parameters/QueryParameterOrder",
             "schema": {
-              "default": "asc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
+              "default": "asc"
             }
           },
           {
@@ -2290,7 +2204,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -2527,28 +2441,13 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "default": 10,
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "search",
@@ -2636,17 +2535,7 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
-            "schema": {
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
-            }
+            "$ref": "#/components/parameters/QueryParameterOrder"
           },
           {
             "name": "orderby",
@@ -2859,7 +2748,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "password",
@@ -3275,28 +3164,13 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "default": 10,
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           }
         ]
       }
@@ -3320,7 +3194,7 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "slug",
@@ -3351,28 +3225,13 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "default": 10,
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "exclude",
@@ -3415,17 +3274,7 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
-            "schema": {
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
-            }
+            "$ref": "#/components/parameters/QueryParameterOrder"
           },
           {
             "name": "orderby",
@@ -3522,7 +3371,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -3748,28 +3597,13 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "default": 10,
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "exclude",
@@ -3812,17 +3646,7 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
-            "schema": {
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
-            }
+            "$ref": "#/components/parameters/QueryParameterOrder"
           },
           {
             "name": "orderby",
@@ -3924,7 +3748,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -3992,27 +3816,13 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "offset",
@@ -4057,7 +3867,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ],
         "responses": {
@@ -4382,28 +4192,13 @@
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "default": 10,
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "search",
@@ -4511,17 +4306,7 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
-            "schema": {
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
-            }
+            "$ref": "#/components/parameters/QueryParameterOrder"
           },
           {
             "name": "orderby",
@@ -4840,7 +4625,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -5625,27 +5410,15 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
+            "$ref": "#/components/parameters/QueryParameterPerPage",
             "schema": {
-              "default": 100,
-              "minimum": 1,
-              "maximum": 100
+              "default": 100
             }
           },
           {
@@ -5732,16 +5505,9 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
+            "$ref": "#/components/parameters/QueryParameterOrder",
             "schema": {
-              "default": "asc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
+              "default": "asc"
             }
           },
           {
@@ -6087,7 +5853,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -6586,7 +6352,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "id",
@@ -6777,7 +6543,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ],
         "responses": {
@@ -6801,7 +6567,7 @@
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ],
         "responses": {
@@ -6832,7 +6598,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ],
         "responses": {
@@ -6868,28 +6634,13 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "default": 10,
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "search",
@@ -6928,16 +6679,9 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
+            "$ref": "#/components/parameters/QueryParameterOrder",
             "schema": {
-              "default": "asc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
+              "default": "asc"
             }
           },
           {
@@ -7071,7 +6815,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -7329,28 +7073,13 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "default": 10,
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "search",
@@ -7436,17 +7165,7 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
-            "schema": {
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
-            }
+            "$ref": "#/components/parameters/QueryParameterOrder"
           },
           {
             "name": "orderby",
@@ -7686,7 +7405,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "password",
@@ -8195,27 +7914,13 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "search",
@@ -8254,17 +7959,7 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
-            "schema": {
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
-            }
+            "$ref": "#/components/parameters/QueryParameterOrder"
           },
           {
             "name": "orderby",
@@ -8320,7 +8015,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -8400,7 +8095,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "id",
@@ -8592,7 +8287,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       }
@@ -8616,28 +8311,13 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "default": 10,
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "search",
@@ -8752,17 +8432,7 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
-            "schema": {
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
-            }
+            "$ref": "#/components/parameters/QueryParameterOrder"
           },
           {
             "name": "orderby",
@@ -9098,7 +8768,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "excerpt_length",
@@ -9833,27 +9503,13 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "search",
@@ -9892,17 +9548,7 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
-            "schema": {
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
-            }
+            "$ref": "#/components/parameters/QueryParameterOrder"
           },
           {
             "name": "orderby",
@@ -9958,7 +9604,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -10038,7 +9684,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "id",
@@ -10299,7 +9945,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       }
@@ -10323,27 +9969,15 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
+            "$ref": "#/components/parameters/QueryParameterPerPage",
             "schema": {
-              "default": 100,
-              "minimum": 1,
-              "maximum": 100
+              "default": 100
             }
           },
           {
@@ -10388,17 +10022,7 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
-            "schema": {
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
-            }
+            "$ref": "#/components/parameters/QueryParameterOrder"
           },
           {
             "name": "orderby",
@@ -10444,7 +10068,7 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "search",
@@ -10535,7 +10159,7 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "plugin",
@@ -10778,28 +10402,13 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "default": 10,
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "search",
@@ -10907,17 +10516,7 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
-            "schema": {
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
-            }
+            "$ref": "#/components/parameters/QueryParameterOrder"
           },
           {
             "name": "orderby",
@@ -11463,7 +11062,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "excerpt_length",
@@ -12276,27 +11875,13 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "search",
@@ -12335,17 +11920,7 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
-            "schema": {
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
-            }
+            "$ref": "#/components/parameters/QueryParameterOrder"
           },
           {
             "name": "orderby",
@@ -12401,7 +11976,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -12481,7 +12056,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "id",
@@ -12772,7 +12347,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       }
@@ -12796,28 +12371,13 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "default": 10,
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "search",
@@ -13336,7 +12896,7 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       }
@@ -13367,7 +12927,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -13532,7 +13092,7 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       }
@@ -13563,7 +13123,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       }
@@ -13575,7 +13135,7 @@
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "type",
@@ -13613,7 +13173,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ],
         "responses": {
@@ -13649,28 +13209,13 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "default": 10,
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "search",
@@ -13709,16 +13254,9 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
+            "$ref": "#/components/parameters/QueryParameterOrder",
             "schema": {
-              "default": "asc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
+              "default": "asc"
             }
           },
           {
@@ -13841,7 +13379,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -14066,7 +13604,7 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "wp_id",
@@ -14278,7 +13816,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -14732,27 +14270,13 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "search",
@@ -14791,17 +14315,7 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
-            "schema": {
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
-            }
+            "$ref": "#/components/parameters/QueryParameterOrder"
           },
           {
             "name": "orderby",
@@ -14857,7 +14371,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -14937,7 +14451,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -15102,7 +14616,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       }
@@ -15126,7 +14640,7 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "wp_id",
@@ -15334,7 +14848,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -15776,27 +15290,13 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "search",
@@ -15835,17 +15335,7 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
-            "schema": {
-              "default": "desc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
-            }
+            "$ref": "#/components/parameters/QueryParameterOrder"
           },
           {
             "name": "orderby",
@@ -15901,7 +15391,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -15981,7 +15471,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -16142,7 +15632,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       }
@@ -16218,7 +15708,7 @@
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ],
         "responses": {
@@ -16249,7 +15739,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ],
         "responses": {
@@ -16285,28 +15775,13 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "default": 10,
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "search",
@@ -16345,16 +15820,9 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
+            "$ref": "#/components/parameters/QueryParameterOrder",
             "schema": {
-              "default": "asc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
+              "default": "asc"
             }
           },
           {
@@ -16587,7 +16055,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -17014,7 +16482,7 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ]
       },
@@ -17405,7 +16873,7 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "user_id",
@@ -17513,7 +16981,7 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "user_id",
@@ -17544,7 +17012,7 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "user_id",
@@ -17768,7 +17236,7 @@
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ],
         "responses": {
@@ -17799,7 +17267,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ],
         "responses": {
@@ -17911,7 +17379,7 @@
         },
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
             "name": "sidebar",
@@ -18316,28 +17784,13 @@
         ],
         "parameters": [
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           },
           {
-            "name": "page",
-            "in": "query",
-            "description": "Current page of the collection.",
-            "required": false,
-            "schema": {
-              "default": 1,
-              "minimum": 1
-            }
+            "$ref": "#/components/parameters/QueryParameterPage"
           },
           {
-            "name": "per_page",
-            "in": "query",
-            "description": "Maximum number of items to be returned in result set.",
-            "required": false,
-            "schema": {
-              "default": 10,
-              "minimum": 1,
-              "maximum": 100
-            }
+            "$ref": "#/components/parameters/QueryParameterPerPage"
           },
           {
             "name": "search",
@@ -18376,16 +17829,9 @@
             "schema": {}
           },
           {
-            "name": "order",
-            "in": "query",
-            "description": "Order sort attribute ascending or descending.",
-            "required": false,
+            "$ref": "#/components/parameters/QueryParameterOrder",
             "schema": {
-              "default": "asc",
-              "enum": [
-                "asc",
-                "desc"
-              ]
+              "default": "asc"
             }
           },
           {
@@ -18508,7 +17954,7 @@
             "schema": {}
           },
           {
-            "$ref": "#/components/parameters/ContextQueryParameter"
+            "$ref": "#/components/parameters/QueryParameterContext"
           }
         ],
         "responses": {
@@ -18966,7 +18412,40 @@
   },
   "components": {
     "parameters": {
-      "ContextQueryParameter": {
+      "QueryParameterContextView": {
+        "name": "context",
+        "in": "query",
+        "description": "Scope under which the request is made; determines fields present in response, limited to view.\n",
+        "required": false,
+        "schema": {
+          "default": "view",
+          "enum": [
+            "view"
+          ]
+        }
+      },
+      "QueryParameterPage": {
+        "name": "page",
+        "in": "query",
+        "description": "Current page of the collection.",
+        "required": false,
+        "schema": {
+          "default": 1,
+          "minimum": 1
+        }
+      },
+      "QueryParameterPerPage": {
+        "name": "per_page",
+        "in": "query",
+        "description": "Maximum number of items to be returned in result set.",
+        "required": false,
+        "schema": {
+          "default": 10,
+          "minimum": 1,
+          "maximum": 100
+        }
+      },
+      "QueryParameterContext": {
         "name": "context",
         "in": "query",
         "description": "Scope under which the request is made; determines fields present in response.",
@@ -18977,6 +18456,19 @@
             "view",
             "embed",
             "edit"
+          ]
+        }
+      },
+      "QueryParameterOrder": {
+        "name": "order",
+        "in": "query",
+        "description": "Order sort attribute ascending or descending.",
+        "required": false,
+        "schema": {
+          "default": "desc",
+          "enum": [
+            "asc",
+            "desc"
           ]
         }
       }

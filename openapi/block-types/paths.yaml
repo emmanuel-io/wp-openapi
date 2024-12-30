@@ -4,7 +4,7 @@ paths:
       tags:
       - block types
       parameters:
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       - name: namespace
         in: query
         description: Block namespace.
@@ -22,7 +22,7 @@ paths:
       tags:
       - block types
       parameters:
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       - name: namespace
         in: path
         description: Block namespace.
@@ -50,7 +50,7 @@ paths:
         description: Block namespace.
         required: true
         schema: {}
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK

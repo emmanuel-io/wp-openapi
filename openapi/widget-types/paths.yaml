@@ -4,7 +4,7 @@ paths:
       tags:
       - Widget types
       parameters:
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK
@@ -22,7 +22,7 @@ paths:
         description: The widget type id.
         required: true
         schema: {}
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK

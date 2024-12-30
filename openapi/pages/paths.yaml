@@ -11,22 +11,9 @@ paths:
               schema:
                 $ref: './schemas.yaml#/schemas/PageResponse'
       parameters:
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
-      - name: page
-        in: query
-        description: Current page of the collection.
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-      - name: per_page
-        in: query
-        description: Maximum number of items to be returned in result set.
-        required: false
-        schema:
-          default: 10
-          minimum: 1
-          maximum: 100
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterPage'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterPerPage'
       - name: search
         in: query
         description: Limit results to those matching a string.
@@ -105,15 +92,7 @@ paths:
         description: Offset the result set by a specific number of items.
         required: false
         schema: {}
-      - name: order
-        in: query
-        description: Order sort attribute ascending or descending.
-        required: false
-        schema:
-          default: desc
-          enum:
-          - asc
-          - desc
+      - $ref: '../components.yaml#/components/parameters/QueryParameterOrder'
       - name: orderby
         in: query
         description: Sort collection by post attribute.
@@ -357,7 +336,7 @@ paths:
         description: Unique identifier for the post.
         required: true
         schema: {}
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       - name: excerpt_length
         in: query
         description: Override the default excerpt length.
@@ -888,21 +867,9 @@ paths:
         description: The ID for the parent of the revision.
         required: true
         schema: {}
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
-      - name: page
-        in: query
-        description: Current page of the collection.
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-      - name: per_page
-        in: query
-        description: Maximum number of items to be returned in result set.
-        required: false
-        schema:
-          minimum: 1
-          maximum: 100
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterPage'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterPerPage'
       - name: search
         in: query
         description: Limit results to those matching a string.
@@ -927,15 +894,7 @@ paths:
         description: Offset the result set by a specific number of items.
         required: false
         schema: {}
-      - name: order
-        in: query
-        description: Order sort attribute ascending or descending.
-        required: false
-        schema:
-          default: desc
-          enum:
-          - asc
-          - desc
+      - $ref: '../components.yaml#/components/parameters/QueryParameterOrder'
       - name: orderby
         in: query
         description: Sort collection by object attribute.
@@ -972,7 +931,7 @@ paths:
         description: Unique identifier for the revision.
         required: true
         schema: {}
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
     delete:
       tags:
       - Pages
@@ -1021,7 +980,7 @@ paths:
         description: The ID for the parent of the autosave.
         required: false
         schema: {}
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       - name: id
         in: path
         description: ''
@@ -1208,4 +1167,4 @@ paths:
         description: The ID for the autosave.
         required: true
         schema: {}
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'

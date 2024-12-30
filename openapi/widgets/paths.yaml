@@ -11,7 +11,7 @@ paths:
               schema:
                 $ref: './schemas.yaml#/schemas/WidgetResponse'
       parameters:
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       - name: sidebar
         in: query
         description: The sidebar to return widgets for.

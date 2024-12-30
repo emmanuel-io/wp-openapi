@@ -11,22 +11,9 @@ paths:
               schema:
                 $ref: './schemas.yaml#/schemas/FontCollectionResponse'
       parameters:
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
-      - name: page
-        in: query
-        description: Current page of the collection.
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-      - name: per_page
-        in: query
-        description: Maximum number of items to be returned in result set.
-        required: false
-        schema:
-          default: 10
-          minimum: 1
-          maximum: 100
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterPage'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterPerPage'
   /wp/v2/font-collections/{slug}:
     get:
       tags:
@@ -39,7 +26,7 @@ paths:
               schema:
                 $ref: './schemas.yaml#/schemas/FontCollectionResponse'
       parameters:
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       - name: slug
         in: path
         description: ''

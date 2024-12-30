@@ -4,22 +4,9 @@ paths:
       tags:
       - Pattern category
       parameters:
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
-      - name: page
-        in: query
-        description: Current page of the collection.
-        required: false
-        schema:
-          default: 1
-          minimum: 1
-      - name: per_page
-        in: query
-        description: Maximum number of items to be returned in result set.
-        required: false
-        schema:
-          default: 10
-          minimum: 1
-          maximum: 100
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterPage'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterPerPage'
       - name: search
         in: query
         description: Limit results to those matching a string.
@@ -44,15 +31,9 @@ paths:
         description: Offset the result set by a specific number of items.
         required: false
         schema: {}
-      - name: order
-        in: query
-        description: Order sort attribute ascending or descending.
-        required: false
+      - $ref: '../components.yaml#/components/parameters/QueryParameterOrder'
         schema:
           default: asc
-          enum:
-          - asc
-          - desc
       - name: orderby
         in: query
         description: Sort collection by term attribute.
@@ -135,7 +116,7 @@ paths:
         description: Unique identifier for the term.
         required: true
         schema: {}
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK

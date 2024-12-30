@@ -11,7 +11,7 @@ paths:
               schema:
                 $ref: './schemas.yaml#/schemas/PluginResponse'
       parameters:
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       - name: search
         in: query
         description: Limit results to those matching a string.
@@ -69,7 +69,7 @@ paths:
               schema:
                 $ref: './schemas.yaml#/schemas/PluginResponse'
       parameters:
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       - name: plugin
         in: path
         description: ''

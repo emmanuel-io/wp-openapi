@@ -4,7 +4,7 @@ paths:
       tags:
       - Types
       parameters:
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK
@@ -22,7 +22,7 @@ paths:
         description: An alphanumeric identifier for the post type.
         required: true
         schema: {}
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK

@@ -11,7 +11,7 @@ paths:
               schema:
                 $ref: './schemas.yaml#/schemas/SidebarResponse'
       parameters:
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
   /wp/v2/sidebars/{id}:
     get:
       tags:
@@ -29,7 +29,7 @@ paths:
         description: The id of a registered sidebar
         required: true
         schema: {}
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
     post:
       tags:
       - Sidebars

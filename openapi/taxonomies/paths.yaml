@@ -4,7 +4,7 @@ paths:
       tags:
       - Taxonomies
       parameters:
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       - name: type
         in: query
         description: Limit results to taxonomies associated with a specific post type.
@@ -27,7 +27,7 @@ paths:
         description: An alphanumeric identifier for the taxonomy.
         required: true
         schema: {}
-      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK

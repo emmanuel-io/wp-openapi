@@ -2,6 +2,8 @@
 
 echo "Getting started"
 
+# Lint the openapi definition
+npx @redocly/cli lint wp-openapi
 # Bundle docs into zero-dependency HTML file
 npx @redocly/cli build-docs wp-openapi -o ./docs/index.html
 # Bundle docs into single json file

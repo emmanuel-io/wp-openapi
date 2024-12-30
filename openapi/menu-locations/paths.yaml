@@ -1,0 +1,32 @@
+paths:
+  /wp/v2/menu-locations:
+    get:
+      tags:
+      - menu locations
+      parameters:
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/MenuLocationResponse'
+  /wp/v2/menu-locations/{location}:
+    get:
+      tags:
+      - menu locations
+      parameters:
+      - name: location
+        in: path
+        description: An alphanumeric identifier for the menu location.
+        required: true
+        schema: {}
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/MenuLocationResponse'

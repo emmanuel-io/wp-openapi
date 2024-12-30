@@ -1,0 +1,80 @@
+paths:
+  /wp/v2/widget-types:
+    get:
+      tags:
+      - Widget types
+      parameters:
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/WidgetTypeResponse'
+  /wp/v2/widget-types/{id}:
+    get:
+      tags:
+      - Widget types
+      parameters:
+      - name: id
+        in: path
+        description: The widget type id.
+        required: true
+        schema: {}
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/WidgetTypeResponse'
+  /wp/v2/widget-types/{id}/encode:
+    post:
+      tags:
+      - Widget types
+      parameters:
+      - name: id
+        in: path
+        description: The widget type id.
+        required: true
+        schema: {}
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                instance:
+                  description: Current instance settings of the widget.
+                  type: object
+                form_data:
+                  description: Serialized widget form data to encode into instance
+                    settings.
+                  type: string
+      responses:
+        '200':
+          description: OK
+  /wp/v2/widget-types/{id}/render:
+    post:
+      tags:
+      - Widget types
+      parameters:
+      - name: id
+        in: path
+        description: The widget type id.
+        required: true
+        schema: {}
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                instance:
+                  description: Current instance settings of the widget.
+                  type: object
+      responses:
+        '200':
+          description: OK

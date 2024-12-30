@@ -1,0 +1,424 @@
+paths:
+  /wp/v2/font-families:
+    get:
+      tags:
+      - font families
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/WpFontFamilyResponse'
+      parameters:
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - name: page
+        in: query
+        description: Current page of the collection.
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+      - name: per_page
+        in: query
+        description: Maximum number of items to be returned in result set.
+        required: false
+        schema:
+          default: 10
+          minimum: 1
+          maximum: 100
+      - name: exclude
+        in: query
+        description: Ensure result set excludes specific IDs.
+        required: false
+        schema:
+          items:
+            type: integer
+      - name: include
+        in: query
+        description: Limit result set to specific IDs.
+        required: false
+        schema:
+          items:
+            type: integer
+      - name: search_semantics
+        in: query
+        description: How to interpret the search input.
+        required: false
+        schema:
+          enum:
+          - exact
+      - name: offset
+        in: query
+        description: Offset the result set by a specific number of items.
+        required: false
+        schema: {}
+      - name: order
+        in: query
+        description: Order sort attribute ascending or descending.
+        required: false
+        schema:
+          default: desc
+          enum:
+          - asc
+          - desc
+      - name: orderby
+        in: query
+        description: Sort collection by post attribute.
+        required: false
+        schema:
+          default: id
+          enum:
+          - id
+          - include
+      - name: slug
+        in: query
+        description: Limit result set to posts with one or more specific slugs.
+        required: false
+        schema:
+          items:
+            type: string
+    post:
+      tags:
+      - font families
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/WpFontFamilyResponse'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                theme_json_version:
+                  description: Version of the theme.json schema used for the typography
+                    settings.
+                  default: 3
+                  type: integer
+                  maximum: 3
+                  minimum: 2
+                font_family_settings:
+                  description: font-family declaration in theme.json format, encoded
+                    as a string.
+                  type: string
+              required:
+              - font_family_settings
+  /wp/v2/font-families/{id}:
+    get:
+      tags:
+      - font families
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/WpFontFamilyResponse'
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier for the post.
+        required: true
+        schema: {}
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+    post:
+      tags:
+      - font families
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/WpFontFamilyResponse'
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier for the post.
+        required: true
+        schema: {}
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                theme_json_version:
+                  description: Version of the theme.json schema used for the typography
+                    settings.
+                  default: 3
+                  type: integer
+                  maximum: 3
+                  minimum: 2
+                font_family_settings:
+                  description: font-family declaration in theme.json format, encoded
+                    as a string.
+                  type: string
+              required:
+              - font_family_settings
+    put:
+      tags:
+      - font families
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/WpFontFamilyResponse'
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier for the post.
+        required: true
+        schema: {}
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                theme_json_version:
+                  description: Version of the theme.json schema used for the typography
+                    settings.
+                  default: 3
+                  type: integer
+                  maximum: 3
+                  minimum: 2
+                font_family_settings:
+                  description: font-family declaration in theme.json format, encoded
+                    as a string.
+                  type: string
+              required:
+              - font_family_settings
+    patch:
+      tags:
+      - font families
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/WpFontFamilyResponse'
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier for the post.
+        required: true
+        schema: {}
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                theme_json_version:
+                  description: Version of the theme.json schema used for the typography
+                    settings.
+                  default: 3
+                  type: integer
+                  maximum: 3
+                  minimum: 2
+                font_family_settings:
+                  description: font-family declaration in theme.json format, encoded
+                    as a string.
+                  type: string
+              required:
+              - font_family_settings
+    delete:
+      tags:
+      - font families
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/WpFontFamilyResponse'
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier for the post.
+        required: true
+        schema: {}
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                force:
+                  description: Whether to bypass Trash and force deletion.
+                  default: false
+                  type: boolean
+  /wp/v2/font-families/{font_family_id}/font-faces:
+    get:
+      tags:
+      - font families
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/WpFontFaceResponse'
+      parameters:
+      - name: font_family_id
+        in: path
+        description: The ID for the parent font family of the font face.
+        required: true
+        schema: {}
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - name: page
+        in: query
+        description: Current page of the collection.
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+      - name: per_page
+        in: query
+        description: Maximum number of items to be returned in result set.
+        required: false
+        schema:
+          default: 10
+          minimum: 1
+          maximum: 100
+      - name: exclude
+        in: query
+        description: Ensure result set excludes specific IDs.
+        required: false
+        schema:
+          items:
+            type: integer
+      - name: include
+        in: query
+        description: Limit result set to specific IDs.
+        required: false
+        schema:
+          items:
+            type: integer
+      - name: search_semantics
+        in: query
+        description: How to interpret the search input.
+        required: false
+        schema:
+          enum:
+          - exact
+      - name: offset
+        in: query
+        description: Offset the result set by a specific number of items.
+        required: false
+        schema: {}
+      - name: order
+        in: query
+        description: Order sort attribute ascending or descending.
+        required: false
+        schema:
+          default: desc
+          enum:
+          - asc
+          - desc
+      - name: orderby
+        in: query
+        description: Sort collection by post attribute.
+        required: false
+        schema:
+          default: id
+          enum:
+          - id
+          - include
+    post:
+      tags:
+      - font families
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/WpFontFaceResponse'
+      parameters:
+      - name: font_family_id
+        in: path
+        description: The ID for the parent font family of the font face.
+        required: true
+        schema: {}
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                theme_json_version:
+                  description: Version of the theme.json schema used for the typography
+                    settings.
+                  default: 3
+                  type: integer
+                  maximum: 3
+                  minimum: 2
+                font_face_settings:
+                  description: font-face declaration in theme.json format, encoded
+                    as a string.
+                  type: string
+              required:
+              - font_face_settings
+  /wp/v2/font-families/{font_family_id}/font-faces/{id}:
+    get:
+      tags:
+      - font families
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/WpFontFaceResponse'
+      parameters:
+      - name: font_family_id
+        in: path
+        description: The ID for the parent font family of the font face.
+        required: true
+        schema: {}
+      - name: id
+        in: path
+        description: Unique identifier for the font face.
+        required: true
+        schema: {}
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+    delete:
+      tags:
+      - font families
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/WpFontFaceResponse'
+      parameters:
+      - name: font_family_id
+        in: path
+        description: The ID for the parent font family of the font face.
+        required: true
+        schema: {}
+      - name: id
+        in: path
+        description: Unique identifier for the font face.
+        required: true
+        schema: {}
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                force:
+                  description: Whether to bypass Trash and force deletion.
+                  default: false
+                  type: boolean

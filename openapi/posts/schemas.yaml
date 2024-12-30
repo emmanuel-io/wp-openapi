@@ -1,0 +1,855 @@
+schemas:
+  PostRevisionBase:
+    type: object
+    properties:
+      author:
+        description: The ID for the author of the revision.
+        type: integer
+      date:
+        description: The date the revision was published, in the site's timezone.
+        type: string
+        format: date-time
+      date_gmt:
+        description: The date the revision was published, as GMT.
+        type: string
+        format: date-time
+      guid:
+        description: The globally unique identifier for the post.
+        type: object
+        properties:
+          raw:
+            description: GUID for the post, as it exists in the database.
+            type: string
+          rendered:
+            description: GUID for the post, transformed for display.
+            type: string
+            readOnly: true
+      id:
+        description: Unique identifier for the revision.
+        type: integer
+      modified:
+        description: The date the revision was last modified, in the site's timezone.
+        type: string
+        format: date-time
+      modified_gmt:
+        description: The date the revision was last modified, as GMT.
+        type: string
+        format: date-time
+      parent:
+        description: The ID for the parent of the revision.
+        type: integer
+      slug:
+        description: An alphanumeric identifier for the revision unique to its type.
+        type: string
+      title:
+        description: The title for the post.
+        type: object
+        properties:
+          raw:
+            description: Title for the post, as it exists in the database.
+            type: string
+          rendered:
+            description: HTML title for the post, transformed for display.
+            type: string
+            readOnly: true
+      content:
+        description: The content for the post.
+        type: object
+        properties:
+          raw:
+            description: Content for the post, as it exists in the database.
+            type: string
+          rendered:
+            description: HTML content for the post, transformed for display.
+            type: string
+            readOnly: true
+          block_version:
+            description: Version of the content block format used by the post.
+            type: integer
+            readOnly: true
+          protected:
+            description: Whether the content is protected with a password.
+            type: boolean
+            readOnly: true
+      excerpt:
+        description: The excerpt for the post.
+        type: object
+        properties:
+          raw:
+            description: Excerpt for the post, as it exists in the database.
+            type: string
+          rendered:
+            description: HTML excerpt for the post, transformed for display.
+            type: string
+            readOnly: true
+          protected:
+            description: Whether the excerpt is protected with a password.
+            type: boolean
+            readOnly: true
+      meta:
+        description: Meta fields.
+        type: object
+        properties:
+          footnotes:
+            type: string
+            default: ""
+      preview_link:
+        description: Preview link for the post.
+        type: string
+        format: uri
+        readOnly: true
+
+  PostRevisionView:
+    type: object
+    allOf:
+      - $ref: '#/schemas/PostRevisionBase'
+      - properties:
+          date_gmt: {}
+          guid:
+            properties:
+              rendered: {}
+          modified_gmt: {}
+
+  PostRevisionEmbed:
+    type: object
+    allOf:
+      - $ref: '#/schemas/PostRevisionBase'
+      - properties:
+          guid:
+            properties:
+              rendered: {}
+          title:
+            properties:
+              rendered: {}
+
+  PostRevisionEdit:
+    type: object
+    allOf:
+      - $ref: '#/schemas/PostRevisionBase'
+      - properties:
+          guid:
+            properties:
+              raw: {}
+              rendered: {}
+          content:
+            properties:
+              raw: {}
+              block_version: {}
+          title:
+            properties:
+              raw: {}
+
+  PostRevisionResponse:
+    oneOf:
+      - $ref: '#/schemas/PostRevisionView'
+      - $ref: '#/schemas/PostRevisionEmbed'
+      - $ref: '#/schemas/PostRevisionEdit'
+
+  PostBase:
+    type: object
+    properties:
+      date:
+        description: The date the post was published, in the site's timezone.
+        type: [string, 'null']
+        format: date-time
+      date_gmt:
+        description: The date the post was published, as GMT.
+        type: [string, 'null']
+        format: date-time
+      guid:
+        description: The globally unique identifier for the post.
+        type: object
+        properties:
+          raw:
+            description: GUID for the post, as it exists in the database.
+            type: string
+          rendered:
+            description: GUID for the post, transformed for display.
+            type: string
+            readOnly: true
+      id:
+        description: Unique identifier for the post.
+        type: integer
+        readOnly: true
+      link:
+        description: URL to the post.
+        type: string
+        format: uri
+        readOnly: true
+      modified:
+        description: The date the post was last modified, in the site's timezone.
+        type: string
+        format: date-time
+        readOnly: true
+      modified_gmt:
+        description: The date the post was last modified, as GMT.
+        type: string
+        format: date-time
+        readOnly: true
+      slug:
+        description: An alphanumeric identifier for the post unique to its type.
+        type: string
+      status:
+        description: A named status for the post.
+        type: string
+        enum: [publish, future, draft, pending, private]
+      type:
+        description: Type of post.
+        type: string
+        readOnly: true
+      title:
+        description: The title for the post.
+        type: object
+        properties:
+          raw:
+            description: Title for the post, as it exists in the database.
+            type: string
+          rendered:
+            description: HTML title for the post, transformed for display.
+            type: string
+            readOnly: true
+      content:
+        description: The content for the post.
+        type: object
+        properties:
+          raw:
+            description: Content for the post, as it exists in the database.
+            type: string
+          rendered:
+            description: HTML content for the post, transformed for display.
+            type: string
+            readOnly: true
+          block_version:
+            description: Version of the content block format used by the post.
+            type: integer
+            readOnly: true
+          protected:
+            description: Whether the content is protected with a password.
+            type: boolean
+            readOnly: true
+      author:
+        description: The ID for the author of the post.
+        type: integer
+      categories:
+        description: The terms assigned to the post in the category taxonomy.
+        type: array
+        items:
+          type: integer
+      tags:
+        description: The terms assigned to the post in the post_tag taxonomy.
+        type: array
+        items:
+          type: integer
+
+  PostView:
+    type: object
+    allOf:
+      - $ref: '#/schemas/PostBase'
+      - properties:
+          date_gmt: {}
+          guid:
+            properties:
+              rendered: {}
+          modified_gmt: {}
+
+  PostEmbed:
+    type: object
+    allOf:
+      - $ref: '#/schemas/PostBase'
+      - properties:
+          guid:
+            properties:
+              rendered: {}
+          title:
+            properties:
+              rendered: {}
+
+  PostEdit:
+    type: object
+    allOf:
+      - $ref: '#/schemas/PostBase'
+      - properties:
+          guid:
+            properties:
+              raw: {}
+              rendered: {}
+          content:
+            properties:
+              raw: {}
+              block_version: {}
+          title:
+            properties:
+              raw: {}
+
+  PostResponse:
+    oneOf:
+      - $ref: '#/schemas/PostView'
+      - $ref: '#/schemas/PostEmbed'
+      - $ref: '#/schemas/PostEdit'
+
+# schemas:
+#   post-revision:
+#     $schema: https://json-schema.org/draft/2020-12/schema
+#     title: post-revision
+#     type: object
+#     properties:
+#       author:
+#         description: The ID for the author of the revision.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       date:
+#         description: The date the revision was published, in the site's timezone.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       date_gmt:
+#         description: The date the revision was published, as GMT.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#       guid:
+#         description: The globally unique identifier for the post.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         readOnly: true
+#         properties:
+#           raw:
+#             description: GUID for the post, as it exists in the database.
+#             type: string
+#             x-context:
+#             - edit
+#             readOnly: true
+#           rendered:
+#             description: GUID for the post, transformed for display.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             readOnly: true
+#       id:
+#         description: Unique identifier for the revision.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       modified:
+#         description: The date the revision was last modified, in the site's timezone.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#       modified_gmt:
+#         description: The date the revision was last modified, as GMT.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#       parent:
+#         description: The ID for the parent of the revision.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       slug:
+#         description: An alphanumeric identifier for the revision unique to its type.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       title:
+#         description: The title for the post.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         properties:
+#           raw:
+#             description: Title for the post, as it exists in the database.
+#             type: string
+#             x-context:
+#             - edit
+#           rendered:
+#             description: HTML title for the post, transformed for display.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#             readOnly: true
+#       content:
+#         description: The content for the post.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         properties:
+#           raw:
+#             description: Content for the post, as it exists in the database.
+#             type: string
+#             x-context:
+#             - edit
+#           rendered:
+#             description: HTML content for the post, transformed for display.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             readOnly: true
+#           block_version:
+#             description: Version of the content block format used by the post.
+#             type: integer
+#             x-context:
+#             - edit
+#             readOnly: true
+#           protected:
+#             description: Whether the content is protected with a password.
+#             type: boolean
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#             readOnly: true
+#       excerpt:
+#         description: The excerpt for the post.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         properties:
+#           raw:
+#             description: Excerpt for the post, as it exists in the database.
+#             type: string
+#             x-context:
+#             - edit
+#           rendered:
+#             description: HTML excerpt for the post, transformed for display.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#             readOnly: true
+#           protected:
+#             description: Whether the excerpt is protected with a password.
+#             type: boolean
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#             readOnly: true
+#       meta:
+#         description: Meta fields.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         properties:
+#           footnotes:
+#             type: string
+#             title: ''
+#             description: ''
+#             default: ''
+#       preview_link:
+#         description: Preview link for the post.
+#         type: string
+#         format: uri
+#         x-context:
+#         - edit
+#         readOnly: true
+#   post:
+#     $schema: https://json-schema.org/draft/2020-12/schema
+#     title: post
+#     type: object
+#     properties:
+#       date:
+#         description: The date the post was published, in the site's timezone.
+#         type:
+#         - string
+#         - 'null'
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       date_gmt:
+#         description: The date the post was published, as GMT.
+#         type:
+#         - string
+#         - 'null'
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#       guid:
+#         description: The globally unique identifier for the post.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         readOnly: true
+#         properties:
+#           raw:
+#             description: GUID for the post, as it exists in the database.
+#             type: string
+#             x-context:
+#             - edit
+#             readOnly: true
+#           rendered:
+#             description: GUID for the post, transformed for display.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             readOnly: true
+#       id:
+#         description: Unique identifier for the post.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         readOnly: true
+#       link:
+#         description: URL to the post.
+#         type: string
+#         format: uri
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         readOnly: true
+#       modified:
+#         description: The date the post was last modified, in the site's timezone.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#         readOnly: true
+#       modified_gmt:
+#         description: The date the post was last modified, as GMT.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#         readOnly: true
+#       slug:
+#         description: An alphanumeric identifier for the post unique to its type.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       status:
+#         description: A named status for the post.
+#         type: string
+#         enum:
+#         - publish
+#         - future
+#         - draft
+#         - pending
+#         - private
+#         x-context:
+#         - view
+#         - edit
+#       type:
+#         description: Type of post.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         readOnly: true
+#       password:
+#         description: A password to protect access to the content and excerpt.
+#         type: string
+#         x-context:
+#         - edit
+#       permalink_template:
+#         description: Permalink template for the post.
+#         type: string
+#         x-context:
+#         - edit
+#         readOnly: true
+#       generated_slug:
+#         description: Slug automatically generated from the post title.
+#         type: string
+#         x-context:
+#         - edit
+#         readOnly: true
+#       class_list:
+#         description: An array of the class names for the post container element.
+#         type: array
+#         x-context:
+#         - view
+#         - edit
+#         readOnly: true
+#         items:
+#           type: string
+#       title:
+#         description: The title for the post.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         properties:
+#           raw:
+#             description: Title for the post, as it exists in the database.
+#             type: string
+#             x-context:
+#             - edit
+#           rendered:
+#             description: HTML title for the post, transformed for display.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#             readOnly: true
+#       content:
+#         description: The content for the post.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         properties:
+#           raw:
+#             description: Content for the post, as it exists in the database.
+#             type: string
+#             x-context:
+#             - edit
+#           rendered:
+#             description: HTML content for the post, transformed for display.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             readOnly: true
+#           block_version:
+#             description: Version of the content block format used by the post.
+#             type: integer
+#             x-context:
+#             - edit
+#             readOnly: true
+#           protected:
+#             description: Whether the content is protected with a password.
+#             type: boolean
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#             readOnly: true
+#       author:
+#         description: The ID for the author of the post.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       excerpt:
+#         description: The excerpt for the post.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         properties:
+#           raw:
+#             description: Excerpt for the post, as it exists in the database.
+#             type: string
+#             x-context:
+#             - edit
+#           rendered:
+#             description: HTML excerpt for the post, transformed for display.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#             readOnly: true
+#           protected:
+#             description: Whether the excerpt is protected with a password.
+#             type: boolean
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#             readOnly: true
+#       featured_media:
+#         description: The ID of the featured media for the post.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       comment_status:
+#         description: Whether or not comments are open on the post.
+#         type: string
+#         enum:
+#         - open
+#         - closed
+#         x-context:
+#         - view
+#         - edit
+#       ping_status:
+#         description: Whether or not the post can be pinged.
+#         type: string
+#         enum:
+#         - open
+#         - closed
+#         x-context:
+#         - view
+#         - edit
+#       format:
+#         description: The format for the post.
+#         type: string
+#         enum:
+#         - standard
+#         - aside
+#         - chat
+#         - gallery
+#         - link
+#         - image
+#         - quote
+#         - status
+#         - video
+#         - audio
+#         x-context:
+#         - view
+#         - edit
+#       meta:
+#         description: Meta fields.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         properties:
+#           footnotes:
+#             type: string
+#             title: ''
+#             description: ''
+#             default: ''
+#       sticky:
+#         description: Whether or not the post should be treated as sticky.
+#         type: boolean
+#         x-context:
+#         - view
+#         - edit
+#       template:
+#         description: The theme file to use to display the post.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#       categories:
+#         description: The terms assigned to the post in the category taxonomy.
+#         type: array
+#         items:
+#           type: integer
+#         x-context:
+#         - view
+#         - edit
+#       tags:
+#         description: The terms assigned to the post in the post_tag taxonomy.
+#         type: array
+#         items:
+#           type: integer
+#         x-context:
+#         - view
+#         - edit
+#     # links:
+#     # - rel: https://api.w.org/action-publish
+#     #   title: The current user can publish this post.
+#     #   href: http://localhost:8080/index.php?rest_route=/wp/v2/posts/{id}
+#     #   targetSchema:
+#     #     type: object
+#     #     properties:
+#     #       status:
+#     #         type: string
+#     #         enum:
+#     #         - publish
+#     #         - future
+#     # - rel: https://api.w.org/action-unfiltered-html
+#     #   title: The current user can post unfiltered HTML markup and JavaScript.
+#     #   href: http://localhost:8080/index.php?rest_route=/wp/v2/posts/{id}
+#     #   targetSchema:
+#     #     type: object
+#     #     properties:
+#     #       content:
+#     #         raw:
+#     #           type: string
+#     # - rel: https://api.w.org/action-sticky
+#     #   title: The current user can sticky this post.
+#     #   href: http://localhost:8080/index.php?rest_route=/wp/v2/posts/{id}
+#     #   targetSchema:
+#     #     type: object
+#     #     properties:
+#     #       sticky:
+#     #         type: boolean
+#     # - rel: https://api.w.org/action-assign-author
+#     #   title: The current user can change the author on this post.
+#     #   href: http://localhost:8080/index.php?rest_route=/wp/v2/posts/{id}
+#     #   targetSchema:
+#     #     type: object
+#     #     properties:
+#     #       author:
+#     #         type: integer
+#     # - rel: https://api.w.org/action-assign-categories
+#     #   title: The current user can assign terms in the category taxonomy.
+#     #   href: http://localhost:8080/index.php?rest_route=/wp/v2/posts/{id}
+#     #   targetSchema:
+#     #     type: object
+#     #     properties:
+#     #       categories:
+#     #         type: array
+#     #         items:
+#     #           type: integer
+#     # - rel: https://api.w.org/action-create-categories
+#     #   title: The current user can create terms in the category taxonomy.
+#     #   href: http://localhost:8080/index.php?rest_route=/wp/v2/posts/{id}
+#     #   targetSchema:
+#     #     type: object
+#     #     properties:
+#     #       categories:
+#     #         type: array
+#     #         items:
+#     #           type: integer
+#     # - rel: https://api.w.org/action-assign-tags
+#     #   title: The current user can assign terms in the post_tag taxonomy.
+#     #   href: http://localhost:8080/index.php?rest_route=/wp/v2/posts/{id}
+#     #   targetSchema:
+#     #     type: object
+#     #     properties:
+#     #       tags:
+#     #         type: array
+#     #         items:
+#     #           type: integer
+#     # - rel: https://api.w.org/action-create-tags
+#     #   title: The current user can create terms in the post_tag taxonomy.
+#     #   href: http://localhost:8080/index.php?rest_route=/wp/v2/posts/{id}
+#     #   targetSchema:
+#     #     type: object
+#     #     properties:
+#     #       tags:
+#     #         type: array
+#     #         items:
+#     #           type: integer

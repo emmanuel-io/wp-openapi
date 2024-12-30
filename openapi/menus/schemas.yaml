@@ -1,0 +1,219 @@
+schemas:
+  NavMenuBase:
+    type: object
+    properties:
+      id:
+        description: Unique identifier for the term.
+        type: integer
+        readOnly: true
+      description:
+        description: HTML description of the term.
+        type: string
+      name:
+        description: HTML title for the term.
+        type: string
+      slug:
+        description: An alphanumeric identifier for the term unique to its type.
+        type: string
+      meta:
+        description: Meta fields.
+        type: object
+      locations:
+        description: The locations assigned to the menu.
+        type: array
+        items:
+          type: string
+      auto_add:
+        description: Whether to automatically add top-level pages to this menu.
+        type: boolean
+
+  NavMenuView:
+    allOf:
+      - $ref: '#/schemas/NavMenuBase'
+
+  NavMenuEmbed:
+    allOf:
+      - $ref: '#/schemas/NavMenuBase'
+      - properties:
+          id:
+            $ref: '#/schemas/NavMenuBase/properties/id'
+          name:
+            $ref: '#/schemas/NavMenuBase/properties/name'
+          slug:
+            $ref: '#/schemas/NavMenuBase/properties/slug'
+
+  NavMenuEdit:
+    allOf:
+      - $ref: '#/schemas/NavMenuBase'
+
+  NavMenuResponse:
+    oneOf:
+      - $ref: '#/schemas/NavMenuView'
+      - $ref: '#/schemas/NavMenuEmbed'
+      - $ref: '#/schemas/NavMenuEdit'
+
+# schemas:
+#   NavMenuBase:
+#     type: object
+#     properties:
+#       id:
+#         description: Unique identifier for the term.
+#         type: integer
+#         readOnly: true
+#       description:
+#         description: HTML description of the term.
+#         type: string
+#       name:
+#         description: HTML title for the term.
+#         type: string
+#       slug:
+#         description: An alphanumeric identifier for the term unique to its type.
+#         type: string
+#       meta:
+#         description: Meta fields.
+#         type: object
+#       locations:
+#         description: The locations assigned to the menu.
+#         type: array
+#         items:
+#           type: string
+#       auto_add:
+#         description: Whether to automatically add top-level pages to this menu.
+#         type: boolean
+
+#   NavMenuView:
+#     allOf:
+#       - $ref: '#/schemas/NavMenuBase'
+
+#   NavMenuEmbed:
+#     allOf:
+#       - $ref: '#/schemas/NavMenuBase'
+#       - properties:
+#           id:
+#             $ref: '#/schemas/NavMenuBase/properties/id'
+#           name:
+#             $ref: '#/schemas/NavMenuBase/properties/name'
+#           slug:
+#             $ref: '#/schemas/NavMenuBase/properties/slug'
+
+#   NavMenuEdit:
+#     allOf:
+#       - $ref: '#/schemas/NavMenuBase'
+
+#   NavMenuResponse:
+#     oneOf:
+#       - $ref: '#/schemas/NavMenuView'
+#       - $ref: '#/schemas/NavMenuEmbed'
+#       - $ref: '#/schemas/NavMenuEdit'
+# schemas:
+#   NavMenuBase:
+#     type: object
+#     properties:
+#       id:
+#         description: Unique identifier for the term.
+#         type: integer
+#         readOnly: true
+#       description:
+#         description: HTML description of the term.
+#         type: string
+#       name:
+#         description: HTML title for the term.
+#         type: string
+#       slug:
+#         description: An alphanumeric identifier for the term unique to its type.
+#         type: string
+#       meta:
+#         description: Meta fields.
+#         type: object
+#       locations:
+#         description: The locations assigned to the menu.
+#         type: array
+#         items:
+#           type: string
+#       auto_add:
+#         description: Whether to automatically add top-level pages to this menu.
+#         type: boolean
+
+#   NavMenuView:
+#     allOf:
+#       - $ref: '#/schemas/NavMenuBase'
+
+#   NavMenuEmbed:
+#     allOf:
+#       - $ref: '#/schemas/NavMenuBase'
+#       - properties:
+#           id:
+#             $ref: '#/schemas/NavMenuBase/properties/id'
+#           name:
+#             $ref: '#/schemas/NavMenuBase/properties/name'
+#           slug:
+#             $ref: '#/schemas/NavMenuBase/properties/slug'
+
+#   NavMenuEdit:
+#     allOf:
+#       - $ref: '#/schemas/NavMenuBase'
+
+#   NavMenuResponse:
+#     oneOf:
+#       - $ref: '#/schemas/NavMenuView'
+#       - $ref: '#/schemas/NavMenuEmbed'
+#       - $ref: '#/schemas/NavMenuEdit'
+
+# # schemas:
+# #   nav_menu:
+# #     $schema: https://json-schema.org/draft/2020-12/schema
+# #     title: nav_menu
+# #     type: object
+# #     required:
+# #     - name
+# #     properties:
+# #       id:
+# #         description: Unique identifier for the term.
+# #         type: integer
+# #         x-context:
+# #         - view
+# #         - embed
+# #         - edit
+# #         readOnly: true
+# #       description:
+# #         description: HTML description of the term.
+# #         type: string
+# #         x-context:
+# #         - view
+# #         - edit
+# #       name:
+# #         description: HTML title for the term.
+# #         type: string
+# #         x-context:
+# #         - view
+# #         - embed
+# #         - edit
+# #         # required: true
+# #       slug:
+# #         description: An alphanumeric identifier for the term unique to its type.
+# #         type: string
+# #         x-context:
+# #         - view
+# #         - embed
+# #         - edit
+# #       meta:
+# #         description: Meta fields.
+# #         type: object
+# #         x-context:
+# #         - view
+# #         - edit
+# #         # properties: []
+# #       locations:
+# #         description: The locations assigned to the menu.
+# #         type: array
+# #         items:
+# #           type: string
+# #         x-context:
+# #         - view
+# #         - edit
+# #       auto_add:
+# #         description: Whether to automatically add top level pages to this menu.
+# #         x-context:
+# #         - view
+# #         - edit
+# #         type: boolean

@@ -1,0 +1,1023 @@
+paths:
+  /wp/v2/users:
+    get:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/UserResponse'
+      parameters:
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - name: page
+        in: query
+        description: Current page of the collection.
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+      - name: per_page
+        in: query
+        description: Maximum number of items to be returned in result set.
+        required: false
+        schema:
+          default: 10
+          minimum: 1
+          maximum: 100
+      - name: search
+        in: query
+        description: Limit results to those matching a string.
+        required: false
+        schema: {}
+      - name: exclude
+        in: query
+        description: Ensure result set excludes specific IDs.
+        required: false
+        schema:
+          items:
+            type: integer
+      - name: include
+        in: query
+        description: Limit result set to specific IDs.
+        required: false
+        schema:
+          items:
+            type: integer
+      - name: offset
+        in: query
+        description: Offset the result set by a specific number of items.
+        required: false
+        schema: {}
+      - name: order
+        in: query
+        description: Order sort attribute ascending or descending.
+        required: false
+        schema:
+          default: asc
+          enum:
+          - asc
+          - desc
+      - name: orderby
+        in: query
+        description: Sort collection by user attribute.
+        required: false
+        schema:
+          default: name
+          enum:
+          - id
+          - include
+          - name
+          - registered_date
+          - slug
+          - include_slugs
+          - email
+          - url
+      - name: slug
+        in: query
+        description: Limit result set to users with one or more specific slugs.
+        required: false
+        schema:
+          items:
+            type: string
+      - name: roles
+        in: query
+        description: Limit result set to users matching at least one specific role
+          provided. Accepts csv list or single role.
+        required: false
+        schema:
+          items:
+            type: string
+      - name: capabilities
+        in: query
+        description: Limit result set to users matching at least one specific capability
+          provided. Accepts csv list or single capability.
+        required: false
+        schema:
+          items:
+            type: string
+      - name: who
+        in: query
+        description: Limit result set to users who are considered authors.
+        required: false
+        schema:
+          enum:
+          - authors
+      - name: has_published_posts
+        in: query
+        description: Limit result set to users who have published posts.
+        required: false
+        schema:
+          items:
+            type: string
+            enum:
+            - post
+            - page
+            - attachment
+            - nav_menu_item
+            - wp_block
+            - wp_template
+            - wp_template_part
+            - wp_global_styles
+            - wp_navigation
+            - wp_font_family
+            - wp_font_face
+    post:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/UserResponse'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  description: Login name for the user.
+                  type: string
+                  # required: true
+                name:
+                  description: Display name for the user.
+                  type: string
+                first_name:
+                  description: First name for the user.
+                  type: string
+                last_name:
+                  description: Last name for the user.
+                  type: string
+                email:
+                  description: The email address for the user.
+                  type: string
+                  # required: true
+                  format: email
+                url:
+                  description: URL of the user.
+                  type: string
+                  format: uri
+                description:
+                  description: Description of the user.
+                  type: string
+                locale:
+                  description: Locale for the user.
+                  type: string
+                  enum:
+                  - ''
+                  - en_US
+                nickname:
+                  description: The nickname for the user.
+                  type: string
+                slug:
+                  description: An alphanumeric identifier for the user.
+                  type: string
+                roles:
+                  description: Roles assigned to the user.
+                  type: array
+                  items:
+                    type: string
+                password:
+                  description: Password for the user (never included).
+                  type: string
+                  # required: true
+                meta:
+                  description: Meta fields.
+                  type: object
+                  properties:
+                    persisted_preferences:
+                      type: object
+                      title: ''
+                      description: ''
+                      default: []
+                      x-context:
+                      - edit
+                      properties:
+                        _modified:
+                          description: The date and time the preferences were updated.
+                          type: string
+                          format: date-time
+                          readOnly: false
+                      unevaluatedProperties: true
+              required:
+              - username
+              - email
+              - password
+  /wp/v2/users/{id}:
+    get:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/UserResponse'
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier for the user.
+        required: true
+        schema: {}
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+    post:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/UserResponse'
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier for the user.
+        required: true
+        schema: {}
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  description: Login name for the user.
+                  type: string
+                name:
+                  description: Display name for the user.
+                  type: string
+                first_name:
+                  description: First name for the user.
+                  type: string
+                last_name:
+                  description: Last name for the user.
+                  type: string
+                email:
+                  description: The email address for the user.
+                  type: string
+                  format: email
+                url:
+                  description: URL of the user.
+                  type: string
+                  format: uri
+                description:
+                  description: Description of the user.
+                  type: string
+                locale:
+                  description: Locale for the user.
+                  type: string
+                  enum:
+                  - ''
+                  - en_US
+                nickname:
+                  description: The nickname for the user.
+                  type: string
+                slug:
+                  description: An alphanumeric identifier for the user.
+                  type: string
+                roles:
+                  description: Roles assigned to the user.
+                  type: array
+                  items:
+                    type: string
+                password:
+                  description: Password for the user (never included).
+                  type: string
+                meta:
+                  description: Meta fields.
+                  type: object
+                  properties:
+                    persisted_preferences:
+                      type: object
+                      title: ''
+                      description: ''
+                      default: []
+                      x-context:
+                      - edit
+                      properties:
+                        _modified:
+                          description: The date and time the preferences were updated.
+                          type: string
+                          format: date-time
+                          readOnly: false
+                      unevaluatedProperties: true
+    put:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/UserResponse'
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier for the user.
+        required: true
+        schema: {}
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  description: Login name for the user.
+                  type: string
+                name:
+                  description: Display name for the user.
+                  type: string
+                first_name:
+                  description: First name for the user.
+                  type: string
+                last_name:
+                  description: Last name for the user.
+                  type: string
+                email:
+                  description: The email address for the user.
+                  type: string
+                  format: email
+                url:
+                  description: URL of the user.
+                  type: string
+                  format: uri
+                description:
+                  description: Description of the user.
+                  type: string
+                locale:
+                  description: Locale for the user.
+                  type: string
+                  enum:
+                  - ''
+                  - en_US
+                nickname:
+                  description: The nickname for the user.
+                  type: string
+                slug:
+                  description: An alphanumeric identifier for the user.
+                  type: string
+                roles:
+                  description: Roles assigned to the user.
+                  type: array
+                  items:
+                    type: string
+                password:
+                  description: Password for the user (never included).
+                  type: string
+                meta:
+                  description: Meta fields.
+                  type: object
+                  properties:
+                    persisted_preferences:
+                      type: object
+                      title: ''
+                      description: ''
+                      default: []
+                      x-context:
+                      - edit
+                      properties:
+                        _modified:
+                          description: The date and time the preferences were updated.
+                          type: string
+                          format: date-time
+                          readOnly: false
+                      unevaluatedProperties: true
+    patch:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/UserResponse'
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier for the user.
+        required: true
+        schema: {}
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  description: Login name for the user.
+                  type: string
+                name:
+                  description: Display name for the user.
+                  type: string
+                first_name:
+                  description: First name for the user.
+                  type: string
+                last_name:
+                  description: Last name for the user.
+                  type: string
+                email:
+                  description: The email address for the user.
+                  type: string
+                  format: email
+                url:
+                  description: URL of the user.
+                  type: string
+                  format: uri
+                description:
+                  description: Description of the user.
+                  type: string
+                locale:
+                  description: Locale for the user.
+                  type: string
+                  enum:
+                  - ''
+                  - en_US
+                nickname:
+                  description: The nickname for the user.
+                  type: string
+                slug:
+                  description: An alphanumeric identifier for the user.
+                  type: string
+                roles:
+                  description: Roles assigned to the user.
+                  type: array
+                  items:
+                    type: string
+                password:
+                  description: Password for the user (never included).
+                  type: string
+                meta:
+                  description: Meta fields.
+                  type: object
+                  properties:
+                    persisted_preferences:
+                      type: object
+                      title: ''
+                      description: ''
+                      default: []
+                      x-context:
+                      - edit
+                      properties:
+                        _modified:
+                          description: The date and time the preferences were updated.
+                          type: string
+                          format: date-time
+                          readOnly: false
+                      unevaluatedProperties: true
+    delete:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/UserResponse'
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier for the user.
+        required: true
+        schema: {}
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                force:
+                  description: Required to be true, as users do not support trashing.
+                  default: false
+                  type: boolean
+                reassign:
+                  description: Reassign the deleted user's posts and links to this
+                    user ID.
+                  type: integer
+                  # required: true
+              required:
+              - reassign
+  /wp/v2/users/me:
+    get:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/UserResponse'
+      parameters:
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+    post:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/UserResponse'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  description: Login name for the user.
+                  type: string
+                name:
+                  description: Display name for the user.
+                  type: string
+                first_name:
+                  description: First name for the user.
+                  type: string
+                last_name:
+                  description: Last name for the user.
+                  type: string
+                email:
+                  description: The email address for the user.
+                  type: string
+                  format: email
+                url:
+                  description: URL of the user.
+                  type: string
+                  format: uri
+                description:
+                  description: Description of the user.
+                  type: string
+                locale:
+                  description: Locale for the user.
+                  type: string
+                  enum:
+                  - ''
+                  - en_US
+                nickname:
+                  description: The nickname for the user.
+                  type: string
+                slug:
+                  description: An alphanumeric identifier for the user.
+                  type: string
+                roles:
+                  description: Roles assigned to the user.
+                  type: array
+                  items:
+                    type: string
+                password:
+                  description: Password for the user (never included).
+                  type: string
+                meta:
+                  description: Meta fields.
+                  type: object
+                  properties:
+                    persisted_preferences:
+                      type: object
+                      title: ''
+                      description: ''
+                      default: []
+                      x-context:
+                      - edit
+                      properties:
+                        _modified:
+                          description: The date and time the preferences were updated.
+                          type: string
+                          format: date-time
+                          readOnly: false
+                      unevaluatedProperties: true
+    put:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/UserResponse'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  description: Login name for the user.
+                  type: string
+                name:
+                  description: Display name for the user.
+                  type: string
+                first_name:
+                  description: First name for the user.
+                  type: string
+                last_name:
+                  description: Last name for the user.
+                  type: string
+                email:
+                  description: The email address for the user.
+                  type: string
+                  format: email
+                url:
+                  description: URL of the user.
+                  type: string
+                  format: uri
+                description:
+                  description: Description of the user.
+                  type: string
+                locale:
+                  description: Locale for the user.
+                  type: string
+                  enum:
+                  - ''
+                  - en_US
+                nickname:
+                  description: The nickname for the user.
+                  type: string
+                slug:
+                  description: An alphanumeric identifier for the user.
+                  type: string
+                roles:
+                  description: Roles assigned to the user.
+                  type: array
+                  items:
+                    type: string
+                password:
+                  description: Password for the user (never included).
+                  type: string
+                meta:
+                  description: Meta fields.
+                  type: object
+                  properties:
+                    persisted_preferences:
+                      type: object
+                      title: ''
+                      description: ''
+                      default: []
+                      x-context:
+                      - edit
+                      properties:
+                        _modified:
+                          description: The date and time the preferences were updated.
+                          type: string
+                          format: date-time
+                          readOnly: false
+                      unevaluatedProperties: true
+    patch:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/UserResponse'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  description: Login name for the user.
+                  type: string
+                name:
+                  description: Display name for the user.
+                  type: string
+                first_name:
+                  description: First name for the user.
+                  type: string
+                last_name:
+                  description: Last name for the user.
+                  type: string
+                email:
+                  description: The email address for the user.
+                  type: string
+                  format: email
+                url:
+                  description: URL of the user.
+                  type: string
+                  format: uri
+                description:
+                  description: Description of the user.
+                  type: string
+                locale:
+                  description: Locale for the user.
+                  type: string
+                  enum:
+                  - ''
+                  - en_US
+                nickname:
+                  description: The nickname for the user.
+                  type: string
+                slug:
+                  description: An alphanumeric identifier for the user.
+                  type: string
+                roles:
+                  description: Roles assigned to the user.
+                  type: array
+                  items:
+                    type: string
+                password:
+                  description: Password for the user (never included).
+                  type: string
+                meta:
+                  description: Meta fields.
+                  type: object
+                  properties:
+                    persisted_preferences:
+                      type: object
+                      title: ''
+                      description: ''
+                      default: []
+                      x-context:
+                      - edit
+                      properties:
+                        _modified:
+                          description: The date and time the preferences were updated.
+                          type: string
+                          format: date-time
+                          readOnly: false
+                      unevaluatedProperties: true
+    delete:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/UserResponse'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                force:
+                  description: Required to be true, as users do not support trashing.
+                  default: false
+                  type: boolean
+                reassign:
+                  description: Reassign the deleted user's posts and links to this
+                    user ID.
+                  type: integer
+                  # required: true
+              required:
+              - reassign
+  /wp/v2/users/{user_id}/application-passwords:
+    get:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/ApplicationPasswordResponse'
+      parameters:
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - name: user_id
+        in: path
+        description: ''
+        required: true
+        schema: {}
+    post:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/ApplicationPasswordResponse'
+      parameters:
+      - name: user_id
+        in: path
+        description: ''
+        required: true
+        schema: {}
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                app_id:
+                  description: A UUID provided by the application to uniquely identify
+                    it. It is recommended to use an UUID v5 with the URL or DNS namespace.
+                  type: string
+                  format: uuid
+                name:
+                  description: The name of the application password.
+                  type: string
+                  # required: true
+                  minLength: 1
+                  pattern: .*\S.*
+              required:
+              - name
+    delete:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/ApplicationPasswordResponse'
+      parameters:
+      - name: user_id
+        in: path
+        description: ''
+        required: true
+        schema: {}
+  /wp/v2/users/{user_id}/application-passwords/introspect:
+    get:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/ApplicationPasswordResponse'
+      parameters:
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - name: user_id
+        in: path
+        description: ''
+        required: true
+        schema: {}
+  /wp/v2/users/{user_id}/application-passwords/{uuid}:
+    get:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/ApplicationPasswordResponse'
+      parameters:
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - name: user_id
+        in: path
+        description: ''
+        required: true
+        schema: {}
+      - name: uuid
+        in: path
+        description: ''
+        required: true
+        schema: {}
+    post:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/ApplicationPasswordResponse'
+      parameters:
+      - name: user_id
+        in: path
+        description: ''
+        required: true
+        schema: {}
+      - name: uuid
+        in: path
+        description: ''
+        required: true
+        schema: {}
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                app_id:
+                  description: A UUID provided by the application to uniquely identify
+                    it. It is recommended to use an UUID v5 with the URL or DNS namespace.
+                  type: string
+                  format: uuid
+                name:
+                  description: The name of the application password.
+                  type: string
+                  minLength: 1
+                  pattern: .*\S.*
+    put:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/ApplicationPasswordResponse'
+      parameters:
+      - name: user_id
+        in: path
+        description: ''
+        required: true
+        schema: {}
+      - name: uuid
+        in: path
+        description: ''
+        required: true
+        schema: {}
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                app_id:
+                  description: A UUID provided by the application to uniquely identify
+                    it. It is recommended to use an UUID v5 with the URL or DNS namespace.
+                  type: string
+                  format: uuid
+                name:
+                  description: The name of the application password.
+                  type: string
+                  minLength: 1
+                  pattern: .*\S.*
+    patch:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/ApplicationPasswordResponse'
+      parameters:
+      - name: user_id
+        in: path
+        description: ''
+        required: true
+        schema: {}
+      - name: uuid
+        in: path
+        description: ''
+        required: true
+        schema: {}
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                app_id:
+                  description: A UUID provided by the application to uniquely identify
+                    it. It is recommended to use an UUID v5 with the URL or DNS namespace.
+                  type: string
+                  format: uuid
+                name:
+                  description: The name of the application password.
+                  type: string
+                  minLength: 1
+                  pattern: .*\S.*
+    delete:
+      tags:
+      - Users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/ApplicationPasswordResponse'
+      parameters:
+      - name: user_id
+        in: path
+        description: ''
+        required: true
+        schema: {}
+      - name: uuid
+        in: path
+        description: ''
+        required: true
+        schema: {}

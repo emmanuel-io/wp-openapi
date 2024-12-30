@@ -1,0 +1,65 @@
+schemas:
+  MenuLocationBase:
+    type: object
+    properties:
+      name:
+        description: The name of the menu location.
+        type: string
+        readOnly: true
+      description:
+        description: The description of the menu location.
+        type: string
+        readOnly: true
+      menu:
+        description: The ID of the assigned menu.
+        type: integer
+        readOnly: true
+
+  MenuLocationView:
+    allOf:
+      - $ref: '#/schemas/MenuLocationBase'
+
+  MenuLocationEmbed:
+    allOf:
+      - $ref: '#/schemas/MenuLocationBase'
+
+  MenuLocationEdit:
+    allOf:
+      - $ref: '#/schemas/MenuLocationBase'
+
+  MenuLocationResponse:
+    oneOf:
+      - $ref: '#/schemas/MenuLocationView'
+      - $ref: '#/schemas/MenuLocationEmbed'
+      - $ref: '#/schemas/MenuLocationEdit'
+
+# schemas:
+#   menu-location:
+#     $schema: https://json-schema.org/draft/2020-12/schema
+#     title: menu-location
+#     type: object
+#     properties:
+#       name:
+#         description: The name of the menu location.
+#         type: string
+#         x-context:
+#         - embed
+#         - view
+#         - edit
+#         readOnly: true
+#       description:
+#         description: The description of the menu location.
+#         type: string
+#         x-context:
+#         - embed
+#         - view
+#         - edit
+#         readOnly: true
+#       menu:
+#         description: The ID of the assigned menu.
+#         type: integer
+#         x-context:
+#         - embed
+#         - view
+#         - edit
+#         readOnly: true

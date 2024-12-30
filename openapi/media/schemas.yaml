@@ -1,0 +1,500 @@
+schemas:
+  AttachmentBase:
+    type: object
+    properties:
+      date:
+        description: The date the post was published, in the site's timezone.
+        type:
+          - string
+          - 'null'
+        format: date-time
+      date_gmt:
+        description: The date the post was published, as GMT.
+        type:
+          - string
+          - 'null'
+        format: date-time
+      guid:
+        description: The globally unique identifier for the post.
+        type: object
+        readOnly: true
+        properties:
+          raw:
+            description: GUID for the post, as it exists in the database.
+            type: string
+          rendered:
+            description: GUID for the post, transformed for display.
+            type: string
+      id:
+        description: Unique identifier for the post.
+        type: integer
+        readOnly: true
+      link:
+        description: URL to the post.
+        type: string
+        format: uri
+        readOnly: true
+      modified:
+        description: The date the post was last modified, in the site's timezone.
+        type: string
+        format: date-time
+        readOnly: true
+      modified_gmt:
+        description: The date the post was last modified, as GMT.
+        type: string
+        format: date-time
+        readOnly: true
+      slug:
+        description: An alphanumeric identifier for the post unique to its type.
+        type: string
+      status:
+        description: A named status for the post.
+        type: string
+        enum:
+          - publish
+          - future
+          - draft
+          - pending
+          - private
+      type:
+        description: Type of post.
+        type: string
+        readOnly: true
+      permalink_template:
+        description: Permalink template for the post.
+        type: string
+        readOnly: true
+      generated_slug:
+        description: Slug automatically generated from the post title.
+        type: string
+        readOnly: true
+      class_list:
+        description: An array of the class names for the post container element.
+        type: array
+        items:
+          type: string
+        readOnly: true
+      title:
+        description: The title for the post.
+        type: object
+        properties:
+          raw:
+            description: Title for the post, as it exists in the database.
+            type: string
+          rendered:
+            description: HTML title for the post, transformed for display.
+            type: string
+            readOnly: true
+      author:
+        description: The ID for the author of the post.
+        type: integer
+      featured_media:
+        description: The ID of the featured media for the post.
+        type: integer
+      comment_status:
+        description: Whether or not comments are open on the post.
+        type: string
+        enum:
+          - open
+          - closed
+      ping_status:
+        description: Whether or not the post can be pinged.
+        type: string
+        enum:
+          - open
+          - closed
+      meta:
+        description: Meta fields.
+        type: object
+      template:
+        description: The theme file to use to display the post.
+        type: string
+      alt_text:
+        description: Alternative text to display when attachment is not displayed.
+        type: string
+      caption:
+        description: The attachment caption.
+        type: object
+        properties:
+          raw:
+            description: Caption for the attachment, as it exists in the database.
+            type: string
+          rendered:
+            description: HTML caption for the attachment, transformed for display.
+            type: string
+            readOnly: true
+      description:
+        description: The attachment description.
+        type: object
+        properties:
+          raw:
+            description: Description for the attachment, as it exists in the database.
+            type: string
+          rendered:
+            description: HTML description for the attachment, transformed for display.
+            type: string
+            readOnly: true
+      media_type:
+        description: Attachment type.
+        type: string
+        enum:
+          - image
+          - file
+        readOnly: true
+      mime_type:
+        description: The attachment MIME type.
+        type: string
+        readOnly: true
+      media_details:
+        description: Details about the media file, specific to its type.
+        type: object
+        readOnly: true
+      post:
+        description: The ID for the associated post of the attachment.
+        type: integer
+      source_url:
+        description: URL to the original attachment file.
+        type: string
+        format: uri
+        readOnly: true
+      missing_image_sizes:
+        description: List of the missing image sizes of the attachment.
+        type: array
+        items:
+          type: string
+        readOnly: true
+
+  AttachmentView:
+    allOf:
+      - $ref: '#/schemas/AttachmentBase'
+
+  AttachmentEmbed:
+    allOf:
+      - $ref: '#/schemas/AttachmentBase'
+      - type: object
+        properties:
+          id:
+            $ref: '#/schemas/AttachmentBase/properties/id'
+          link:
+            $ref: '#/schemas/AttachmentBase/properties/link'
+          alt_text:
+            $ref: '#/schemas/AttachmentBase/properties/alt_text'
+
+  AttachmentEdit:
+    allOf:
+      - $ref: '#/schemas/AttachmentBase'
+
+  AttachmentResponse:
+    oneOf:
+      - $ref: '#/schemas/AttachmentView'
+      - $ref: '#/schemas/AttachmentEmbed'
+      - $ref: '#/schemas/AttachmentEdit'
+
+# schemas:
+#   attachment:
+#     $schema: https://json-schema.org/draft/2020-12/schema
+#     title: attachment
+#     type: object
+#     properties:
+#       date:
+#         description: The date the post was published, in the site's timezone.
+#         type:
+#         - string
+#         - 'null'
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       date_gmt:
+#         description: The date the post was published, as GMT.
+#         type:
+#         - string
+#         - 'null'
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#       guid:
+#         description: The globally unique identifier for the post.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         readOnly: true
+#         properties:
+#           raw:
+#             description: GUID for the post, as it exists in the database.
+#             type: string
+#             x-context:
+#             - edit
+#             readOnly: true
+#           rendered:
+#             description: GUID for the post, transformed for display.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             readOnly: true
+#       id:
+#         description: Unique identifier for the post.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         readOnly: true
+#       link:
+#         description: URL to the post.
+#         type: string
+#         format: uri
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         readOnly: true
+#       modified:
+#         description: The date the post was last modified, in the site's timezone.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#         readOnly: true
+#       modified_gmt:
+#         description: The date the post was last modified, as GMT.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#         readOnly: true
+#       slug:
+#         description: An alphanumeric identifier for the post unique to its type.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       status:
+#         description: A named status for the post.
+#         type: string
+#         enum:
+#         - publish
+#         - future
+#         - draft
+#         - pending
+#         - private
+#         x-context:
+#         - view
+#         - edit
+#       type:
+#         description: Type of post.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         readOnly: true
+#       permalink_template:
+#         description: Permalink template for the post.
+#         type: string
+#         x-context:
+#         - edit
+#         readOnly: true
+#       generated_slug:
+#         description: Slug automatically generated from the post title.
+#         type: string
+#         x-context:
+#         - edit
+#         readOnly: true
+#       class_list:
+#         description: An array of the class names for the post container element.
+#         type: array
+#         x-context:
+#         - view
+#         - edit
+#         readOnly: true
+#         items:
+#           type: string
+#       title:
+#         description: The title for the post.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         properties:
+#           raw:
+#             description: Title for the post, as it exists in the database.
+#             type: string
+#             x-context:
+#             - edit
+#           rendered:
+#             description: HTML title for the post, transformed for display.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#             readOnly: true
+#       author:
+#         description: The ID for the author of the post.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       featured_media:
+#         description: The ID of the featured media for the post.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       comment_status:
+#         description: Whether or not comments are open on the post.
+#         type: string
+#         enum:
+#         - open
+#         - closed
+#         x-context:
+#         - view
+#         - edit
+#       ping_status:
+#         description: Whether or not the post can be pinged.
+#         type: string
+#         enum:
+#         - open
+#         - closed
+#         x-context:
+#         - view
+#         - edit
+#       meta:
+#         description: Meta fields.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         # properties: []
+#       template:
+#         description: The theme file to use to display the post.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#       alt_text:
+#         description: Alternative text to display when attachment is not displayed.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       caption:
+#         description: The attachment caption.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         properties:
+#           raw:
+#             description: Caption for the attachment, as it exists in the database.
+#             type: string
+#             x-context:
+#             - edit
+#           rendered:
+#             description: HTML caption for the attachment, transformed for display.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#             readOnly: true
+#       description:
+#         description: The attachment description.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         properties:
+#           raw:
+#             description: Description for the attachment, as it exists in the database.
+#             type: string
+#             x-context:
+#             - edit
+#           rendered:
+#             description: HTML description for the attachment, transformed for display.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             readOnly: true
+#       media_type:
+#         description: Attachment type.
+#         type: string
+#         enum:
+#         - image
+#         - file
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         readOnly: true
+#       mime_type:
+#         description: The attachment MIME type.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         readOnly: true
+#       media_details:
+#         description: Details about the media file, specific to its type.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         readOnly: true
+#       post:
+#         description: The ID for the associated post of the attachment.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#       source_url:
+#         description: URL to the original attachment file.
+#         type: string
+#         format: uri
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         readOnly: true
+#       missing_image_sizes:
+#         description: List of the missing image sizes of the attachment.
+#         type: array
+#         items:
+#           type: string
+#         x-context:
+#         - edit
+#         readOnly: true
+#     # links:
+#     # - rel: https://api.w.org/action-unfiltered-html
+#     #   title: The current user can post unfiltered HTML markup and JavaScript.
+#     #   href: http://localhost:8080/index.php?rest_route=/wp/v2/media/{id}
+#     #   targetSchema:
+#     #     type: object
+#     #     properties:
+#     #       content:
+#     #         raw:
+#     #           type: string
+#     # - rel: https://api.w.org/action-assign-author
+#     #   title: The current user can change the author on this post.
+#     #   href: http://localhost:8080/index.php?rest_route=/wp/v2/media/{id}
+#     #   targetSchema:
+#     #     type: object
+#     #     properties:
+#     #       author:
+#     #         type: integer

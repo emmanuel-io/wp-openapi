@@ -1,0 +1,44 @@
+schemas:
+  WidgetTypeBase:
+    type: object
+    properties:
+      id:
+        description: Unique slug identifying the widget type.
+        type: string
+        readOnly: true
+      name:
+        description: Human-readable name identifying the widget type.
+        type: string
+        default: ''
+        readOnly: true
+      description:
+        description: Description of the widget.
+        type: string
+        default: ''
+      is_multi:
+        description: Whether the widget supports multiple instances.
+        type: boolean
+        readOnly: true
+      classname:
+        description: Class name.
+        type: string
+        default: ''
+        readOnly: true
+
+  WidgetTypeView:
+    allOf:
+      - $ref: '#/schemas/WidgetTypeBase'
+
+  WidgetTypeEmbed:
+    allOf:
+      - $ref: '#/schemas/WidgetTypeBase'
+
+  WidgetTypeEdit:
+    allOf:
+      - $ref: '#/schemas/WidgetTypeBase'
+
+  WidgetTypeResponse:
+    oneOf:
+      - $ref: '#/schemas/WidgetTypeView'
+      - $ref: '#/schemas/WidgetTypeEmbed'
+      - $ref: '#/schemas/WidgetTypeEdit'

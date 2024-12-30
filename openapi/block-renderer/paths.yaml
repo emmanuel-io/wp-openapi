@@ -1,0 +1,73 @@
+paths:
+  /wp/v2/block-renderer/{name}:
+    get:
+      tags:
+      - block renderer
+      parameters:
+      - name: name
+        in: path
+        description: Unique registered name for the block.
+        required: true
+        schema: {}
+      - name: context
+        in: query
+        description: Scope under which the request is made; determines fields present
+          in response.
+        required: false
+        schema:
+          default: view
+          enum:
+          - edit
+      - name: attributes
+        in: query
+        description: Attributes for the block.
+        required: false
+        schema: {}
+      - name: post_id
+        in: query
+        description: ID of the post context.
+        required: false
+        schema: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/RenderedBlockResponse'
+    post:
+      tags:
+      - block renderer
+      parameters:
+      - name: name
+        in: path
+        description: Unique registered name for the block.
+        required: true
+        schema: {}
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                context:
+                  description: Scope under which the request is made; determines fields
+                    present in response.
+                  default: view
+                  type: string
+                  enum:
+                  - edit
+                attributes:
+                  description: Attributes for the block.
+                  default: []
+                  type: object
+                post_id:
+                  description: ID of the post context.
+                  type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/RenderedBlockResponse'

@@ -1,0 +1,324 @@
+openapi: 3.1.0
+info:
+  title: Wp-openapi API
+  description: ''
+  version: 6.7.1
+  contact:
+    name: wp-openapi
+    url: http://localhost
+    email: emmanuel.amadio@gmail.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+security: []
+servers:
+- url: http://any-server.com/wp-json
+# tags:
+# - name: oembed/1.0
+#   description: 'OEmbed v1'
+# - name: document-generator-for-openapi/v1
+#   description: 'TO REMOVE'
+# - name: wp-openapi/v1
+#   description: 'OPENAPI'
+# - name: wp/v2
+#   description: 'Wordpress JSON REST API v2'
+# - name: wp-site-health/v1
+#   description: 'Site Health Check v1'
+# - name: wp-block-editor/v1
+#   description: 'Block Editor v1'
+paths:
+  /wp/v2:
+    get:
+      tags: 
+      -  wp/v2
+      responses:
+        "200":
+          description: OK
+      parameters:
+        - name: namespace
+          in: query
+          description: ""
+          required: false
+          schema:
+            default: wp/v2
+        - name: context
+          in: query
+          description: ""
+          required: false
+          schema:
+            default: view
+
+  /oembed/1.0:
+    $ref: './oembed/paths.yaml#/paths/~1oembed~11.0'
+  /oembed/1.0/embed:
+    $ref: './oembed/paths.yaml#/paths/~1oembed~11.0~1embed'
+  /oembed/1.0/proxy:
+    $ref: './oembed/paths.yaml#/paths/~1oembed~11.0~1proxy'
+
+  /wp/v2/block-directory/search:
+    $ref: './block-directory/paths.yaml#/paths/~1wp~1v2~1block-directory~1search'
+
+  /wp/v2/block-patterns/patterns:
+    $ref: './block-patterns/paths.yaml#/paths/~1wp~1v2~1block-patterns~1patterns'
+  /wp/v2/block-patterns/categories:
+    $ref: './block-patterns/paths.yaml#/paths/~1wp~1v2~1block-patterns~1categories'
+
+  /wp/v2/block-renderer/{name}:
+    $ref: './block-renderer/paths.yaml#/paths/~1wp~1v2~1block-renderer~1{name}'
+
+  /wp/v2/block-types:
+    $ref: './block-types/paths.yaml#/paths/~1wp~1v2~1block-types'
+  /wp/v2/block-types/{namespace}:
+    $ref: './block-types/paths.yaml#/paths/~1wp~1v2~1block-types~1{namespace}'
+  /wp/v2/block-types/{namespace}/{name}:
+    $ref: './block-types/paths.yaml#/paths/~1wp~1v2~1block-types~1{namespace}~1{name}'
+
+  /wp/v2/blocks:
+    $ref: './blocks/paths.yaml#/paths/~1wp~1v2~1blocks'
+  /wp/v2/blocks/{id}:
+    $ref: './blocks/paths.yaml#/paths/~1wp~1v2~1blocks~1{id}'
+  /wp/v2/blocks/{parent}/revisions:
+    $ref: './blocks/paths.yaml#/paths/~1wp~1v2~1blocks~1{parent}~1revisions'
+  /wp/v2/blocks/{parent}/revisions/{id}:
+    $ref: './blocks/paths.yaml#/paths/~1wp~1v2~1blocks~1{parent}~1revisions~1{id}'
+  /wp/v2/blocks/{id}/autosaves:
+    $ref: './blocks/paths.yaml#/paths/~1wp~1v2~1blocks~1{id}~1autosaves'
+  /wp/v2/blocks/{parent}/autosaves/{id}:
+    $ref: './blocks/paths.yaml#/paths/~1wp~1v2~1blocks~1{parent}~1autosaves~1{id}'
+
+  /wp/v2/categories:
+    $ref: './categories/paths.yaml#/paths/~1wp~1v2~1categories'
+  /wp/v2/categories/{id}:
+    $ref: './categories/paths.yaml#/paths/~1wp~1v2~1categories~1{id}'
+
+  /wp/v2/comments:
+    $ref: './comments/paths.yaml#/paths/~1wp~1v2~1comments'
+  /wp/v2/comments/{id}:
+    $ref: './comments/paths.yaml#/paths/~1wp~1v2~1comments~1{id}'
+
+  /wp/v2/font-collections:
+    $ref: './font-collections/paths.yaml#/paths/~1wp~1v2~1font-collections'
+  /wp/v2/font-collections/{slug}:
+    $ref: './font-collections/paths.yaml#/paths/~1wp~1v2~1font-collections~1{slug}'
+
+  /wp/v2/font-families:
+    $ref: './font-families/paths.yaml#/paths/~1wp~1v2~1font-families'
+  /wp/v2/font-families/{id}:
+    $ref: './font-families/paths.yaml#/paths/~1wp~1v2~1font-families~1{id}'
+  /wp/v2/font-families/{font_family_id}/font-faces:
+    $ref: './font-families/paths.yaml#/paths/~1wp~1v2~1font-families~1{font_family_id}~1font-faces'
+  /wp/v2/font-families/{font_family_id}/font-faces/{id}:
+    $ref: './font-families/paths.yaml#/paths/~1wp~1v2~1font-families~1{font_family_id}~1font-faces~1{id}'
+
+  /wp/v2/global-styles/{parent}/revisions:
+    $ref: './global-styles/paths.yaml#/paths/~1wp~1v2~1global-styles~1{parent}~1revisions'
+  /wp/v2/global-styles/{parent}/revisions/{id}:
+    $ref: './global-styles/paths.yaml#/paths/~1wp~1v2~1global-styles~1{parent}~1revisions~1{id}'
+  /wp/v2/global-styles/themes/{stylesheet}/variations:
+    $ref: './global-styles/paths.yaml#/paths/~1wp~1v2~1global-styles~1themes~1{stylesheet}~1variations'
+  /wp/v2/global-styles/themes/{stylesheet}:
+    $ref: './global-styles/paths.yaml#/paths/~1wp~1v2~1global-styles~1themes~1{stylesheet}'
+  /wp/v2/global-styles/{id}:
+    $ref: './global-styles/paths.yaml#/paths/~1wp~1v2~1global-styles~1{id}'
+
+  /wp/v2/media:
+    $ref: './media/paths.yaml#/paths/~1wp~1v2~1media'
+  /wp/v2/media/{id}:
+    $ref: './media/paths.yaml#/paths/~1wp~1v2~1media~1{id}'
+  /wp/v2/media/{id}/post-process:
+    $ref: './media/paths.yaml#/paths/~1wp~1v2~1media~1{id}~1post-process'
+  /wp/v2/media/{id}/edit:
+    $ref: './media/paths.yaml#/paths/~1wp~1v2~1media~1{id}~1edit'
+
+  /wp/v2/menu-items:
+    $ref: './menu-items/paths.yaml#/paths/~1wp~1v2~1menu-items'
+  /wp/v2/menu-items/{id}:
+    $ref: './menu-items/paths.yaml#/paths/~1wp~1v2~1menu-items~1{id}'
+  /wp/v2/menu-items/{id}/autosaves:
+    $ref: './menu-items/paths.yaml#/paths/~1wp~1v2~1menu-items~1{id}~1autosaves'
+  /wp/v2/menu-items/{parent}/autosaves/{id}:
+    $ref: './menu-items/paths.yaml#/paths/~1wp~1v2~1menu-items~1{parent}~1autosaves~1{id}'
+
+  /wp/v2/menu-locations:
+    $ref: './menu-locations/paths.yaml#/paths/~1wp~1v2~1menu-locations'
+  /wp/v2/menu-locations/{location}:
+    $ref: './menu-locations/paths.yaml#/paths/~1wp~1v2~1menu-locations~1{location}'
+
+  /wp/v2/menus:
+    $ref: './menus/paths.yaml#/paths/~1wp~1v2~1menus'
+  /wp/v2/menus/{id}:
+    $ref: './menus/paths.yaml#/paths/~1wp~1v2~1menus~1{id}'
+
+  /wp/v2/navigation:
+    $ref: './navigation/paths.yaml#/paths/~1wp~1v2~1navigation'
+  /wp/v2/navigation/{id}:
+    $ref: './navigation/paths.yaml#/paths/~1wp~1v2~1navigation~1{id}'
+  /wp/v2/navigation/{parent}/revisions:
+    $ref: './navigation/paths.yaml#/paths/~1wp~1v2~1navigation~1{parent}~1revisions'
+  /wp/v2/navigation/{parent}/revisions/{id}:
+    $ref: './navigation/paths.yaml#/paths/~1wp~1v2~1navigation~1{parent}~1revisions~1{id}'
+  /wp/v2/navigation/{id}/autosaves:
+    $ref: './navigation/paths.yaml#/paths/~1wp~1v2~1navigation~1{id}~1autosaves'
+  /wp/v2/navigation/{parent}/autosaves/{id}:
+    $ref: './navigation/paths.yaml#/paths/~1wp~1v2~1navigation~1{parent}~1autosaves~1{id}'
+
+  /wp/v2/pages:
+    $ref: './pages/paths.yaml#/paths/~1wp~1v2~1pages'
+  /wp/v2/pages/{id}:
+    $ref: './pages/paths.yaml#/paths/~1wp~1v2~1pages~1{id}'
+  /wp/v2/pages/{parent}/revisions:
+    $ref: './pages/paths.yaml#/paths/~1wp~1v2~1pages~1{parent}~1revisions'
+  /wp/v2/pages/{parent}/revisions/{id}:
+    $ref: './pages/paths.yaml#/paths/~1wp~1v2~1pages~1{parent}~1revisions~1{id}'
+  /wp/v2/pages/{id}/autosaves:
+    $ref: './pages/paths.yaml#/paths/~1wp~1v2~1pages~1{id}~1autosaves'
+  /wp/v2/pages/{parent}/autosaves/{id}:
+    $ref: './pages/paths.yaml#/paths/~1wp~1v2~1pages~1{parent}~1autosaves~1{id}'
+
+  /wp/v2/pattern-directory/patterns:
+    $ref: './pattern-directory/paths.yaml#/paths/~1wp~1v2~1pattern-directory~1patterns'
+
+  /wp/v2/plugins:
+    $ref: './plugins/paths.yaml#/paths/~1wp~1v2~1plugins'
+  /wp/v2/plugins/{plugin}:
+    $ref: './plugins/paths.yaml#/paths/~1wp~1v2~1plugins~1{plugin}'
+
+  /wp/v2/posts:
+    $ref: './posts/paths.yaml#/paths/~1wp~1v2~1posts'
+  /wp/v2/posts/{id}:
+    $ref: './posts/paths.yaml#/paths/~1wp~1v2~1posts~1{id}'
+  /wp/v2/posts/{parent}/revisions:
+    $ref: './posts/paths.yaml#/paths/~1wp~1v2~1posts~1{parent}~1revisions'
+  /wp/v2/posts/{parent}/revisions/{id}:
+    $ref: './posts/paths.yaml#/paths/~1wp~1v2~1posts~1{parent}~1revisions~1{id}'
+  /wp/v2/posts/{id}/autosaves:
+    $ref: './posts/paths.yaml#/paths/~1wp~1v2~1posts~1{id}~1autosaves'
+  /wp/v2/posts/{parent}/autosaves/{id}:
+    $ref: './posts/paths.yaml#/paths/~1wp~1v2~1posts~1{parent}~1autosaves~1{id}'
+
+  /wp/v2/search:
+    $ref: './search/paths.yaml#/paths/~1wp~1v2~1search'
+
+  /wp/v2/settings:
+    $ref: './settings/paths.yaml#/paths/~1wp~1v2~1settings'
+
+  /wp/v2/sidebars:
+    $ref: './sidebars/paths.yaml#/paths/~1wp~1v2~1sidebars'
+  /wp/v2/sidebars/{id}:
+    $ref: './sidebars/paths.yaml#/paths/~1wp~1v2~1sidebars~1{id}'
+
+  /wp/v2/statuses:
+    $ref: './statuses/paths.yaml#/paths/~1wp~1v2~1statuses'
+  /wp/v2/statuses/{status}:
+    $ref: './statuses/paths.yaml#/paths/~1wp~1v2~1statuses~1{status}'
+
+  /wp/v2/taxonomies:
+    $ref: './taxonomies/paths.yaml#/paths/~1wp~1v2~1taxonomies'
+  /wp/v2/taxonomies/{taxonomy}:
+    $ref: './taxonomies/paths.yaml#/paths/~1wp~1v2~1taxonomies~1{taxonomy}'
+
+  /wp/v2/tags:
+    $ref: './tags/paths.yaml#/paths/~1wp~1v2~1tags'
+  /wp/v2/tags/{id}:
+    $ref: './tags/paths.yaml#/paths/~1wp~1v2~1tags~1{id}'
+
+  /wp/v2/template-parts:
+    $ref: './template-parts/paths.yaml#/paths/~1wp~1v2~1template-parts'
+  /wp/v2/template-parts/lookup:
+    $ref: './template-parts/paths.yaml#/paths/~1wp~1v2~1template-parts~1lookup'
+  /wp/v2/template-parts/{id}:
+    $ref: './template-parts/paths.yaml#/paths/~1wp~1v2~1template-parts~1{id}'
+  /wp/v2/template-parts/{parent}/revisions:
+    $ref: './template-parts/paths.yaml#/paths/~1wp~1v2~1template-parts~1{parent}~1revisions'
+  /wp/v2/template-parts/{parent}/revisions/{id}:
+    $ref: './template-parts/paths.yaml#/paths/~1wp~1v2~1template-parts~1{parent}~1revisions~1{id}'
+  /wp/v2/template-parts/{id}/autosaves:
+    $ref: './template-parts/paths.yaml#/paths/~1wp~1v2~1template-parts~1{id}~1autosaves'
+  /wp/v2/template-parts/{parent}/autosaves/{id}:
+    $ref: './template-parts/paths.yaml#/paths/~1wp~1v2~1template-parts~1{parent}~1autosaves~1{id}'
+
+  /wp/v2/templates:
+    $ref: './templates/paths.yaml#/paths/~1wp~1v2~1templates'
+  /wp/v2/templates/lookup:
+    $ref: './templates/paths.yaml#/paths/~1wp~1v2~1templates~1lookup'
+  /wp/v2/templates/{id}:
+    $ref: './templates/paths.yaml#/paths/~1wp~1v2~1templates~1{id}'
+  /wp/v2/templates/{parent}/revisions:
+    $ref: './templates/paths.yaml#/paths/~1wp~1v2~1templates~1{parent}~1revisions'
+  /wp/v2/templates/{parent}/revisions/{id}:
+    $ref: './templates/paths.yaml#/paths/~1wp~1v2~1templates~1{parent}~1revisions~1{id}'
+  /wp/v2/templates/{id}/autosaves:
+    $ref: './templates/paths.yaml#/paths/~1wp~1v2~1templates~1{id}~1autosaves'
+  /wp/v2/templates/{parent}/autosaves/{id}:
+    $ref: './templates/paths.yaml#/paths/~1wp~1v2~1templates~1{parent}~1autosaves~1{id}'
+
+  /wp/v2/themes:
+    $ref: './themes/paths.yaml#/paths/~1wp~1v2~1themes'
+  /wp/v2/themes/{stylesheet}:
+    $ref: './themes/paths.yaml#/paths/~1wp~1v2~1themes~1{stylesheet}'
+
+  /wp/v2/types:
+    $ref: './types/paths.yaml#/paths/~1wp~1v2~1types'
+  /wp/v2/types/{type}:
+    $ref: './types/paths.yaml#/paths/~1wp~1v2~1types~1{type}'
+
+  /wp/v2/users:
+    $ref: './users/paths.yaml#/paths/~1wp~1v2~1users'
+  /wp/v2/users/{id}:
+    $ref: './users/paths.yaml#/paths/~1wp~1v2~1users~1{id}'
+  /wp/v2/users/me:
+    $ref: './users/paths.yaml#/paths/~1wp~1v2~1users~1me'
+  /wp/v2/users/{user_id}/application-passwords:
+    $ref: './users/paths.yaml#/paths/~1wp~1v2~1users~1{user_id}~1application-passwords'
+  /wp/v2/users/{user_id}/application-passwords/introspect:
+    $ref: './users/paths.yaml#/paths/~1wp~1v2~1users~1{user_id}~1application-passwords~1introspect'
+  /wp/v2/users/{user_id}/application-passwords/{uuid}:
+    $ref: './users/paths.yaml#/paths/~1wp~1v2~1users~1{user_id}~1application-passwords~1{uuid}'
+
+  /wp/v2/widget-types:
+    $ref: './widget-types/paths.yaml#/paths/~1wp~1v2~1widget-types'
+  /wp/v2/widget-types/{id}:
+    $ref: './widget-types/paths.yaml#/paths/~1wp~1v2~1widget-types~1{id}'
+  /wp/v2/widget-types/{id}/encode:
+    $ref: './widget-types/paths.yaml#/paths/~1wp~1v2~1widget-types~1{id}~1encode'
+  /wp/v2/widget-types/{id}/render:
+    $ref: './widget-types/paths.yaml#/paths/~1wp~1v2~1widget-types~1{id}~1render'
+
+  /wp/v2/widgets:
+    $ref: './widgets/paths.yaml#/paths/~1wp~1v2~1widgets'
+  /wp/v2/widgets/{id}:
+    $ref: './widgets/paths.yaml#/paths/~1wp~1v2~1widgets~1{id}'
+
+  /wp/v2/wp_pattern_category:
+    $ref: './wp_pattern_category/paths.yaml#/paths/~1wp~1v2~1wp_pattern_category'
+  /wp/v2/wp_pattern_category/{id}:
+    $ref: './wp_pattern_category/paths.yaml#/paths/~1wp~1v2~1wp_pattern_category~1{id}'
+
+  /wp-block-editor/v1:
+    $ref: './wp-block-editor/paths.yaml#/paths/~1wp-block-editor~1v1'
+  /wp-block-editor/v1/url-details:
+    $ref: './wp-block-editor/paths.yaml#/paths/~1wp-block-editor~1v1~1url-details'
+  /wp-block-editor/v1/export:
+    $ref: './wp-block-editor/paths.yaml#/paths/~1wp-block-editor~1v1~1export'
+  /wp-block-editor/v1/navigation-fallback:
+    $ref: './wp-block-editor/paths.yaml#/paths/~1wp-block-editor~1v1~1navigation-fallback'
+
+  /wp-site-health/v1:
+    $ref: './wp-site-health/paths.yaml#/paths/~1wp-site-health~1v1'
+  /wp-site-health/v1/tests/background-updates:
+    $ref: './wp-site-health/paths.yaml#/paths/~1wp-site-health~1v1~1tests~1background-updates'
+  /wp-site-health/v1/tests/loopback-requests:
+    $ref: './wp-site-health/paths.yaml#/paths/~1wp-site-health~1v1~1tests~1loopback-requests'
+  /wp-site-health/v1/tests/https-status:
+    $ref: './wp-site-health/paths.yaml#/paths/~1wp-site-health~1v1~1tests~1https-status'
+  /wp-site-health/v1/tests/dotorg-communication:
+    $ref: './wp-site-health/paths.yaml#/paths/~1wp-site-health~1v1~1tests~1dotorg-communication'
+  /wp-site-health/v1/tests/authorization-header:
+    $ref: './wp-site-health/paths.yaml#/paths/~1wp-site-health~1v1~1tests~1authorization-header'
+  /wp-site-health/v1/directory-sizes:
+    $ref: './wp-site-health/paths.yaml#/paths/~1wp-site-health~1v1~1directory-sizes'
+  /wp-site-health/v1/tests/page-cache:
+    $ref: './wp-site-health/paths.yaml#/paths/~1wp-site-health~1v1~1tests~1page-cache'
+
+# components:
+#   $ref: './common/schemas.yaml'

@@ -1,0 +1,35 @@
+paths:
+  /wp/v2/block-directory/search:
+    get:
+      tags:
+      - block directory
+      parameters:
+      - $ref: '../components.yaml#/components/parameters/ContextQueryParameter'
+      - name: page
+        in: query
+        description: Current page of the collection.
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+      - name: per_page
+        in: query
+        description: Maximum number of items to be returned in result set.
+        required: false
+        schema:
+          default: 10
+          minimum: 1
+          maximum: 100
+      - name: term
+        in: query
+        description: Limit result set to blocks matching the search term.
+        required: true
+        schema:
+          minLength: 1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/BlockDirectoryItemResponse'

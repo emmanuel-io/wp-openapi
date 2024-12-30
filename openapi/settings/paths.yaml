@@ -1,0 +1,336 @@
+paths:
+  /wp/v2/settings:
+    get:
+      tags:
+      - Settings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/settings'
+    post:
+      tags:
+      - Settings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/settings'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                title:
+                  title: Title
+                  description: Site title.
+                  type: string
+                description:
+                  title: Tagline
+                  description: Site tagline.
+                  type: string
+                url:
+                  title: ''
+                  description: Site URL.
+                  type: string
+                  format: uri
+                email:
+                  title: ''
+                  description: This address is used for admin purposes, like new user
+                    notification.
+                  type: string
+                  format: email
+                timezone:
+                  title: ''
+                  description: A city in the same timezone as you.
+                  type: string
+                date_format:
+                  title: ''
+                  description: A date format for all date strings.
+                  type: string
+                time_format:
+                  title: ''
+                  description: A time format for all time strings.
+                  type: string
+                start_of_week:
+                  title: ''
+                  description: A day number of the week that the week should start
+                    on.
+                  type: integer
+                language:
+                  title: ''
+                  description: WordPress locale code.
+                  type: string
+                use_smilies:
+                  title: ''
+                  description: Convert emoticons like :-) and :-P to graphics on display.
+                  type: boolean
+                default_category:
+                  title: ''
+                  description: Default post category.
+                  type: integer
+                default_post_format:
+                  title: ''
+                  description: Default post format.
+                  type: string
+                posts_per_page:
+                  title: Maximum posts per page
+                  description: Blog pages show at most.
+                  type: integer
+                show_on_front:
+                  title: Show on front
+                  description: What to show on the front page
+                  type: string
+                page_on_front:
+                  title: Page on front
+                  description: The ID of the page that should be displayed on the
+                    front page
+                  type: integer
+                page_for_posts:
+                  title: ''
+                  description: The ID of the page that should display the latest posts
+                  type: integer
+                default_ping_status:
+                  title: ''
+                  description: Allow link notifications from other blogs (pingbacks
+                    and trackbacks) on new articles.
+                  type: string
+                  enum:
+                  - open
+                  - closed
+                default_comment_status:
+                  title: Allow comments on new posts
+                  description: Allow people to submit comments on new posts.
+                  type: string
+                  enum:
+                  - open
+                  - closed
+                site_logo:
+                  title: Logo
+                  description: Site logo.
+                  type: integer
+                site_icon:
+                  title: Icon
+                  description: Site icon.
+                  type: integer
+    put:
+      tags:
+      - Settings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/settings'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                title:
+                  title: Title
+                  description: Site title.
+                  type: string
+                description:
+                  title: Tagline
+                  description: Site tagline.
+                  type: string
+                url:
+                  title: ''
+                  description: Site URL.
+                  type: string
+                  format: uri
+                email:
+                  title: ''
+                  description: This address is used for admin purposes, like new user
+                    notification.
+                  type: string
+                  format: email
+                timezone:
+                  title: ''
+                  description: A city in the same timezone as you.
+                  type: string
+                date_format:
+                  title: ''
+                  description: A date format for all date strings.
+                  type: string
+                time_format:
+                  title: ''
+                  description: A time format for all time strings.
+                  type: string
+                start_of_week:
+                  title: ''
+                  description: A day number of the week that the week should start
+                    on.
+                  type: integer
+                language:
+                  title: ''
+                  description: WordPress locale code.
+                  type: string
+                use_smilies:
+                  title: ''
+                  description: Convert emoticons like :-) and :-P to graphics on display.
+                  type: boolean
+                default_category:
+                  title: ''
+                  description: Default post category.
+                  type: integer
+                default_post_format:
+                  title: ''
+                  description: Default post format.
+                  type: string
+                posts_per_page:
+                  title: Maximum posts per page
+                  description: Blog pages show at most.
+                  type: integer
+                show_on_front:
+                  title: Show on front
+                  description: What to show on the front page
+                  type: string
+                page_on_front:
+                  title: Page on front
+                  description: The ID of the page that should be displayed on the
+                    front page
+                  type: integer
+                page_for_posts:
+                  title: ''
+                  description: The ID of the page that should display the latest posts
+                  type: integer
+                default_ping_status:
+                  title: ''
+                  description: Allow link notifications from other blogs (pingbacks
+                    and trackbacks) on new articles.
+                  type: string
+                  enum:
+                  - open
+                  - closed
+                default_comment_status:
+                  title: Allow comments on new posts
+                  description: Allow people to submit comments on new posts.
+                  type: string
+                  enum:
+                  - open
+                  - closed
+                site_logo:
+                  title: Logo
+                  description: Site logo.
+                  type: integer
+                site_icon:
+                  title: Icon
+                  description: Site icon.
+                  type: integer
+    patch:
+      tags:
+      - Settings
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/settings'
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                title:
+                  title: Title
+                  description: Site title.
+                  type: string
+                description:
+                  title: Tagline
+                  description: Site tagline.
+                  type: string
+                url:
+                  title: ''
+                  description: Site URL.
+                  type: string
+                  format: uri
+                email:
+                  title: ''
+                  description: This address is used for admin purposes, like new user
+                    notification.
+                  type: string
+                  format: email
+                timezone:
+                  title: ''
+                  description: A city in the same timezone as you.
+                  type: string
+                date_format:
+                  title: ''
+                  description: A date format for all date strings.
+                  type: string
+                time_format:
+                  title: ''
+                  description: A time format for all time strings.
+                  type: string
+                start_of_week:
+                  title: ''
+                  description: A day number of the week that the week should start
+                    on.
+                  type: integer
+                language:
+                  title: ''
+                  description: WordPress locale code.
+                  type: string
+                use_smilies:
+                  title: ''
+                  description: Convert emoticons like :-) and :-P to graphics on display.
+                  type: boolean
+                default_category:
+                  title: ''
+                  description: Default post category.
+                  type: integer
+                default_post_format:
+                  title: ''
+                  description: Default post format.
+                  type: string
+                posts_per_page:
+                  title: Maximum posts per page
+                  description: Blog pages show at most.
+                  type: integer
+                show_on_front:
+                  title: Show on front
+                  description: What to show on the front page
+                  type: string
+                page_on_front:
+                  title: Page on front
+                  description: The ID of the page that should be displayed on the
+                    front page
+                  type: integer
+                page_for_posts:
+                  title: ''
+                  description: The ID of the page that should display the latest posts
+                  type: integer
+                default_ping_status:
+                  title: ''
+                  description: Allow link notifications from other blogs (pingbacks
+                    and trackbacks) on new articles.
+                  type: string
+                  enum:
+                  - open
+                  - closed
+                default_comment_status:
+                  title: Allow comments on new posts
+                  description: Allow people to submit comments on new posts.
+                  type: string
+                  enum:
+                  - open
+                  - closed
+                site_logo:
+                  title: Logo
+                  description: Site logo.
+                  type: integer
+                site_icon:
+                  title: Icon
+                  description: Site icon.
+                  type: integer

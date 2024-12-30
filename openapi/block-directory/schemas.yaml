@@ -1,0 +1,128 @@
+schemas:
+  BlockDirectoryItemBase:
+    type: object
+    properties:
+      name:
+        description: The block name, in namespace/block-name format.
+        type: string
+      title:
+        description: The block title, in human readable format.
+        type: string
+      description:
+        description: A short description of the block, in human readable format.
+        type: string
+      id:
+        description: The block slug.
+        type: string
+      rating:
+        description: The star rating of the block.
+        type: number
+      rating_count:
+        description: The number of ratings.
+        type: integer
+      active_installs:
+        description: The number of sites that have activated this block.
+        type: integer
+      author_block_rating:
+        description: The average rating of blocks published by the same author.
+        type: number
+      author_block_count:
+        description: The number of blocks published by the same author.
+        type: integer
+      author:
+        description: The WordPress.org username of the block author.
+        type: string
+      icon:
+        description: The block icon.
+        type: string
+        format: uri
+      last_updated:
+        description: The date when the block was last updated.
+        type: string
+        format: date-time
+      humanized_updated:
+        description: The date when the block was last updated, in fuzzy human readable format.
+        type: string
+
+  BlockDirectoryItemView:
+    allOf:
+      - $ref: '#/schemas/BlockDirectoryItemBase'
+
+  BlockDirectoryItemResponse:
+    oneOf:
+      - $ref: '#/schemas/BlockDirectoryItemView'
+
+# schemas:
+#   block-directory-item:
+#     $schema: https://json-schema.org/draft/2020-12/schema
+#     title: block-directory-item
+#     type: object
+#     properties:
+#       name:
+#         description: The block name, in namespace/block-name format.
+#         type: string
+#         x-context:
+#         - view
+#       title:
+#         description: The block title, in human readable format.
+#         type: string
+#         x-context:
+#         - view
+#       description:
+#         description: A short description of the block, in human readable format.
+#         type: string
+#         x-context:
+#         - view
+#       id:
+#         description: The block slug.
+#         type: string
+#         x-context:
+#         - view
+#       rating:
+#         description: The star rating of the block.
+#         type: number
+#         x-context:
+#         - view
+#       rating_count:
+#         description: The number of ratings.
+#         type: integer
+#         x-context:
+#         - view
+#       active_installs:
+#         description: The number sites that have activated this block.
+#         type: integer
+#         x-context:
+#         - view
+#       author_block_rating:
+#         description: The average rating of blocks published by the same author.
+#         type: number
+#         x-context:
+#         - view
+#       author_block_count:
+#         description: The number of blocks published by the same author.
+#         type: integer
+#         x-context:
+#         - view
+#       author:
+#         description: The WordPress.org username of the block author.
+#         type: string
+#         x-context:
+#         - view
+#       icon:
+#         description: The block icon.
+#         type: string
+#         format: uri
+#         x-context:
+#         - view
+#       last_updated:
+#         description: The date when the block was last updated.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#       humanized_updated:
+#         description: The date when the block was last updated, in fuzzy human readable
+#           format.
+#         type: string
+#         x-context:
+#         - view

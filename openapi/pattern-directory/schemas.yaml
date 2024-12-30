@@ -1,0 +1,167 @@
+schemas:
+  PatternDirectoryItemBase:
+    type: object
+    properties:
+      id:
+        description: The pattern ID.
+        type: integer
+        minimum: 1
+      title:
+        description: The pattern title, in human readable format.
+        type: string
+        minLength: 1
+      content:
+        description: The pattern content.
+        type: string
+        minLength: 1
+      categories:
+        description: The pattern's category slugs.
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+      keywords:
+        description: The pattern's keywords.
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+      description:
+        description: A description of the pattern.
+        type: string
+        minLength: 1
+      viewport_width:
+        description: The preferred width of the viewport when previewing a pattern, in pixels.
+        type: integer
+
+  PatternDirectoryItemBlockTypes:
+    type: object
+    properties:
+      block_types:
+        description: The block types which can use this pattern.
+        type: array
+        uniqueItems: true
+        items:
+          type: string
+
+  PatternDirectoryItemView:
+    allOf:
+      - $ref: '#/schemas/PatternDirectoryItemBase'
+      - $ref: '#/schemas/PatternDirectoryItemBlockTypes'
+    required:
+      - id
+      - title
+      - content
+      - categories
+      - keywords
+      - description
+      - viewport_width
+      - block_types
+
+  PatternDirectoryItemEdit:
+    allOf:
+      - $ref: '#/schemas/PatternDirectoryItemBase'
+    required:
+      - id
+      - title
+      - content
+      - categories
+      - keywords
+      - description
+      - viewport_width
+
+  PatternDirectoryItemEmbed:
+    allOf:
+      - $ref: '#/schemas/PatternDirectoryItemBase'
+      - $ref: '#/schemas/PatternDirectoryItemBlockTypes'
+    required:
+      - id
+      - title
+      - content
+      - categories
+      - keywords
+      - description
+      - viewport_width
+      - block_types
+
+  PatternDirectoryItemResponse:
+    oneOf:
+      - $ref: '#/schemas/PatternDirectoryItemView'
+      - $ref: '#/schemas/PatternDirectoryItemEdit'
+      - $ref: '#/schemas/PatternDirectoryItemEmbed'
+
+# schemas:
+#   pattern-directory-item:
+#     $schema: https://json-schema.org/draft/2020-12/schema
+#     title: pattern-directory-item
+#     type: object
+#     properties:
+#       id:
+#         description: The pattern ID.
+#         type: integer
+#         minimum: 1
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       title:
+#         description: The pattern title, in human readable format.
+#         type: string
+#         minLength: 1
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       content:
+#         description: The pattern content.
+#         type: string
+#         minLength: 1
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       categories:
+#         description: The pattern's category slugs.
+#         type: array
+#         uniqueItems: true
+#         items:
+#           type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       keywords:
+#         description: The pattern's keywords.
+#         type: array
+#         uniqueItems: true
+#         items:
+#           type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       description:
+#         description: A description of the pattern.
+#         type: string
+#         minLength: 1
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       viewport_width:
+#         description: The preferred width of the viewport when previewing a pattern,
+#           in pixels.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       block_types:
+#         description: The block types which can use this pattern.
+#         type: array
+#         uniqueItems: true
+#         items:
+#           type: string
+#         x-context:
+#         - view
+#         - embed

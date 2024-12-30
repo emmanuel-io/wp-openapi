@@ -1,0 +1,703 @@
+schemas:
+  WPBlockBase:
+    type: object
+    properties:
+      date:
+        description: The date the post was published, in the site's timezone.
+        type:
+          - string
+          - 'null'
+        format: date-time
+      date_gmt:
+        description: The date the post was published, as GMT.
+        type:
+          - string
+          - 'null'
+        format: date-time
+      guid:
+        description: The globally unique identifier for the post.
+        type: object
+        readOnly: true
+        properties:
+          raw:
+            description: GUID for the post, as it exists in the database.
+            type: string
+          rendered:
+            description: GUID for the post, transformed for display.
+            type: string
+      id:
+        description: Unique identifier for the post.
+        type: integer
+        readOnly: true
+      link:
+        description: URL to the post.
+        type: string
+        format: uri
+        readOnly: true
+      modified:
+        description: The date the post was last modified, in the site's timezone.
+        type: string
+        format: date-time
+        readOnly: true
+      modified_gmt:
+        description: The date the post was last modified, as GMT.
+        type: string
+        format: date-time
+        readOnly: true
+      slug:
+        description: An alphanumeric identifier for the post unique to its type.
+        type: string
+      status:
+        description: A named status for the post.
+        type: string
+        enum:
+          - publish
+          - future
+          - draft
+          - pending
+          - private
+      type:
+        description: Type of post.
+        type: string
+        readOnly: true
+      password:
+        description: A password to protect access to the content and excerpt.
+        type: string
+      title:
+        description: The title for the post.
+        type: object
+        properties:
+          raw:
+            description: Title for the post, as it exists in the database.
+            type: string
+      content:
+        description: The content for the post.
+        type: object
+        properties:
+          raw:
+            description: Content for the post, as it exists in the database.
+            type: string
+          block_version:
+            description: Version of the content block format used by the post.
+            type: integer
+            readOnly: true
+          protected:
+            description: Whether the content is protected with a password.
+            type: boolean
+            readOnly: true
+      excerpt:
+        description: The excerpt for the post.
+        type: object
+        properties:
+          raw:
+            description: Excerpt for the post, as it exists in the database.
+            type: string
+          rendered:
+            description: HTML excerpt for the post, transformed for display.
+            type: string
+            readOnly: true
+          protected:
+            description: Whether the excerpt is protected with a password.
+            type: boolean
+            readOnly: true
+      meta:
+        description: Meta fields.
+        type: object
+        properties:
+          wp_pattern_sync_status:
+            type: string
+            enum:
+              - partial
+              - unsynced
+          footnotes:
+            type: string
+      template:
+        description: The theme file to use to display the post.
+        type: string
+      wp_pattern_category:
+        description: The terms assigned to the post in the wp_pattern_category taxonomy.
+        type: array
+        items:
+          type: integer
+
+  WPBlockView:
+    allOf:
+      - $ref: '#/schemas/WPBlockBase'
+
+  WPBlockEmbed:
+    allOf:
+      - $ref: '#/schemas/WPBlockBase'
+      - type: object
+        properties:
+          id:
+            $ref: '#/schemas/WPBlockBase/properties/id'
+          link:
+            $ref: '#/schemas/WPBlockBase/properties/link'
+          title:
+            $ref: '#/schemas/WPBlockBase/properties/title'
+
+  WPBlockEdit:
+    allOf:
+      - $ref: '#/schemas/WPBlockBase'
+
+  WPBlockResponse:
+    oneOf:
+      - $ref: '#/schemas/WPBlockView'
+      - $ref: '#/schemas/WPBlockEmbed'
+      - $ref: '#/schemas/WPBlockEdit'
+
+  WPBlockRevisionBase:
+    type: object
+    properties:
+      author:
+        description: The ID for the author of the revision.
+        type: integer
+      date:
+        description: The date the revision was published, in the site's timezone.
+        type: string
+        format: date-time
+      date_gmt:
+        description: The date the revision was published, as GMT.
+        type: string
+        format: date-time
+      guid:
+        description: The globally unique identifier for the post.
+        type: object
+        readOnly: true
+        properties:
+          raw:
+            description: GUID for the post, as it exists in the database.
+            type: string
+          rendered:
+            description: GUID for the post, transformed for display.
+            type: string
+      id:
+        description: Unique identifier for the revision.
+        type: integer
+      modified:
+        description: The date the revision was last modified, in the site's timezone.
+        type: string
+        format: date-time
+      modified_gmt:
+        description: The date the revision was last modified, as GMT.
+        type: string
+        format: date-time
+      parent:
+        description: The ID for the parent of the revision.
+        type: integer
+      slug:
+        description: An alphanumeric identifier for the revision unique to its type.
+        type: string
+      title:
+        description: The title for the post.
+        type: object
+        properties:
+          raw:
+            description: Title for the post, as it exists in the database.
+            type: string
+      content:
+        description: The content for the post.
+        type: object
+        properties:
+          raw:
+            description: Content for the post, as it exists in the database.
+            type: string
+          block_version:
+            description: Version of the content block format used by the post.
+            type: integer
+            readOnly: true
+          protected:
+            description: Whether the content is protected with a password.
+            type: boolean
+            readOnly: true
+      excerpt:
+        description: The excerpt for the post.
+        type: object
+        properties:
+          raw:
+            description: Excerpt for the post, as it exists in the database.
+            type: string
+          rendered:
+            description: HTML excerpt for the post, transformed for display.
+            type: string
+            readOnly: true
+          protected:
+            description: Whether the excerpt is protected with a password.
+            type: boolean
+            readOnly: true
+      meta:
+        description: Meta fields.
+        type: object
+        properties:
+          wp_pattern_sync_status:
+            type: string
+          footnotes:
+            type: string
+      preview_link:
+        description: Preview link for the post.
+        type: string
+        format: uri
+        readOnly: true
+
+  WPBlockRevisionView:
+    allOf:
+      - $ref: '#/schemas/WPBlockRevisionBase'
+
+  WPBlockRevisionEmbed:
+    allOf:
+      - $ref: '#/schemas/WPBlockRevisionBase'
+      - type: object
+        properties:
+          id:
+            $ref: '#/schemas/WPBlockRevisionBase/properties/id'
+          author:
+            $ref: '#/schemas/WPBlockRevisionBase/properties/author'
+          date:
+            $ref: '#/schemas/WPBlockRevisionBase/properties/date'
+
+  WPBlockRevisionEdit:
+    allOf:
+      - $ref: '#/schemas/WPBlockRevisionBase'
+
+  WPBlockRevisionResponse:
+    oneOf:
+      - $ref: '#/schemas/WPBlockRevisionView'
+      - $ref: '#/schemas/WPBlockRevisionEmbed'
+      - $ref: '#/schemas/WPBlockRevisionEdit'
+
+# schemas:
+#   wp_block:
+#     $schema: https://json-schema.org/draft/2020-12/schema
+#     title: wp_block
+#     type: object
+#     properties:
+#       date:
+#         description: The date the post was published, in the site's timezone.
+#         type:
+#         - string
+#         - 'null'
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       date_gmt:
+#         description: The date the post was published, as GMT.
+#         type:
+#         - string
+#         - 'null'
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#       guid:
+#         description: The globally unique identifier for the post.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         readOnly: true
+#         properties:
+#           raw:
+#             description: GUID for the post, as it exists in the database.
+#             type: string
+#             x-context:
+#             - edit
+#             readOnly: true
+#           rendered:
+#             description: GUID for the post, transformed for display.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             readOnly: true
+#       id:
+#         description: Unique identifier for the post.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         readOnly: true
+#       link:
+#         description: URL to the post.
+#         type: string
+#         format: uri
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         readOnly: true
+#       modified:
+#         description: The date the post was last modified, in the site's timezone.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#         readOnly: true
+#       modified_gmt:
+#         description: The date the post was last modified, as GMT.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#         readOnly: true
+#       slug:
+#         description: An alphanumeric identifier for the post unique to its type.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       status:
+#         description: A named status for the post.
+#         type: string
+#         enum:
+#         - publish
+#         - future
+#         - draft
+#         - pending
+#         - private
+#         x-context:
+#         - view
+#         - edit
+#       type:
+#         description: Type of post.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         readOnly: true
+#       password:
+#         description: A password to protect access to the content and excerpt.
+#         type: string
+#         x-context:
+#         - edit
+#       title:
+#         description: The title for the post.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         properties:
+#           raw:
+#             description: Title for the post, as it exists in the database.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#       content:
+#         description: The content for the post.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         properties:
+#           raw:
+#             description: Content for the post, as it exists in the database.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#           block_version:
+#             description: Version of the content block format used by the post.
+#             type: integer
+#             x-context:
+#             - edit
+#             readOnly: true
+#           protected:
+#             description: Whether the content is protected with a password.
+#             type: boolean
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#             readOnly: true
+#       excerpt:
+#         description: The excerpt for the post.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         properties:
+#           raw:
+#             description: Excerpt for the post, as it exists in the database.
+#             type: string
+#             x-context:
+#             - edit
+#           rendered:
+#             description: HTML excerpt for the post, transformed for display.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#             readOnly: true
+#           protected:
+#             description: Whether the excerpt is protected with a password.
+#             type: boolean
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#             readOnly: true
+#       meta:
+#         description: Meta fields.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         properties:
+#           wp_pattern_sync_status:
+#             type: string
+#             title: ''
+#             description: ''
+#             default: ''
+#             enum:
+#             - partial
+#             - unsynced
+#           footnotes:
+#             type: string
+#             title: ''
+#             description: ''
+#             default: ''
+#       template:
+#         description: The theme file to use to display the post.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#       wp_pattern_category:
+#         description: The terms assigned to the post in the wp_pattern_category taxonomy.
+#         type: array
+#         items:
+#           type: integer
+#         x-context:
+#         - view
+#         - edit
+#     # links:
+#     # - rel: https://api.w.org/action-publish
+#     #   title: The current user can publish this post.
+#     #   href: http://localhost:8080/index.php?rest_route=/wp/v2/blocks/{id}
+#     #   targetSchema:
+#     #     type: object
+#     #     properties:
+#     #       status:
+#     #         type: string
+#     #         enum:
+#     #         - publish
+#     #         - future
+#     # - rel: https://api.w.org/action-unfiltered-html
+#     #   title: The current user can post unfiltered HTML markup and JavaScript.
+#     #   href: http://localhost:8080/index.php?rest_route=/wp/v2/blocks/{id}
+#     #   targetSchema:
+#     #     type: object
+#     #     properties:
+#     #       content:
+#     #         raw:
+#     #           type: string
+#     # - rel: https://api.w.org/action-assign-wp_pattern_category
+#     #   title: The current user can assign terms in the wp_pattern_category taxonomy.
+#     #   href: http://localhost:8080/index.php?rest_route=/wp/v2/blocks/{id}
+#     #   targetSchema:
+#     #     type: object
+#     #     properties:
+#     #       wp_pattern_category:
+#     #         type: array
+#     #         items:
+#     #           type: integer
+#     # - rel: https://api.w.org/action-create-wp_pattern_category
+#     #   title: The current user can create terms in the wp_pattern_category taxonomy.
+#     #   href: http://localhost:8080/index.php?rest_route=/wp/v2/blocks/{id}
+#       targetSchema:
+#         type: object
+#         properties:
+#           wp_pattern_category:
+#             type: array
+#             items:
+#               type: integer
+#   wp_block-revision:
+#     $schema: https://json-schema.org/draft/2020-12/schema
+#     title: wp_block-revision
+#     type: object
+#     properties:
+#       author:
+#         description: The ID for the author of the revision.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       date:
+#         description: The date the revision was published, in the site's timezone.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       date_gmt:
+#         description: The date the revision was published, as GMT.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#       guid:
+#         description: The globally unique identifier for the post.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         readOnly: true
+#         properties:
+#           raw:
+#             description: GUID for the post, as it exists in the database.
+#             type: string
+#             x-context:
+#             - edit
+#             readOnly: true
+#           rendered:
+#             description: GUID for the post, transformed for display.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             readOnly: true
+#       id:
+#         description: Unique identifier for the revision.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       modified:
+#         description: The date the revision was last modified, in the site's timezone.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#       modified_gmt:
+#         description: The date the revision was last modified, as GMT.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#       parent:
+#         description: The ID for the parent of the revision.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       slug:
+#         description: An alphanumeric identifier for the revision unique to its type.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       title:
+#         description: The title for the post.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         properties:
+#           raw:
+#             description: Title for the post, as it exists in the database.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#       content:
+#         description: The content for the post.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         properties:
+#           raw:
+#             description: Content for the post, as it exists in the database.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#           block_version:
+#             description: Version of the content block format used by the post.
+#             type: integer
+#             x-context:
+#             - edit
+#             readOnly: true
+#           protected:
+#             description: Whether the content is protected with a password.
+#             type: boolean
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#             readOnly: true
+#       excerpt:
+#         description: The excerpt for the post.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         properties:
+#           raw:
+#             description: Excerpt for the post, as it exists in the database.
+#             type: string
+#             x-context:
+#             - edit
+#           rendered:
+#             description: HTML excerpt for the post, transformed for display.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#             readOnly: true
+#           protected:
+#             description: Whether the excerpt is protected with a password.
+#             type: boolean
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#             readOnly: true
+#       meta:
+#         description: Meta fields.
+#         type: object
+#         x-context:
+#         - view
+#         - edit
+#         properties:
+#           wp_pattern_sync_status:
+#             type: string
+#             title: ''
+#             description: ''
+#             default: ''
+#             enum:
+#             - partial
+#             - unsynced
+#           footnotes:
+#             type: string
+#             title: ''
+#             description: ''
+#             default: ''
+#       preview_link:
+#         description: Preview link for the post.
+#         type: string
+#         format: uri
+#         x-context:
+#         - edit
+#         readOnly: true

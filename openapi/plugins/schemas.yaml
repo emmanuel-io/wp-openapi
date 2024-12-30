@@ -1,0 +1,244 @@
+schemas:
+  PluginBase:
+    type: object
+    properties:
+      plugin:
+        description: The plugin file.
+        type: string
+        pattern: '[^.\/]+(?:\/[^.\/]+)?'
+      status:
+        description: The plugin activation status.
+        type: string
+        enum:
+          - inactive
+          - active
+      name:
+        description: The plugin name.
+        type: string
+      plugin_uri:
+        description: The plugin's website address.
+        type: string
+        format: uri
+      author:
+        description: The plugin author.
+        type: string
+      author_uri:
+        description: Plugin author's website address.
+        type: string
+        format: uri
+      description:
+        description: The plugin description.
+        type: object
+        properties:
+          raw:
+            description: The raw plugin description.
+            type: string
+          rendered:
+            description: The plugin description formatted for display.
+            type: string
+      version:
+        description: The plugin version number.
+        type: string
+      network_only:
+        description: Whether the plugin can only be activated network-wide.
+        type: boolean
+      requires_wp:
+        description: Minimum required version of WordPress.
+        type: string
+      requires_php:
+        description: Minimum required version of PHP.
+        type: string
+      textdomain:
+        description: The plugin's text domain.
+        type: string
+
+  PluginView:
+    type: object
+    allOf:
+      - $ref: '#/schemas/PluginBase'
+    properties:
+      plugin:
+        readOnly: true
+      status:
+        readOnly: true
+      name:
+        readOnly: true
+      plugin_uri:
+        readOnly: true
+      author:
+        readOnly: true
+      author_uri:
+        readOnly: true
+      description:
+        readOnly: true
+      version:
+        readOnly: true
+      network_only:
+        readOnly: true
+      requires_wp:
+        readOnly: true
+      requires_php:
+        readOnly: true
+      textdomain:
+        readOnly: true
+
+  PluginEdit:
+    type: object
+    allOf:
+      - $ref: '#/schemas/PluginBase'
+    properties:
+      plugin:
+        readOnly: true
+      name:
+        readOnly: true
+      plugin_uri:
+        readOnly: true
+      author:
+        readOnly: true
+      author_uri:
+        readOnly: true
+      description:
+        readOnly: true
+      version:
+        readOnly: true
+      network_only:
+        readOnly: true
+      requires_wp:
+        readOnly: true
+      requires_php:
+        readOnly: true
+      textdomain:
+        readOnly: true
+
+  PluginEmbed:
+    type: object
+    allOf:
+      - $ref: '#/schemas/PluginBase'
+    properties:
+      plugin:
+        readOnly: true
+      status:
+        readOnly: true
+      name:
+        readOnly: true
+      network_only:
+        readOnly: true
+      requires_wp:
+        readOnly: true
+      requires_php:
+        readOnly: true
+
+  PluginResponse:
+    oneOf:
+      - $ref: '#/schemas/PluginView'
+      - $ref: '#/schemas/PluginEdit'
+      - $ref: '#/schemas/PluginEmbed'
+
+# schemas:
+#   plugin:
+#     $schema: https://json-schema.org/draft/2020-12/schema
+#     title: plugin
+#     type: object
+#     properties:
+#       plugin:
+#         description: The plugin file.
+#         type: string
+#         pattern: '[^.\/]+(?:\/[^.\/]+)?'
+#         readOnly: true
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       status:
+#         description: The plugin activation status.
+#         type: string
+#         enum:
+#         - inactive
+#         - active
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       name:
+#         description: The plugin name.
+#         type: string
+#         readOnly: true
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       plugin_uri:
+#         description: The plugin's website address.
+#         type: string
+#         format: uri
+#         readOnly: true
+#         x-context:
+#         - view
+#         - edit
+#       author:
+#         description: The plugin author.
+#         type: string
+#         readOnly: true
+#         x-context:
+#         - view
+#         - edit
+#       author_uri:
+#         description: Plugin author's website address.
+#         type: string
+#         format: uri
+#         readOnly: true
+#         x-context:
+#         - view
+#         - edit
+#       description:
+#         description: The plugin description.
+#         type: object
+#         readOnly: true
+#         x-context:
+#         - view
+#         - edit
+#         properties:
+#           raw:
+#             description: The raw plugin description.
+#             type: string
+#           rendered:
+#             description: The plugin description formatted for display.
+#             type: string
+#       version:
+#         description: The plugin version number.
+#         type: string
+#         readOnly: true
+#         x-context:
+#         - view
+#         - edit
+#       network_only:
+#         description: Whether the plugin can only be activated network-wide.
+#         type: boolean
+#         readOnly: true
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       requires_wp:
+#         description: Minimum required version of WordPress.
+#         type: string
+#         readOnly: true
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       requires_php:
+#         description: Minimum required version of PHP.
+#         type: string
+#         readOnly: true
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       textdomain:
+#         description: The plugin's text domain.
+#         type: string
+#         readOnly: true
+#         x-context:
+#         - view
+#         - edit

@@ -1,0 +1,28 @@
+components:
+  parameters:
+    ContextQueryParameter:
+      name: context
+      in: query
+      description: Scope under which the request is made; determines fields present in response.
+      required: false
+      schema:
+        default: view
+        enum:
+        - view
+        - embed
+        - edit
+
+    ContextParameterViewEmbed:
+      name: context
+      in: query
+      description: |
+        Scope under which the request is made; determines fields present in response.
+        limited to view or embed.
+      required: false
+      schema:
+        type: string
+        default: view
+        enum:
+          - view
+          - embed
+

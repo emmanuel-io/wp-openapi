@@ -1,0 +1,361 @@
+schemas:
+  WpTemplatePartBase:
+    type: object
+    required:
+      - name
+    properties:
+      id:
+        description: ID of template.
+        type: string
+        readOnly: true
+      slug:
+        description: Unique slug identifying the template.
+        type: string
+        minLength: 1
+        pattern: '[a-zA-Z0-9_\%-]+'
+      theme:
+        description: Theme identifier for the template.
+        type: string
+      type:
+        description: Type of template.
+        type: string
+      source:
+        description: Source of template.
+        type: string
+        readOnly: true
+      origin:
+        description: Source of a customized template.
+        type: string
+        readOnly: true
+      content:
+        description: Content of template.
+        type:
+          - object
+          - string
+        default: ''
+        properties:
+          raw:
+            description: Content for the template, as it exists in the database.
+            type: string
+          block_version:
+            description: Version of the content block format used by the template.
+            type: integer
+            readOnly: true
+      title:
+        description: Title of template.
+        type:
+          - object
+          - string
+        default: ''
+        properties:
+          raw:
+            description: Title for the template, as it exists in the database.
+            type: string
+          rendered:
+            description: HTML title for the template, transformed for display.
+            type: string
+            readOnly: true
+      description:
+        description: Description of template.
+        type: string
+        default: ''
+      status:
+        description: Status of template.
+        type: string
+        enum:
+          - publish
+          - future
+          - draft
+          - pending
+          - private
+        default: publish
+      wp_id:
+        description: Post ID.
+        type: integer
+        readOnly: true
+      has_theme_file:
+        description: Theme file exists.
+        type: boolean
+        readOnly: true
+      author:
+        description: The ID for the author of the template.
+        type: integer
+      modified:
+        description: The date the template was last modified, in the site's timezone.
+        type: string
+        format: date-time
+        readOnly: true
+      author_text:
+        description: Human readable text for the author.
+        type: string
+        readOnly: true
+      original_source:
+        description: Where the template originally comes from e.g. 'theme'.
+        type: string
+        readOnly: true
+        enum:
+          - theme
+          - plugin
+          - site
+          - user
+      area:
+        description: Where the template part is intended for use (header, footer, etc.).
+        type: string
+
+  WpTemplatePartView:
+    allOf:
+      - $ref: '#/schemas/WpTemplatePartBase'
+      - type: object
+        properties:
+          id:
+            $ref: '#/schemas/WpTemplatePartBase/properties/id'
+          slug:
+            $ref: '#/schemas/WpTemplatePartBase/properties/slug'
+          theme:
+            $ref: '#/schemas/WpTemplatePartBase/properties/theme'
+          type:
+            $ref: '#/schemas/WpTemplatePartBase/properties/type'
+          source:
+            $ref: '#/schemas/WpTemplatePartBase/properties/source'
+          origin:
+            $ref: '#/schemas/WpTemplatePartBase/properties/origin'
+          description:
+            $ref: '#/schemas/WpTemplatePartBase/properties/description'
+          status:
+            $ref: '#/schemas/WpTemplatePartBase/properties/status'
+          wp_id:
+            $ref: '#/schemas/WpTemplatePartBase/properties/wp_id'
+          has_theme_file:
+            $ref: '#/schemas/WpTemplatePartBase/properties/has_theme_file'
+          author_text:
+            $ref: '#/schemas/WpTemplatePartBase/properties/author_text'
+          original_source:
+            $ref: '#/schemas/WpTemplatePartBase/properties/original_source'
+          area:
+            $ref: '#/schemas/WpTemplatePartBase/properties/area'
+
+  WpTemplatePartEmbed:
+    allOf:
+      - $ref: '#/schemas/WpTemplatePartBase'
+      - type: object
+        properties:
+          id:
+            $ref: '#/schemas/WpTemplatePartBase/properties/id'
+          slug:
+            $ref: '#/schemas/WpTemplatePartBase/properties/slug'
+          theme:
+            $ref: '#/schemas/WpTemplatePartBase/properties/theme'
+          type:
+            $ref: '#/schemas/WpTemplatePartBase/properties/type'
+          description:
+            $ref: '#/schemas/WpTemplatePartBase/properties/description'
+          area:
+            $ref: '#/schemas/WpTemplatePartBase/properties/area'
+
+  WpTemplatePartEdit:
+    allOf:
+      - $ref: '#/schemas/WpTemplatePartBase'
+      - type: object
+        properties:
+          content:
+            $ref: '#/schemas/WpTemplatePartBase/properties/content'
+          title:
+            $ref: '#/schemas/WpTemplatePartBase/properties/title'
+          modified:
+            $ref: '#/schemas/WpTemplatePartBase/properties/modified'
+          author:
+            $ref: '#/schemas/WpTemplatePartBase/properties/author'
+
+  WpTemplatePartResponse:
+    oneOf:
+      - $ref: '#/schemas/WpTemplatePartView'
+      - $ref: '#/schemas/WpTemplatePartEmbed'
+      - $ref: '#/schemas/WpTemplatePartEdit'
+
+# schemas:
+#   wp_template_part:
+#     $schema: https://json-schema.org/draft/2020-12/schema
+#     title: wp_template_part
+#     type: object
+#     required:
+#     - name
+#     properties:
+#       id:
+#         description: ID of template.
+#         type: string
+#         x-context:
+#         - embed
+#         - view
+#         - edit
+#         readOnly: true
+#       slug:
+#         description: Unique slug identifying the template.
+#         type: string
+#         x-context:
+#         - embed
+#         - view
+#         - edit
+#         # required: true
+#         minLength: 1
+#         pattern: '[a-zA-Z0-9_\%-]+'
+#       theme:
+#         description: Theme identifier for the template.
+#         type: string
+#         x-context:
+#         - embed
+#         - view
+#         - edit
+#       type:
+#         description: Type of template.
+#         type: string
+#         x-context:
+#         - embed
+#         - view
+#         - edit
+#       source:
+#         description: Source of template
+#         type: string
+#         x-context:
+#         - embed
+#         - view
+#         - edit
+#         readOnly: true
+#       origin:
+#         description: Source of a customized template
+#         type: string
+#         x-context:
+#         - embed
+#         - view
+#         - edit
+#         readOnly: true
+#       content:
+#         description: Content of template.
+#         type:
+#         - object
+#         - string
+#         default: ''
+#         x-context:
+#         - embed
+#         - view
+#         - edit
+#         properties:
+#           raw:
+#             description: Content for the template, as it exists in the database.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#           block_version:
+#             description: Version of the content block format used by the template.
+#             type: integer
+#             x-context:
+#             - edit
+#             readOnly: true
+#       title:
+#         description: Title of template.
+#         type:
+#         - object
+#         - string
+#         default: ''
+#         x-context:
+#         - embed
+#         - view
+#         - edit
+#         properties:
+#           raw:
+#             description: Title for the template, as it exists in the database.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#           rendered:
+#             description: HTML title for the template, transformed for display.
+#             type: string
+#             x-context:
+#             - view
+#             - edit
+#             - embed
+#             readOnly: true
+#       description:
+#         description: Description of template.
+#         type: string
+#         default: ''
+#         x-context:
+#         - embed
+#         - view
+#         - edit
+#       status:
+#         description: Status of template.
+#         type: string
+#         enum:
+#         - publish
+#         - future
+#         - draft
+#         - pending
+#         - private
+#         default: publish
+#         x-context:
+#         - embed
+#         - view
+#         - edit
+#       wp_id:
+#         description: Post ID.
+#         type: integer
+#         x-context:
+#         - embed
+#         - view
+#         - edit
+#         readOnly: true
+#       has_theme_file:
+#         description: Theme file exists.
+#         type: boolean
+#         x-context:
+#         - embed
+#         - view
+#         - edit
+#         readOnly: true
+#       author:
+#         description: The ID for the author of the template.
+#         type: integer
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       modified:
+#         description: The date the template was last modified, in the site's timezone.
+#         type: string
+#         format: date-time
+#         x-context:
+#         - view
+#         - edit
+#         readOnly: true
+#       author_text:
+#         type: string
+#         description: Human readable text for the author.
+#         readOnly: true
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       original_source:
+#         description: Where the template originally comes from e.g. 'theme'
+#         type: string
+#         readOnly: true
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         enum:
+#         - theme
+#         - plugin
+#         - site
+#         - user
+#       area:
+#         description: Where the template part is intended for use (header, footer,
+#           etc.)
+#         type: string
+#         x-context:
+#         - embed
+#         - view
+#         - edit

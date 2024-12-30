@@ -1,0 +1,127 @@
+schemas:
+  SearchResultBase:
+    type: object
+    properties:
+      id:
+        description: Unique identifier for the object.
+        type:
+          - integer
+          - string
+        readOnly: true
+      title:
+        description: The title for the object.
+        type: string
+        readOnly: true
+      url:
+        description: URL to the object.
+        type: string
+        format: uri
+        readOnly: true
+      type:
+        description: Object type.
+        type: string
+        enum:
+          - post
+          - term
+          - post-format
+        readOnly: true
+      subtype:
+        description: Object subtype.
+        type: string
+        enum:
+          - post
+          - page
+          - category
+          - post_tag
+        readOnly: true
+
+  SearchResultView:
+    allOf:
+      - $ref: '#/schemas/SearchResultBase'
+      - type: object
+        properties:
+          id:
+            $ref: '#/schemas/SearchResultBase/properties/id'
+          title:
+            $ref: '#/schemas/SearchResultBase/properties/title'
+          url:
+            $ref: '#/schemas/SearchResultBase/properties/url'
+          type:
+            $ref: '#/schemas/SearchResultBase/properties/type'
+          subtype:
+            $ref: '#/schemas/SearchResultBase/properties/subtype'
+
+  SearchResultEmbed:
+    allOf:
+      - $ref: '#/schemas/SearchResultBase'
+      - type: object
+        properties:
+          id:
+            $ref: '#/schemas/SearchResultBase/properties/id'
+          title:
+            $ref: '#/schemas/SearchResultBase/properties/title'
+          url:
+            $ref: '#/schemas/SearchResultBase/properties/url'
+          type:
+            $ref: '#/schemas/SearchResultBase/properties/type'
+          subtype:
+            $ref: '#/schemas/SearchResultBase/properties/subtype'
+
+  SearchResultResponse:
+    oneOf:
+      - $ref: '#/schemas/SearchResultView'
+      - $ref: '#/schemas/SearchResultEmbed'
+
+# schemas:
+#   search-result:
+#     $schema: https://json-schema.org/draft/2020-12/schema
+#     title: search-result
+#     type: object
+#     properties:
+#       id:
+#         description: Unique identifier for the object.
+#         type:
+#         - integer
+#         - string
+#         x-context:
+#         - view
+#         - embed
+#         readOnly: true
+#       title:
+#         description: The title for the object.
+#         type: string
+#         x-context:
+#         - view
+#         - embed
+#         readOnly: true
+#       url:
+#         description: URL to the object.
+#         type: string
+#         format: uri
+#         x-context:
+#         - view
+#         - embed
+#         readOnly: true
+#       type:
+#         description: Object type.
+#         type: string
+#         enum:
+#         - post
+#         - term
+#         - post-format
+#         x-context:
+#         - view
+#         - embed
+#         readOnly: true
+#       subtype:
+#         description: Object subtype.
+#         type: string
+#         enum:
+#         - post
+#         - page
+#         - category
+#         - post_tag
+#         x-context:
+#         - view
+#         - embed
+#         readOnly: true

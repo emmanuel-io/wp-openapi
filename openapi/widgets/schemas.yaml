@@ -1,0 +1,132 @@
+schemas:
+  WidgetBase:
+    type: object
+    required:
+      - sidebar
+    properties:
+      id:
+        description: Unique identifier for the widget.
+        type: string
+      id_base:
+        description: The type of the widget. Corresponds to ID in widget-types endpoint.
+        type: string
+      sidebar:
+        description: The sidebar the widget belongs to.
+        type: string
+        default: wp_inactive_widgets
+      rendered:
+        description: HTML representation of the widget.
+        type: string
+        readOnly: true
+      rendered_form:
+        description: HTML representation of the widget admin form.
+        type: string
+        readOnly: true
+      instance:
+        description: Instance settings of the widget, if supported.
+        type: object
+        default: null
+        properties:
+          encoded:
+            description: Base64 encoded representation of the instance settings.
+            type: string
+          hash:
+            description: Cryptographic hash of the instance settings.
+            type: string
+          raw:
+            description: Unencoded instance settings, if supported.
+            type: object
+      form_data:
+        description: URL-encoded form data from the widget admin form. Used to update a widget that does not support instance. Write only.
+        type: string
+
+  WidgetView:
+    allOf:
+      - $ref: '#/schemas/WidgetBase'
+
+  WidgetEmbed:
+    allOf:
+      - $ref: '#/schemas/WidgetBase'
+
+  WidgetEdit:
+    allOf:
+      - $ref: '#/schemas/WidgetBase'
+
+  WidgetResponse:
+    oneOf:
+      - $ref: '#/schemas/WidgetView'
+      - $ref: '#/schemas/WidgetEmbed'
+      - $ref: '#/schemas/WidgetEdit'
+
+# schemas:
+#   widget:
+#     $schema: https://json-schema.org/draft/2020-12/schema
+#     title: widget
+#     type: object
+#     required:
+#     - sidebar
+#     properties:
+#       id:
+#         description: Unique identifier for the widget.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       id_base:
+#         description: The type of the widget. Corresponds to ID in widget-types endpoint.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       sidebar:
+#         description: The sidebar the widget belongs to.
+#         type: string
+#         default: wp_inactive_widgets
+#         # required: true
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#       rendered:
+#         description: HTML representation of the widget.
+#         type: string
+#         x-context:
+#         - view
+#         - edit
+#         - embed
+#         readOnly: true
+#       rendered_form:
+#         description: HTML representation of the widget admin form.
+#         type: string
+#         x-context:
+#         - edit
+#         readOnly: true
+#       instance:
+#         description: Instance settings of the widget, if supported.
+#         type: object
+#         x-context:
+#         - edit
+#         default: null
+#         properties:
+#           encoded:
+#             description: Base64 encoded representation of the instance settings.
+#             type: string
+#             x-context:
+#             - edit
+#           hash:
+#             description: Cryptographic hash of the instance settings.
+#             type: string
+#             x-context:
+#             - edit
+#           raw:
+#             description: Unencoded instance settings, if supported.
+#             type: object
+#             x-context:
+#             - edit
+#       form_data:
+#         description: URL-encoded form data from the widget admin form. Used to update
+#           a widget that does not support instance. Write only.
+#         type: string
+#         x-context: []

@@ -1,0 +1,31 @@
+schemas:
+  RenderedBlockBase:
+    type: object
+    required:
+      - rendered
+    properties:
+      rendered:
+        description: The rendered block.
+        type: string
+
+  RenderedBlockEdit:
+    allOf:
+      - $ref: '#/schemas/RenderedBlockBase'
+
+  RenderedBlockResponse:
+    oneOf:
+      - $ref: '#/schemas/RenderedBlockEdit'
+
+# schemas:
+#   rendered-block:
+#     $schema: http://json-schema.org/schema#
+#     title: rendered-block
+#     type: object
+#     properties:
+#       rendered:
+#         description: The rendered block.
+#         type: string
+#         x-context:
+#         - edit
+#     required:
+#     - rendered

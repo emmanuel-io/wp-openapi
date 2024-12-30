@@ -1,23 +1,50 @@
-# Extracted from https://github.com/jizt-it/jizt-api-spec/blob/main/.github/workflows/build-docs.yml
+name: Deploy OpenAPI Documentation
 
-name: Build docs
 on:
   push:
     branches:
-      - main
+      - main  # Trigger on push to the main branch.
 
 jobs:
-  build:
+  deploy:
+    name: Build and Deploy Documentation
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Build docs
-      run: ./make.sh
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3 # https://github.com/peaceiris/actions-gh-pages
-      with:
-        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        publish_dir: .
-        force_orphan: true
-        exclude_assets: '.github,openapi,.redocly.yaml,LICENSE,README.md,make.sh'
-        cname: docs.api.jizt.it# Extracted from https://github.com/jizt-it/jizt-api-spec/blob/main/.github/workflows/build-docs.yml
+      # Step 1: Check out the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # Step 3: Install Redocly CLI
+      - name: Install Redocly CLI
+        run: npm install -g @redocly/cli
+
+      # Step 4: Lint OpenAPI file
+      - name: Lint OpenAPI Specification
+        run: redocly lint wp-openapi
+
+      # Step 5: Build the documentation
+      - name: Build OpenAPI Documentation
+        run: |
+          mkdir -p docs
+          redocly build-docs wp-openapi -o docs/index.html
+
+      # Step 6: Bundle the documentation
+      - name: Bundle the documentation in a json and yaml file
+        run: |
+          mkdir -p docs/bundles
+          redocly bundle wp-openapi -o docs/bundles/openapi.json
+          redocly bundle wp-openapi -o docs/bundles/openapi.yaml
+
+      # Step 7: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs

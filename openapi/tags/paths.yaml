@@ -2,14 +2,13 @@ paths:
   /wp/v2/tags:
     get:
       tags:
-      - tags
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: './schemas.yaml#/schemas/TagResponse'
+      - Tags
+      operationId: tagsList
+      summary: List tags
+      description: |
+        Query this endpoint to retrieve a collection of tags.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
       - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       - $ref: '../components.yaml#/components/parameters/QueryParameterPage'
@@ -73,9 +72,6 @@ paths:
         schema:
           items:
             type: string
-    post:
-      tags:
-      - tags
       responses:
         '200':
           description: OK
@@ -83,6 +79,13 @@ paths:
             application/json:
               schema:
                 $ref: './schemas.yaml#/schemas/TagResponse'
+    post:
+      tags:
+      - Tags
+      operationId: tagCreate
+      summary: Create  tag
+      description: |
+        Query this endpoint to create a  tag.
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -106,30 +109,42 @@ paths:
                   # properties: []
               required:
               - name
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/TagResponse'
   /wp/v2/tags/{id}:
     get:
       tags:
-      - tags
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: './schemas.yaml#/schemas/TagResponse'
+      - Tags
+      operationId: tagGet
+      summary: Retrieve a tag
+      description: |
+        Query this endpoint to retrieve to retrieve a specific tag record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
       - $ref: '../components.yaml#/components/parameters/PathParameterId'
       - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/TagResponse'
     post:
       tags:
-      - tags
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: './schemas.yaml#/schemas/TagResponse'
+      - Tags
+      operationId: tagPost
+      summary: Update a tag
+      description: |
+        Query this endpoint to update a specific tag record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
       - $ref: '../components.yaml#/components/parameters/PathParameterId'
       requestBody:
@@ -152,16 +167,22 @@ paths:
                   description: Meta fields.
                   type: object
                   # properties: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/TagResponse'
     put:
       tags:
-      - tags
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: './schemas.yaml#/schemas/TagResponse'
+      - Tags
+      operationId: tagPut
+      summary: Update a tag
+      description: |
+        Query this endpoint to update a specific tag record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
       - $ref: '../components.yaml#/components/parameters/PathParameterId'
       requestBody:
@@ -184,16 +205,22 @@ paths:
                   description: Meta fields.
                   type: object
                   # properties: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/TagResponse'
     patch:
       tags:
-      - tags
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: './schemas.yaml#/schemas/TagResponse'
+      - Tags
+      operationId: tagPatch
+      summary: Patch a tag
+      description: |
+        Query this endpoint to patch a specific tag record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
       - $ref: '../components.yaml#/components/parameters/PathParameterId'
       requestBody:
@@ -216,9 +243,6 @@ paths:
                   description: Meta fields.
                   type: object
                   # properties: []
-    delete:
-      tags:
-      - tags
       responses:
         '200':
           description: OK
@@ -226,6 +250,15 @@ paths:
             application/json:
               schema:
                 $ref: './schemas.yaml#/schemas/TagResponse'
+    delete:
+      tags:
+      - Tags
+      operationId: tagDelete
+      summary: Delete a tag
+      description: |
+        Query this endpoint to delete a specific tag record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
       - $ref: '../components.yaml#/components/parameters/PathParameterId'
       requestBody:
@@ -238,3 +271,10 @@ paths:
                   description: Required to be true, as terms do not support trashing.
                   default: false
                   type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/TagResponse'

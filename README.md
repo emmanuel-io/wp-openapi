@@ -99,7 +99,7 @@ Feel free to open issues for any bugs or improvements.
   - [ ] settings
   - [ ] sidebars
   - [ ] statuses
-  - [ ] tags
+  - [x] tags
   - [ ] taxonomies
   - [ ] template-parts
   - [ ] templates

@@ -192,6 +192,9 @@
         "tags": [
           "block directory"
         ],
+        "operationId": "blockDirectorySearchList",
+        "summary": "List block directory items",
+        "description": "Query this endpoint to retrieve a collection of block directory items.\n\nThe response you receive can be controlled and filtered using the URL query parameters below.\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/QueryParameterContextView"
@@ -229,15 +232,18 @@
     "/wp/v2/block-patterns/patterns": {
       "get": {
         "tags": [
-          "block patterns"
+          "Block patterns"
         ],
+        "operationId": "blockPatternsList",
+        "summary": "List block patterns",
+        "description": "Query this endpoint to retrieve a collection of block patterns items.\n\nThere are no query parameters for this endpoint.\n",
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BlockPatternResponse"
+                  "$ref": "#/components/schemas/BlockPatternsResponse"
                 }
               }
             }
@@ -248,8 +254,11 @@
     "/wp/v2/block-patterns/categories": {
       "get": {
         "tags": [
-          "block patterns"
+          "Block patterns"
         ],
+        "operationId": "blockPatternsCategoriesList",
+        "summary": "List block patterns categories",
+        "description": "Query this endpoint to retrieve a collection of block patterns categories.\n\nThere are no query parameters for this endpoint.\n",
         "responses": {
           "200": {
             "description": "OK",
@@ -18475,6 +18484,7 @@
     },
     "schemas": {
       "BlockDirectoryItemBase": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
         "properties": {
           "name": {
@@ -18534,6 +18544,7 @@
         }
       },
       "BlockDirectoryItemView": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
         "allOf": [
           {
             "$ref": "#/components/schemas/BlockDirectoryItemBase"
@@ -18541,13 +18552,15 @@
         ]
       },
       "BlockDirectoryItemResponse": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
         "oneOf": [
           {
             "$ref": "#/components/schemas/BlockDirectoryItemView"
           }
         ]
       },
-      "BlockPatternBase": {
+      "BlockPatternsResponse": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
         "properties": {
           "name": {
@@ -18620,21 +18633,8 @@
           }
         }
       },
-      "BlockPatternView": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/BlockPatternBase"
-          }
-        ]
-      },
-      "BlockPatternResponse": {
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/BlockPatternView"
-          }
-        ]
-      },
-      "BlockPatternCategoryBase": {
+      "BlockPatternCategoryResponse": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
         "properties": {
           "name": {
@@ -18653,20 +18653,6 @@
             "readOnly": true
           }
         }
-      },
-      "BlockPatternCategoryView": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/BlockPatternCategoryBase"
-          }
-        ]
-      },
-      "BlockPatternCategoryResponse": {
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/BlockPatternCategoryView"
-          }
-        ]
       },
       "RenderedBlockBase": {
         "type": "object",

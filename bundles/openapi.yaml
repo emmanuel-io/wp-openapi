@@ -124,6 +124,12 @@ paths:
     get:
       tags:
         - block directory
+      operationId: blockDirectorySearchList
+      summary: List block directory items
+      description: |
+        Query this endpoint to retrieve a collection of block directory items.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
         - $ref: '#/components/parameters/QueryParameterContextView'
         - $ref: '#/components/parameters/QueryParameterPage'
@@ -144,18 +150,30 @@ paths:
   /wp/v2/block-patterns/patterns:
     get:
       tags:
-        - block patterns
+        - Block patterns
+      operationId: blockPatternsList
+      summary: List block patterns
+      description: |
+        Query this endpoint to retrieve a collection of block patterns items.
+
+        There are no query parameters for this endpoint.
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BlockPatternResponse'
+                $ref: '#/components/schemas/BlockPatternsResponse'
   /wp/v2/block-patterns/categories:
     get:
       tags:
-        - block patterns
+        - Block patterns
+      operationId: blockPatternsCategoriesList
+      summary: List block patterns categories
+      description: |
+        Query this endpoint to retrieve a collection of block patterns categories.
+
+        There are no query parameters for this endpoint.
       responses:
         '200':
           description: OK
@@ -12426,6 +12444,7 @@ components:
           - desc
   schemas:
     BlockDirectoryItemBase:
+      $schema: https://json-schema.org/draft/2020-12/schema
       type: object
       properties:
         name:
@@ -12470,12 +12489,15 @@ components:
           description: The date when the block was last updated, in fuzzy human readable format.
           type: string
     BlockDirectoryItemView:
+      $schema: https://json-schema.org/draft/2020-12/schema
       allOf:
         - $ref: '#/components/schemas/BlockDirectoryItemBase'
     BlockDirectoryItemResponse:
+      $schema: https://json-schema.org/draft/2020-12/schema
       oneOf:
         - $ref: '#/components/schemas/BlockDirectoryItemView'
-    BlockPatternBase:
+    BlockPatternsResponse:
+      $schema: https://json-schema.org/draft/2020-12/schema
       type: object
       properties:
         name:
@@ -12533,13 +12555,8 @@ components:
             - pattern-directory/core
             - pattern-directory/theme
             - pattern-directory/featured
-    BlockPatternView:
-      allOf:
-        - $ref: '#/components/schemas/BlockPatternBase'
-    BlockPatternResponse:
-      oneOf:
-        - $ref: '#/components/schemas/BlockPatternView'
-    BlockPatternCategoryBase:
+    BlockPatternCategoryResponse:
+      $schema: https://json-schema.org/draft/2020-12/schema
       type: object
       properties:
         name:
@@ -12554,12 +12571,6 @@ components:
           description: The category description, in human readable format.
           type: string
           readOnly: true
-    BlockPatternCategoryView:
-      allOf:
-        - $ref: '#/components/schemas/BlockPatternCategoryBase'
-    BlockPatternCategoryResponse:
-      oneOf:
-        - $ref: '#/components/schemas/BlockPatternCategoryView'
     RenderedBlockBase:
       type: object
       required:

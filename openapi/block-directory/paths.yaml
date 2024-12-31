@@ -2,25 +2,27 @@ paths:
   /wp/v2/block-directory/search:
     get:
       tags:
-      - block directory
+        - block directory
       operationId: blockDirectorySearchGet
-      summary: |
+      summary: List block directory items
+      description: |
         Query this endpoint to retrieve a collection of block directory items.
+
         The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
-      - $ref: '../components.yaml#/components/parameters/QueryParameterContextView'
-      - $ref: '../components.yaml#/components/parameters/QueryParameterPage'
-      - $ref: '../components.yaml#/components/parameters/QueryParameterPerPage'
-      - name: term
-        in: query
-        description: Limit result set to blocks matching the search term.
-        required: true
-        schema:
-          minLength: 1
+        - $ref: "../components.yaml#/components/parameters/QueryParameterContextView"
+        - $ref: "../components.yaml#/components/parameters/QueryParameterPage"
+        - $ref: "../components.yaml#/components/parameters/QueryParameterPerPage"
+        - name: term
+          in: query
+          description: Limit result set to blocks matching the search term.
+          required: true
+          schema:
+            minLength: 1
       responses:
-        '200':
+        "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: './schemas.yaml#/schemas/BlockDirectoryItemResponse'
+                $ref: "./schemas.yaml#/schemas/BlockDirectoryItemResponse"

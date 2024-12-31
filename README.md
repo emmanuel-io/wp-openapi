@@ -78,7 +78,7 @@ Feel free to open issues for any bugs or improvements.
   - [ ] block-renderer
   - [ ] blocks
   - [ ] block-types
-  - [ ] categories
+  - [x] categories
   - [ ] comments
   - [ ] components.yaml
   - [ ] font-collections

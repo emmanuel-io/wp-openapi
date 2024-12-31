@@ -1,5 +1,6 @@
 schemas:
   BlockDirectoryItemBase:
+    $schema: https://json-schema.org/draft/2020-12/schema
     type: object
     properties:
       name:
@@ -45,9 +46,11 @@ schemas:
         type: string
 
   BlockDirectoryItemView:
+    $schema: https://json-schema.org/draft/2020-12/schema
     allOf:
       - $ref: '#/schemas/BlockDirectoryItemBase'
 
   BlockDirectoryItemResponse:
+    $schema: https://json-schema.org/draft/2020-12/schema
     oneOf:
       - $ref: '#/schemas/BlockDirectoryItemView'

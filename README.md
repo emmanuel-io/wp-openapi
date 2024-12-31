@@ -74,7 +74,7 @@ Feel free to open issues for any bugs or improvements.
 
 - [ ] Document all core WordPress REST API endpoints:
   - [x] block-directory
-  - [ ] block-patterns
+  - [x] block-patterns
   - [ ] block-renderer
   - [ ] blocks
   - [ ] block-types

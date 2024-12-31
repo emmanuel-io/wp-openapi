@@ -1,19 +1,14 @@
 paths:
-  /wp/v2/block-patterns/patterns:
-    get:
-      tags:
-      - block patterns
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: './schemas.yaml#/schemas/BlockPatternResponse'
   /wp/v2/block-patterns/categories:
     get:
       tags:
-      - block patterns
+      - Block patterns
+      operationId: blockPatternsCategoriesList
+      summary: List block patterns categories
+      description: |
+        Query this endpoint to retrieve a collection of block patterns categories.
+
+        There are no query parameters for this endpoint.
       responses:
         '200':
           description: OK
@@ -21,3 +16,20 @@ paths:
             application/json:
               schema:
                 $ref: './schemas.yaml#/schemas/BlockPatternCategoryResponse'
+  /wp/v2/block-patterns/patterns:
+    get:
+      tags:
+      - Block patterns
+      operationId: blockPatternsList
+      summary: List block patterns
+      description: |
+        Query this endpoint to retrieve a collection of block patterns items.
+
+        There are no query parameters for this endpoint.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/BlockPatternsResponse'

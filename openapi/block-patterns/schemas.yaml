@@ -1,5 +1,6 @@
 schemas:
-  BlockPatternCategoryBase:
+  BlockPatternCategoryResponse:
+    $schema: https://json-schema.org/draft/2020-12/schema
     type: object
     properties:
       name:
@@ -14,16 +15,8 @@ schemas:
         description: The category description, in human readable format.
         type: string
         readOnly: true
-
-  BlockPatternCategoryView:
-    allOf:
-      - $ref: '#/schemas/BlockPatternCategoryBase'
-
-  BlockPatternCategoryResponse:
-    oneOf:
-      - $ref: '#/schemas/BlockPatternCategoryView'
-
-  BlockPatternBase:
+  BlockPatternsResponse:
+    $schema: https://json-schema.org/draft/2020-12/schema
     type: object
     properties:
       name:
@@ -81,151 +74,4 @@ schemas:
           - pattern-directory/core
           - pattern-directory/theme
           - pattern-directory/featured
-
-  BlockPatternView:
-    allOf:
-      - $ref: '#/schemas/BlockPatternBase'
-
-  BlockPatternResponse:
-    oneOf:
-      - $ref: '#/schemas/BlockPatternView'
-
-# schemas:
-#   block-pattern-category:
-#     $schema: https://json-schema.org/draft/2020-12/schema
-#     title: block-pattern-category
-#     type: object
-#     properties:
-#       name:
-#         description: The category name.
-#         type: string
-#         readOnly: true
-#         x-context:
-#         - view
-#         - edit
-#         - embed
-#       label:
-#         description: The category label, in human readable format.
-#         type: string
-#         readOnly: true
-#         x-context:
-#         - view
-#         - edit
-#         - embed
-#       description:
-#         description: The category description, in human readable format.
-#         type: string
-#         readOnly: true
-#         x-context:
-#         - view
-#         - edit
-#         - embed
-#   block-pattern:
-#     $schema: https://json-schema.org/draft/2020-12/schema
-#     title: block-pattern
-#     type: object
-#     properties:
-#       name:
-#         description: The pattern name.
-#         type: string
-#         readOnly: true
-#         x-context:
-#         - view
-#         - edit
-#         - embed
-#       title:
-#         description: The pattern title, in human readable format.
-#         type: string
-#         readOnly: true
-#         x-context:
-#         - view
-#         - edit
-#         - embed
-#       content:
-#         description: The pattern content.
-#         type: string
-#         readOnly: true
-#         x-context:
-#         - view
-#         - edit
-#         - embed
-#       description:
-#         description: The pattern detailed description.
-#         type: string
-#         readOnly: true
-#         x-context:
-#         - view
-#         - edit
-#         - embed
-#       viewport_width:
-#         description: The pattern viewport width for inserter preview.
-#         type: number
-#         readOnly: true
-#         x-context:
-#         - view
-#         - edit
-#         - embed
-#       inserter:
-#         description: Determines whether the pattern is visible in inserter.
-#         type: boolean
-#         readOnly: true
-#         x-context:
-#         - view
-#         - edit
-#         - embed
-#       categories:
-#         description: The pattern category slugs.
-#         type: array
-#         readOnly: true
-#         x-context:
-#         - view
-#         - edit
-#         - embed
-#       keywords:
-#         description: The pattern keywords.
-#         type: array
-#         readOnly: true
-#         x-context:
-#         - view
-#         - edit
-#         - embed
-#       block_types:
-#         description: Block types that the pattern is intended to be used with.
-#         type: array
-#         readOnly: true
-#         x-context:
-#         - view
-#         - edit
-#         - embed
-#       post_types:
-#         description: An array of post types that the pattern is restricted to be used
-#           with.
-#         type: array
-#         readOnly: true
-#         x-context:
-#         - view
-#         - edit
-#         - embed
-#       template_types:
-#         description: An array of template types where the pattern fits.
-#         type: array
-#         readOnly: true
-#         x-context:
-#         - view
-#         - edit
-#         - embed
-#       source:
-#         description: Where the pattern comes from e.g. core
-#         type: string
-#         readOnly: true
-#         x-context:
-#         - view
-#         - edit
-#         - embed
-#         enum:
-#         - core
-#         - plugin
-#         - theme
-#         - pattern-directory/core
-#         - pattern-directory/theme
-#         - pattern-directory/featured
+        

@@ -184,7 +184,7 @@ paths:
   /wp/v2/block-renderer/{name}:
     get:
       tags:
-        - block renderer
+        - Block renderer
       parameters:
         - name: name
           in: path
@@ -218,7 +218,7 @@ paths:
                 $ref: '#/components/schemas/RenderedBlockResponse'
     post:
       tags:
-        - block renderer
+        - Block renderer
       parameters:
         - name: name
           in: path
@@ -1375,14 +1375,13 @@ paths:
   /wp/v2/categories:
     get:
       tags:
-        - categories
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CategoryResponse'
+        - Categories
+      operationId: categoriesList
+      summary: List categories
+      description: |
+        Query this endpoint to retrieve a collection of categories.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
         - $ref: '#/components/parameters/QueryParameterContext'
         - $ref: '#/components/parameters/QueryParameterPage'
@@ -1446,9 +1445,6 @@ paths:
           schema:
             items:
               type: string
-    post:
-      tags:
-        - categories
       responses:
         '200':
           description: OK
@@ -1456,6 +1452,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CategoryResponse'
+    post:
+      tags:
+        - Categories
+      operationId: categoryCreate
+      summary: Create category
+      description: |
+        Query this endpoint to create a category.
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -1479,10 +1482,26 @@ paths:
                   type: object
               required:
                 - name
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryResponse'
   /wp/v2/categories/{id}:
     get:
       tags:
-        - categories
+        - Categories
+      operationId: categoryGet
+      summary: Retrieve a category
+      description: |
+        Query this endpoint to retrieve to retrieve a specific category record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
+      parameters:
+        - $ref: '#/components/parameters/PathParameterId'
+        - $ref: '#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK
@@ -1490,29 +1509,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CategoryResponse'
-      parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
-        - $ref: '#/components/parameters/QueryParameterContext'
     post:
       tags:
-        - categories
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CategoryResponse'
+        - Categories
+      operationId: categoryPost
+      summary: Update a category
+      description: |
+        Query this endpoint to update a specific category record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
+        - $ref: '#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -1534,22 +1541,24 @@ paths:
                 meta:
                   description: Meta fields.
                   type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryResponse'
     put:
       tags:
-        - categories
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CategoryResponse'
+        - Categories
+      operationId: categoryPut
+      summary: Update a category
+      description: |
+        Query this endpoint to update a specific category record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
+        - $ref: '#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -1571,22 +1580,24 @@ paths:
                 meta:
                   description: Meta fields.
                   type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryResponse'
     patch:
       tags:
-        - categories
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/CategoryResponse'
+        - Categories
+      operationId: categoryPatch
+      summary: Patch a category
+      description: |
+        Query this endpoint to patch a specific category record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
+        - $ref: '#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -1608,9 +1619,6 @@ paths:
                 meta:
                   description: Meta fields.
                   type: object
-    delete:
-      tags:
-        - categories
       responses:
         '200':
           description: OK
@@ -1618,12 +1626,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CategoryResponse'
+    delete:
+      tags:
+        - Categories
+      operationId: categoryDelete
+      summary: Delete a category
+      description: |
+        Query this endpoint to delete a specific category record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
+        - $ref: '#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -1634,6 +1647,13 @@ paths:
                   description: Required to be true, as terms do not support trashing.
                   default: false
                   type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryResponse'
   /wp/v2/comments:
     get:
       tags:
@@ -4574,11 +4594,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/NavMenuResponse'
       parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
+        - $ref: '#/components/parameters/PathParameterId'
         - $ref: '#/components/parameters/QueryParameterContext'
     post:
       tags:
@@ -4591,11 +4607,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/NavMenuResponse'
       parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
+        - $ref: '#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -4633,11 +4645,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/NavMenuResponse'
       parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
+        - $ref: '#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -4675,11 +4683,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/NavMenuResponse'
       parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
+        - $ref: '#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -4717,11 +4721,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/NavMenuResponse'
       parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
+        - $ref: '#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -9077,11 +9077,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/TagResponse'
       parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
+        - $ref: '#/components/parameters/PathParameterId'
         - $ref: '#/components/parameters/QueryParameterContext'
     post:
       tags:
@@ -9094,11 +9090,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/TagResponse'
       parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
+        - $ref: '#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -9128,11 +9120,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/TagResponse'
       parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
+        - $ref: '#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -9162,11 +9150,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/TagResponse'
       parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
+        - $ref: '#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -9196,11 +9180,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/TagResponse'
       parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
+        - $ref: '#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -12110,11 +12090,7 @@ paths:
       tags:
         - Pattern category
       parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
+        - $ref: '#/components/parameters/PathParameterId'
         - $ref: '#/components/parameters/QueryParameterContext'
       responses:
         '200':
@@ -12127,11 +12103,7 @@ paths:
       tags:
         - Pattern category
       parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
+        - $ref: '#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -12161,11 +12133,7 @@ paths:
       tags:
         - Pattern category
       parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
+        - $ref: '#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -12195,11 +12163,7 @@ paths:
       tags:
         - Pattern category
       parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
+        - $ref: '#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -12229,11 +12193,7 @@ paths:
       tags:
         - Pattern category
       parameters:
-        - name: id
-          in: path
-          description: Unique identifier for the term.
-          required: true
-          schema: {}
+        - $ref: '#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -12442,6 +12402,12 @@ components:
         enum:
           - asc
           - desc
+    PathParameterId:
+      name: id
+      in: path
+      description: Unique identifier for the term.
+      required: true
+      schema: {}
   schemas:
     BlockDirectoryItemBase:
       $schema: https://json-schema.org/draft/2020-12/schema
@@ -13147,7 +13113,7 @@ components:
           enum:
             - category
           readOnly: true
-    CategoryView:
+    CategoryViewEdit:
       allOf:
         - $ref: '#/components/schemas/CategoryBase'
         - type: object
@@ -13171,29 +13137,10 @@ components:
         - type: object
           properties:
             slug: {}
-    CategoryEdit:
-      allOf:
-        - $ref: '#/components/schemas/CategoryBase'
-        - type: object
-          properties:
-            count:
-              description: Number of published posts for the term.
-              type: integer
-              readOnly: true
-            description:
-              description: HTML description of the term.
-              type: string
-            parent:
-              description: The parent term ID.
-              type: integer
-            meta:
-              description: Meta fields.
-              type: object
     CategoryResponse:
       oneOf:
-        - $ref: '#/components/schemas/CategoryView'
+        - $ref: '#/components/schemas/CategoryViewEdit'
         - $ref: '#/components/schemas/CategoryEmbed'
-        - $ref: '#/components/schemas/CategoryEdit'
     CommentBase:
       type: object
       properties:

@@ -276,7 +276,7 @@
     "/wp/v2/block-renderer/{name}": {
       "get": {
         "tags": [
-          "block renderer"
+          "Block renderer"
         ],
         "parameters": [
           {
@@ -328,7 +328,7 @@
       },
       "post": {
         "tags": [
-          "block renderer"
+          "Block renderer"
         ],
         "parameters": [
           {
@@ -2023,20 +2023,11 @@
     "/wp/v2/categories": {
       "get": {
         "tags": [
-          "categories"
+          "Categories"
         ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoryResponse"
-                }
-              }
-            }
-          }
-        },
+        "operationId": "categoriesList",
+        "summary": "List categories",
+        "description": "Query this endpoint to retrieve a collection of categories.\n\nThe response you receive can be controlled and filtered using the URL query parameters below.\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/QueryParameterContext"
@@ -2133,11 +2124,6 @@
               }
             }
           }
-        ]
-      },
-      "post": {
-        "tags": [
-          "categories"
         ],
         "responses": {
           "200": {
@@ -2150,7 +2136,15 @@
               }
             }
           }
-        },
+        }
+      },
+      "post": {
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "categoryCreate",
+        "summary": "Create category",
+        "description": "Query this endpoint to create a category.\n",
         "requestBody": {
           "content": {
             "application/x-www-form-urlencoded": {
@@ -2184,42 +2178,36 @@
               }
             }
           }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryResponse"
+                }
+              }
+            }
+          }
         }
       }
     },
     "/wp/v2/categories/{id}": {
       "get": {
         "tags": [
-          "categories"
+          "Categories"
         ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoryResponse"
-                }
-              }
-            }
-          }
-        },
+        "operationId": "categoryGet",
+        "summary": "Retrieve a category",
+        "description": "Query this endpoint to retrieve to retrieve a specific category record.\n\nThe response you receive can be controlled and filtered using the URL query parameters below.\n",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           },
           {
             "$ref": "#/components/parameters/QueryParameterContext"
           }
-        ]
-      },
-      "post": {
-        "tags": [
-          "categories"
         ],
         "responses": {
           "200": {
@@ -2232,14 +2220,18 @@
               }
             }
           }
-        },
+        }
+      },
+      "post": {
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "categoryPost",
+        "summary": "Update a category",
+        "description": "Query this endpoint to update a specific category record.\n\nThe response you receive can be controlled and filtered using the URL query parameters below.\n",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           }
         ],
         "requestBody": {
@@ -2268,6 +2260,18 @@
                     "description": "Meta fields.",
                     "type": "object"
                   }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryResponse"
                 }
               }
             }
@@ -2276,27 +2280,14 @@
       },
       "put": {
         "tags": [
-          "categories"
+          "Categories"
         ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoryResponse"
-                }
-              }
-            }
-          }
-        },
+        "operationId": "categoryPut",
+        "summary": "Update a category",
+        "description": "Query this endpoint to update a specific category record.\n\nThe response you receive can be controlled and filtered using the URL query parameters below.\n",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           }
         ],
         "requestBody": {
@@ -2325,6 +2316,18 @@
                     "description": "Meta fields.",
                     "type": "object"
                   }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryResponse"
                 }
               }
             }
@@ -2333,27 +2336,14 @@
       },
       "patch": {
         "tags": [
-          "categories"
+          "Categories"
         ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CategoryResponse"
-                }
-              }
-            }
-          }
-        },
+        "operationId": "categoryPatch",
+        "summary": "Patch a category",
+        "description": "Query this endpoint to patch a specific category record.\n\nThe response you receive can be controlled and filtered using the URL query parameters below.\n",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           }
         ],
         "requestBody": {
@@ -2386,12 +2376,7 @@
               }
             }
           }
-        }
-      },
-      "delete": {
-        "tags": [
-          "categories"
-        ],
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -2403,14 +2388,18 @@
               }
             }
           }
-        },
+        }
+      },
+      "delete": {
+        "tags": [
+          "Categories"
+        ],
+        "operationId": "categoryDelete",
+        "summary": "Delete a category",
+        "description": "Query this endpoint to delete a specific category record.\n\nThe response you receive can be controlled and filtered using the URL query parameters below.\n",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           }
         ],
         "requestBody": {
@@ -2424,6 +2413,18 @@
                     "default": false,
                     "type": "boolean"
                   }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoryResponse"
                 }
               }
             }
@@ -6817,11 +6818,7 @@
         },
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           },
           {
             "$ref": "#/components/parameters/QueryParameterContext"
@@ -6846,11 +6843,7 @@
         },
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           }
         ],
         "requestBody": {
@@ -6910,11 +6903,7 @@
         },
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           }
         ],
         "requestBody": {
@@ -6974,11 +6963,7 @@
         },
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           }
         ],
         "requestBody": {
@@ -7038,11 +7023,7 @@
         },
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           }
         ],
         "requestBody": {
@@ -13381,11 +13362,7 @@
         },
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           },
           {
             "$ref": "#/components/parameters/QueryParameterContext"
@@ -13410,11 +13387,7 @@
         },
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           }
         ],
         "requestBody": {
@@ -13463,11 +13436,7 @@
         },
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           }
         ],
         "requestBody": {
@@ -13516,11 +13485,7 @@
         },
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           }
         ],
         "requestBody": {
@@ -13569,11 +13534,7 @@
         },
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           }
         ],
         "requestBody": {
@@ -17956,11 +17917,7 @@
         ],
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           },
           {
             "$ref": "#/components/parameters/QueryParameterContext"
@@ -17985,11 +17942,7 @@
         ],
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           }
         ],
         "requestBody": {
@@ -18038,11 +17991,7 @@
         ],
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           }
         ],
         "requestBody": {
@@ -18091,11 +18040,7 @@
         ],
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           }
         ],
         "requestBody": {
@@ -18144,11 +18089,7 @@
         ],
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "description": "Unique identifier for the term.",
-            "required": true,
-            "schema": {}
+            "$ref": "#/components/parameters/PathParameterId"
           }
         ],
         "requestBody": {
@@ -18480,6 +18421,13 @@
             "desc"
           ]
         }
+      },
+      "PathParameterId": {
+        "name": "id",
+        "in": "path",
+        "description": "Unique identifier for the term.",
+        "required": true,
+        "schema": {}
       }
     },
     "schemas": {
@@ -19478,7 +19426,7 @@
           }
         }
       },
-      "CategoryView": {
+      "CategoryViewEdit": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CategoryBase"
@@ -19520,45 +19468,13 @@
           }
         ]
       },
-      "CategoryEdit": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CategoryBase"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "count": {
-                "description": "Number of published posts for the term.",
-                "type": "integer",
-                "readOnly": true
-              },
-              "description": {
-                "description": "HTML description of the term.",
-                "type": "string"
-              },
-              "parent": {
-                "description": "The parent term ID.",
-                "type": "integer"
-              },
-              "meta": {
-                "description": "Meta fields.",
-                "type": "object"
-              }
-            }
-          }
-        ]
-      },
       "CategoryResponse": {
         "oneOf": [
           {
-            "$ref": "#/components/schemas/CategoryView"
+            "$ref": "#/components/schemas/CategoryViewEdit"
           },
           {
             "$ref": "#/components/schemas/CategoryEmbed"
-          },
-          {
-            "$ref": "#/components/schemas/CategoryEdit"
           }
         ]
       },

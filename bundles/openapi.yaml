@@ -8964,14 +8964,13 @@ paths:
   /wp/v2/tags:
     get:
       tags:
-        - tags
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TagResponse'
+        - Tags
+      operationId: tagsList
+      summary: List tags
+      description: |
+        Query this endpoint to retrieve a collection of tags.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
         - $ref: '#/components/parameters/QueryParameterContext'
         - $ref: '#/components/parameters/QueryParameterPage'
@@ -9035,9 +9034,6 @@ paths:
           schema:
             items:
               type: string
-    post:
-      tags:
-        - tags
       responses:
         '200':
           description: OK
@@ -9045,6 +9041,13 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TagResponse'
+    post:
+      tags:
+        - Tags
+      operationId: tagCreate
+      summary: Create  tag
+      description: |
+        Query this endpoint to create a  tag.
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -9065,30 +9068,42 @@ paths:
                   type: object
               required:
                 - name
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagResponse'
   /wp/v2/tags/{id}:
     get:
       tags:
-        - tags
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TagResponse'
+        - Tags
+      operationId: tagGet
+      summary: Retrieve a tag
+      description: |
+        Query this endpoint to retrieve to retrieve a specific tag record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
         - $ref: '#/components/parameters/PathParameterId'
         - $ref: '#/components/parameters/QueryParameterContext'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagResponse'
     post:
       tags:
-        - tags
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TagResponse'
+        - Tags
+      operationId: tagPost
+      summary: Update a tag
+      description: |
+        Query this endpoint to update a specific tag record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
         - $ref: '#/components/parameters/PathParameterId'
       requestBody:
@@ -9109,16 +9124,22 @@ paths:
                 meta:
                   description: Meta fields.
                   type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagResponse'
     put:
       tags:
-        - tags
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TagResponse'
+        - Tags
+      operationId: tagPut
+      summary: Update a tag
+      description: |
+        Query this endpoint to update a specific tag record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
         - $ref: '#/components/parameters/PathParameterId'
       requestBody:
@@ -9139,16 +9160,22 @@ paths:
                 meta:
                   description: Meta fields.
                   type: object
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagResponse'
     patch:
       tags:
-        - tags
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TagResponse'
+        - Tags
+      operationId: tagPatch
+      summary: Patch a tag
+      description: |
+        Query this endpoint to patch a specific tag record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
         - $ref: '#/components/parameters/PathParameterId'
       requestBody:
@@ -9169,9 +9196,6 @@ paths:
                 meta:
                   description: Meta fields.
                   type: object
-    delete:
-      tags:
-        - tags
       responses:
         '200':
           description: OK
@@ -9179,6 +9203,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TagResponse'
+    delete:
+      tags:
+        - Tags
+      operationId: tagDelete
+      summary: Delete a tag
+      description: |
+        Query this endpoint to delete a specific tag record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
         - $ref: '#/components/parameters/PathParameterId'
       requestBody:
@@ -9191,6 +9224,13 @@ paths:
                   description: Required to be true, as terms do not support trashing.
                   default: false
                   type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagResponse'
   /wp/v2/template-parts:
     get:
       tags:
@@ -13090,6 +13130,7 @@ components:
         - $ref: '#/components/schemas/WPBlockRevisionEmbed'
         - $ref: '#/components/schemas/WPBlockRevisionEdit'
     CategoryBase:
+      $schema: https://json-schema.org/draft/2020-12/schema
       type: object
       properties:
         id:
@@ -13114,6 +13155,7 @@ components:
             - category
           readOnly: true
     CategoryViewEdit:
+      $schema: https://json-schema.org/draft/2020-12/schema
       allOf:
         - $ref: '#/components/schemas/CategoryBase'
         - type: object
@@ -13132,12 +13174,14 @@ components:
               description: Meta fields.
               type: object
     CategoryEmbed:
+      $schema: https://json-schema.org/draft/2020-12/schema
       allOf:
         - $ref: '#/components/schemas/CategoryBase'
         - type: object
           properties:
             slug: {}
     CategoryResponse:
+      $schema: https://json-schema.org/draft/2020-12/schema
       oneOf:
         - $ref: '#/components/schemas/CategoryViewEdit'
         - $ref: '#/components/schemas/CategoryEmbed'
@@ -15576,6 +15620,7 @@ components:
         - $ref: '#/components/schemas/TaxonomyEmbed'
         - $ref: '#/components/schemas/TaxonomyEdit'
     TagBase:
+      $schema: https://json-schema.org/draft/2020-12/schema
       type: object
       required:
         - name
@@ -15636,7 +15681,8 @@ components:
     meta:
       description: Meta fields.
       type: object
-    TagView:
+    TagViewEdit:
+      $schema: https://json-schema.org/draft/2020-12/schema
       allOf:
         - $ref: '#/components/schemas/TagBase'
         - type: object
@@ -15658,6 +15704,7 @@ components:
             meta:
               $ref: '#/components/schemas/meta'
     TagEmbed:
+      $schema: https://json-schema.org/draft/2020-12/schema
       allOf:
         - $ref: '#/components/schemas/TagBase'
         - type: object
@@ -15672,32 +15719,11 @@ components:
               $ref: '#/components/schemas/slug'
             taxonomy:
               $ref: '#/components/schemas/taxonomy'
-    TagEdit:
-      allOf:
-        - $ref: '#/components/schemas/TagBase'
-        - type: object
-          properties:
-            id:
-              $ref: '#/components/schemas/TagBase-properties-id'
-            count:
-              $ref: '#/components/schemas/count'
-            description:
-              $ref: '#/components/schemas/TagBase-properties-description'
-            link:
-              $ref: '#/components/schemas/properties-link'
-            name:
-              $ref: '#/components/schemas/name'
-            slug:
-              $ref: '#/components/schemas/slug'
-            taxonomy:
-              $ref: '#/components/schemas/taxonomy'
-            meta:
-              $ref: '#/components/schemas/meta'
     TagResponse:
+      $schema: https://json-schema.org/draft/2020-12/schema
       oneOf:
-        - $ref: '#/components/schemas/TagView'
+        - $ref: '#/components/schemas/TagViewEdit'
         - $ref: '#/components/schemas/TagEmbed'
-        - $ref: '#/components/schemas/TagEdit'
     WpTemplatePartBase:
       type: object
       required:

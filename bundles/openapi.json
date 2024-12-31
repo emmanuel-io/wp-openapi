@@ -13183,20 +13183,11 @@
     "/wp/v2/tags": {
       "get": {
         "tags": [
-          "tags"
+          "Tags"
         ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TagResponse"
-                }
-              }
-            }
-          }
-        },
+        "operationId": "tagsList",
+        "summary": "List tags",
+        "description": "Query this endpoint to retrieve a collection of tags.\n\nThe response you receive can be controlled and filtered using the URL query parameters below.\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/QueryParameterContext"
@@ -13293,11 +13284,6 @@
               }
             }
           }
-        ]
-      },
-      "post": {
-        "tags": [
-          "tags"
         ],
         "responses": {
           "200": {
@@ -13310,7 +13296,15 @@
               }
             }
           }
-        },
+        }
+      },
+      "post": {
+        "tags": [
+          "Tags"
+        ],
+        "operationId": "tagCreate",
+        "summary": "Create  tag",
+        "description": "Query this endpoint to create a  tag.\n",
         "requestBody": {
           "content": {
             "application/x-www-form-urlencoded": {
@@ -13340,14 +13334,7 @@
               }
             }
           }
-        }
-      }
-    },
-    "/wp/v2/tags/{id}": {
-      "get": {
-        "tags": [
-          "tags"
-        ],
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -13359,7 +13346,17 @@
               }
             }
           }
-        },
+        }
+      }
+    },
+    "/wp/v2/tags/{id}": {
+      "get": {
+        "tags": [
+          "Tags"
+        ],
+        "operationId": "tagGet",
+        "summary": "Retrieve a tag",
+        "description": "Query this endpoint to retrieve to retrieve a specific tag record.\n\nThe response you receive can be controlled and filtered using the URL query parameters below.\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/PathParameterId"
@@ -13367,11 +13364,6 @@
           {
             "$ref": "#/components/parameters/QueryParameterContext"
           }
-        ]
-      },
-      "post": {
-        "tags": [
-          "tags"
         ],
         "responses": {
           "200": {
@@ -13384,7 +13376,15 @@
               }
             }
           }
-        },
+        }
+      },
+      "post": {
+        "tags": [
+          "Tags"
+        ],
+        "operationId": "tagPost",
+        "summary": "Update a tag",
+        "description": "Query this endpoint to update a specific tag record.\n\nThe response you receive can be controlled and filtered using the URL query parameters below.\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/PathParameterId"
@@ -13412,6 +13412,18 @@
                     "description": "Meta fields.",
                     "type": "object"
                   }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagResponse"
                 }
               }
             }
@@ -13420,20 +13432,11 @@
       },
       "put": {
         "tags": [
-          "tags"
+          "Tags"
         ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TagResponse"
-                }
-              }
-            }
-          }
-        },
+        "operationId": "tagPut",
+        "summary": "Update a tag",
+        "description": "Query this endpoint to update a specific tag record.\n\nThe response you receive can be controlled and filtered using the URL query parameters below.\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/PathParameterId"
@@ -13461,6 +13464,18 @@
                     "description": "Meta fields.",
                     "type": "object"
                   }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagResponse"
                 }
               }
             }
@@ -13469,20 +13484,11 @@
       },
       "patch": {
         "tags": [
-          "tags"
+          "Tags"
         ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TagResponse"
-                }
-              }
-            }
-          }
-        },
+        "operationId": "tagPatch",
+        "summary": "Patch a tag",
+        "description": "Query this endpoint to patch a specific tag record.\n\nThe response you receive can be controlled and filtered using the URL query parameters below.\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/PathParameterId"
@@ -13514,12 +13520,7 @@
               }
             }
           }
-        }
-      },
-      "delete": {
-        "tags": [
-          "tags"
-        ],
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -13531,7 +13532,15 @@
               }
             }
           }
-        },
+        }
+      },
+      "delete": {
+        "tags": [
+          "Tags"
+        ],
+        "operationId": "tagDelete",
+        "summary": "Delete a tag",
+        "description": "Query this endpoint to delete a specific tag record.\n\nThe response you receive can be controlled and filtered using the URL query parameters below.\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/PathParameterId"
@@ -13548,6 +13557,18 @@
                     "default": false,
                     "type": "boolean"
                   }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagResponse"
                 }
               }
             }
@@ -19395,6 +19416,7 @@
         ]
       },
       "CategoryBase": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
         "properties": {
           "id": {
@@ -19427,6 +19449,7 @@
         }
       },
       "CategoryViewEdit": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
         "allOf": [
           {
             "$ref": "#/components/schemas/CategoryBase"
@@ -19456,6 +19479,7 @@
         ]
       },
       "CategoryEmbed": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
         "allOf": [
           {
             "$ref": "#/components/schemas/CategoryBase"
@@ -19469,6 +19493,7 @@
         ]
       },
       "CategoryResponse": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
         "oneOf": [
           {
             "$ref": "#/components/schemas/CategoryViewEdit"
@@ -23140,6 +23165,7 @@
         ]
       },
       "TagBase": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
         "type": "object",
         "required": [
           "name"
@@ -23219,7 +23245,8 @@
         "description": "Meta fields.",
         "type": "object"
       },
-      "TagView": {
+      "TagViewEdit": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
         "allOf": [
           {
             "$ref": "#/components/schemas/TagBase"
@@ -23256,6 +23283,7 @@
         ]
       },
       "TagEmbed": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
         "allOf": [
           {
             "$ref": "#/components/schemas/TagBase"
@@ -23277,57 +23305,19 @@
               },
               "taxonomy": {
                 "$ref": "#/components/schemas/taxonomy"
-              }
-            }
-          }
-        ]
-      },
-      "TagEdit": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/TagBase"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "id": {
-                "$ref": "#/components/schemas/TagBase-properties-id"
-              },
-              "count": {
-                "$ref": "#/components/schemas/count"
-              },
-              "description": {
-                "$ref": "#/components/schemas/TagBase-properties-description"
-              },
-              "link": {
-                "$ref": "#/components/schemas/properties-link"
-              },
-              "name": {
-                "$ref": "#/components/schemas/name"
-              },
-              "slug": {
-                "$ref": "#/components/schemas/slug"
-              },
-              "taxonomy": {
-                "$ref": "#/components/schemas/taxonomy"
-              },
-              "meta": {
-                "$ref": "#/components/schemas/meta"
               }
             }
           }
         ]
       },
       "TagResponse": {
+        "$schema": "https://json-schema.org/draft/2020-12/schema",
         "oneOf": [
           {
-            "$ref": "#/components/schemas/TagView"
+            "$ref": "#/components/schemas/TagViewEdit"
           },
           {
             "$ref": "#/components/schemas/TagEmbed"
-          },
-          {
-            "$ref": "#/components/schemas/TagEdit"
           }
         ]
       },

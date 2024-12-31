@@ -2,7 +2,7 @@ paths:
   /wp/v2/block-renderer/{name}:
     get:
       tags:
-      - block renderer
+      - Block renderer
       parameters:
       - name: name
         in: path
@@ -37,7 +37,7 @@ paths:
                 $ref: './schemas.yaml#/schemas/RenderedBlockResponse'
     post:
       tags:
-      - block renderer
+      - Block renderer
       parameters:
       - name: name
         in: path

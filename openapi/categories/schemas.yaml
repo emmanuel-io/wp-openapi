@@ -101,7 +101,7 @@ schemas:
           - category
         readOnly: true
 
-  CategoryView:
+  CategoryViewEdit:
     allOf:
       - $ref: '#/schemas/CategoryBase'
       - type: object
@@ -128,27 +128,7 @@ schemas:
           # Only fields allowed in embed
           slug: {}
 
-  CategoryEdit:
-    allOf:
-      - $ref: '#/schemas/CategoryBase'
-      - type: object
-        properties:
-          count:
-            description: Number of published posts for the term.
-            type: integer
-            readOnly: true
-          description:
-            description: HTML description of the term.
-            type: string
-          parent:
-            description: The parent term ID.
-            type: integer
-          meta:
-            description: Meta fields.
-            type: object
-
   CategoryResponse:
     oneOf:
-      - $ref: '#/schemas/CategoryView'
+      - $ref: '#/schemas/CategoryViewEdit'
       - $ref: '#/schemas/CategoryEmbed'
-      - $ref: '#/schemas/CategoryEdit'

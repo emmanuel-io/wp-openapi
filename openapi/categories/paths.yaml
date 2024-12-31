@@ -2,14 +2,13 @@ paths:
   /wp/v2/categories:
     get:
       tags:
-      - categories
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: './schemas.yaml#/schemas/CategoryResponse'
+      - Categories
+      operationId: categoriesList
+      summary: List categories
+      description: |
+        Query this endpoint to retrieve a collection of categories.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
       - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       - $ref: '../components.yaml#/components/parameters/QueryParameterPage'
@@ -73,9 +72,6 @@ paths:
         schema:
           items:
             type: string
-    post:
-      tags:
-      - categories
       responses:
         '200':
           description: OK
@@ -83,6 +79,13 @@ paths:
             application/json:
               schema:
                 $ref: './schemas.yaml#/schemas/CategoryResponse'
+    post:
+      tags:
+      - Categories
+      operationId: categoryCreate
+      summary: Create category
+      description: |
+        Query this endpoint to create a category.
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -109,10 +112,26 @@ paths:
                   # properties: []
               required:
               - name
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/CategoryResponse'
   /wp/v2/categories/{id}:
     get:
       tags:
-      - categories
+      - Categories
+      operationId: categoryGet
+      summary: Retrieve a category
+      description: |
+        Query this endpoint to retrieve to retrieve a specific category record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
+      parameters:
+      - $ref: '../components.yaml#/components/parameters/PathParameterId'
+      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       responses:
         '200':
           description: OK
@@ -120,29 +139,17 @@ paths:
             application/json:
               schema:
                 $ref: './schemas.yaml#/schemas/CategoryResponse'
-      parameters:
-      - name: id
-        in: path
-        description: Unique identifier for the term.
-        required: true
-        schema: {}
-      - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
     post:
       tags:
-      - categories
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: './schemas.yaml#/schemas/CategoryResponse'
+      - Categories
+      operationId: categoryPost
+      summary: Update a category
+      description: |
+        Query this endpoint to update a specific category record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
-      - name: id
-        in: path
-        description: Unique identifier for the term.
-        required: true
-        schema: {}
+      - $ref: '../components.yaml#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -166,22 +173,24 @@ paths:
                   description: Meta fields.
                   type: object
                   # properties: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/CategoryResponse'
     put:
       tags:
-      - categories
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: './schemas.yaml#/schemas/CategoryResponse'
+      - Categories
+      operationId: categoryPut
+      summary: Update a category
+      description: |
+        Query this endpoint to update a specific category record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
-      - name: id
-        in: path
-        description: Unique identifier for the term.
-        required: true
-        schema: {}
+      - $ref: '../components.yaml#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -205,22 +214,24 @@ paths:
                   description: Meta fields.
                   type: object
                   # properties: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/CategoryResponse'
     patch:
       tags:
-      - categories
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: './schemas.yaml#/schemas/CategoryResponse'
+      - Categories
+      operationId: categoryPatch
+      summary: Patch a category
+      description: |
+        Query this endpoint to patch a specific category record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
-      - name: id
-        in: path
-        description: Unique identifier for the term.
-        required: true
-        schema: {}
+      - $ref: '../components.yaml#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -244,9 +255,6 @@ paths:
                   description: Meta fields.
                   type: object
                   # properties: []
-    delete:
-      tags:
-      - categories
       responses:
         '200':
           description: OK
@@ -254,12 +262,17 @@ paths:
             application/json:
               schema:
                 $ref: './schemas.yaml#/schemas/CategoryResponse'
+    delete:
+      tags:
+      - Categories
+      operationId: categoryDelete
+      summary: Delete a category
+      description: |
+        Query this endpoint to delete a specific category record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
-      - name: id
-        in: path
-        description: Unique identifier for the term.
-        required: true
-        schema: {}
+      - $ref: '../components.yaml#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -270,3 +283,10 @@ paths:
                   description: Required to be true, as terms do not support trashing.
                   default: false
                   type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/CategoryResponse'

@@ -127,11 +127,7 @@ paths:
               schema:
                 $ref: './schemas.yaml#/schemas/NavMenuResponse'
       parameters:
-      - name: id
-        in: path
-        description: Unique identifier for the term.
-        required: true
-        schema: {}
+      - $ref: '../components.yaml#/components/parameters/PathParameterId'
       - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
     post:
       tags:
@@ -144,11 +140,7 @@ paths:
               schema:
                 $ref: './schemas.yaml#/schemas/NavMenuResponse'
       parameters:
-      - name: id
-        in: path
-        description: Unique identifier for the term.
-        required: true
-        schema: {}
+      - $ref: '../components.yaml#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -189,11 +181,7 @@ paths:
               schema:
                 $ref: './schemas.yaml#/schemas/NavMenuResponse'
       parameters:
-      - name: id
-        in: path
-        description: Unique identifier for the term.
-        required: true
-        schema: {}
+      - $ref: '../components.yaml#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -234,11 +222,7 @@ paths:
               schema:
                 $ref: './schemas.yaml#/schemas/NavMenuResponse'
       parameters:
-      - name: id
-        in: path
-        description: Unique identifier for the term.
-        required: true
-        schema: {}
+      - $ref: '../components.yaml#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:
@@ -279,11 +263,7 @@ paths:
               schema:
                 $ref: './schemas.yaml#/schemas/NavMenuResponse'
       parameters:
-      - name: id
-        in: path
-        description: Unique identifier for the term.
-        required: true
-        schema: {}
+      - $ref: '../components.yaml#/components/parameters/PathParameterId'
       requestBody:
         content:
           application/x-www-form-urlencoded:

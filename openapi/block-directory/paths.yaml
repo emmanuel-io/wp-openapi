@@ -3,6 +3,10 @@ paths:
     get:
       tags:
       - block directory
+      operationId: blockDirectorySearchGet
+      summary: |
+        Query this endpoint to retrieve a collection of block directory items.
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
       - $ref: '../components.yaml#/components/parameters/QueryParameterContextView'
       - $ref: '../components.yaml#/components/parameters/QueryParameterPage'

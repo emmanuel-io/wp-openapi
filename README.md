@@ -73,7 +73,7 @@ Feel free to open issues for any bugs or improvements.
 ## Roadmap
 
 - [ ] Document all core WordPress REST API endpoints:
-  - [ ] block-directory
+  - [x] block-directory
   - [ ] block-patterns
   - [ ] block-renderer
   - [ ] blocks

@@ -3,7 +3,7 @@ paths:
     get:
       tags:
         - block directory
-      operationId: blockDirectorySearchGet
+      operationId: blockDirectorySearchList
       summary: List block directory items
       description: |
         Query this endpoint to retrieve a collection of block directory items.

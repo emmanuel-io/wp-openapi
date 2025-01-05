@@ -104,7 +104,7 @@ Feel free to open issues for any bugs or improvements.
   - [ ] template-parts
   - [ ] templates
   - [x] themes
-  - [ ] types
+  - [x] types
   - [ ] users
   - [ ] widgets
   - [ ] widget-types

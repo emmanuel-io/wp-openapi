@@ -3,6 +3,12 @@ paths:
     get:
       tags:
       - Types
+      operationId: typesList
+      summary: List types
+      description: |
+        Query this endpoint to retrieve a collection of types.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
       - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       responses:
@@ -16,6 +22,12 @@ paths:
     get:
       tags:
       - Types
+      operationId: typeGet
+      summary: Retrieve a type
+      description: |
+        Query this endpoint to retrieve to retrieve a specific type record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
       - name: type
         in: path

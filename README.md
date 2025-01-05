@@ -103,7 +103,7 @@ Feel free to open issues for any bugs or improvements.
   - [x] taxonomies
   - [ ] template-parts
   - [ ] templates
-  - [ ] themes
+  - [x] themes
   - [ ] types
   - [ ] users
   - [ ] widgets

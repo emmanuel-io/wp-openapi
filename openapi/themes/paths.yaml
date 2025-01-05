@@ -3,13 +3,12 @@ paths:
     get:
       tags:
       - Themes
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: './schemas.yaml#/schemas/theme'
+      operationId: themesList
+      summary: List themes
+      description: |
+        Query this endpoint to retrieve a collection of themes.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
       - name: status
         in: query
@@ -21,20 +20,33 @@ paths:
             - active
             - inactive
             type: string
-  /wp/v2/themes/{stylesheet}:
-    get:
-      tags:
-      - Themes
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: './schemas.yaml#/schemas/theme'
+                $ref: './schemas.yaml#/schemas/ThemeResponse'
+  /wp/v2/themes/{stylesheet}:
+    get:
+      tags:
+      - Themes
+      operationId: themeGet
+      summary: Retrieve a theme
+      description: |
+        Query this endpoint to retrieve to retrieve a specific theme record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
       - name: stylesheet
         in: path
         description: The theme's stylesheet. This uniquely identifies the theme.
         required: true
         schema: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: './schemas.yaml#/schemas/ThemeResponse'

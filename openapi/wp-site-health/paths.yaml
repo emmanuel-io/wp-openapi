@@ -1,83 +1,99 @@
 paths:
-  /wp-site-health/v1:
-    get:
-      tags:
-      - Site health
-      responses:
-        "200":
-          description: OK
-      parameters:
-        - name: namespace
-          in: query
-          description: ""
-          required: false
-          schema:
-            default: wp-site-health/v1
-        - name: context
-          in: query
-          description: ""
-          required: false
-          schema:
-            default: view
   /wp-site-health/v1/tests/background-updates:
     get:
       tags:
       - Site health
+      operationId: siteHealthTestBackgroundUpdatesGet
+      summary: Test a site health for background updates
+      description: |
+        Query this endpoint to test a site health for background updates.
+
+        There are no arguments for this endpoint.
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: "./schemas.yaml#/schemas/wp-site-health-test"
+                $ref: "./schemas.yaml#/schemas/SiteHealthTestResponse"
   /wp-site-health/v1/tests/loopback-requests:
     get:
       tags:
       - Site health
+      operationId: siteHealthTestLoopbackRequestsGet
+      summary: Test a site health for loopback requests
+      description: |
+        Query this endpoint to test a site health for loopback -requests.
+
+        There are no arguments for this endpoint.
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: "./schemas.yaml#/schemas/wp-site-health-test"
+                $ref: "./schemas.yaml#/schemas/SiteHealthTestResponse"
   /wp-site-health/v1/tests/https-status:
     get:
       tags:
       - Site health
+      operationId: siteHealthTestHttpsStatusGet
+      summary: Test a site health for https status
+      description: |
+        Query this endpoint to test a site health for https status.
+
+        There are no arguments for this endpoint.
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: "./schemas.yaml#/schemas/wp-site-health-test"
+                $ref: "./schemas.yaml#/schemas/SiteHealthTestResponse"
   /wp-site-health/v1/tests/dotorg-communication:
     get:
       tags:
       - Site health
+      operationId: siteHealthTestDotorgCommunicationGet
+      summary: Test a site health for dotorg communication
+      description: |
+        Query this endpoint to test a site health for dotorg communication.
+
+        There are no arguments for this endpoint.
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: "./schemas.yaml#/schemas/wp-site-health-test"
+                $ref: "./schemas.yaml#/schemas/SiteHealthTestResponse"
   /wp-site-health/v1/tests/authorization-header:
     get:
       tags:
       - Site health
+      operationId: siteHealthTestAuthorizationHeaderGet
+      summary: Test a site health for authorization header
+      description: |
+        Query this endpoint to test a site health for authorization header.
+
+        There are no arguments for this endpoint.
       responses:
         "200":
           description: OK
           content:
             application/json:
               schema:
-                $ref: "./schemas.yaml#/schemas/wp-site-health-test"
+                $ref: "./schemas.yaml#/schemas/SiteHealthTestResponse"
   /wp-site-health/v1/directory-sizes:
     get:
       tags:
       - Site health
+      operationId: siteHealthTestDirectorySizesGet
+      summary: Test a site health for directory sizes
+      description: |
+        Query this endpoint to test a site health for directory sizes.
+
+        There are no arguments for this endpoint.
       responses:
         "200":
           description: OK
@@ -85,6 +101,12 @@ paths:
     get:
       tags:
       - Site health
+      operationId: siteHealthTestPageCacheGet
+      summary: Test a site health for page cache
+      description: |
+        Query this endpoint to test a site health for page cache.
+
+        There are no arguments for this endpoint.
       responses:
         "200":
           description: OK

@@ -1,5 +1,5 @@
 schemas:
-  wp-site-health-test:
+  SiteHealthTestResponse:
     $schema: https://json-schema.org/draft/2020-12/schema
     title: wp-site-health-test
     type: object

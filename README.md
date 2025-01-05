@@ -110,7 +110,7 @@ Feel free to open issues for any bugs or improvements.
   - [ ] widget-types
   - [ ] wp-block-editor
   - [ ] wp_pattern_category
-  - [ ] wp-site-health
+  - [x] wp-site-health
 - [ ] Add examples for common use cases.
 - [ ] Extend support for popular WordPress.
 

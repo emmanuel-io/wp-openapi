@@ -15709,6 +15709,9 @@
         "tags": [
           "Types"
         ],
+        "operationId": "typesList",
+        "summary": "List types",
+        "description": "Query this endpoint to retrieve a collection of types.\n\nThe response you receive can be controlled and filtered using the URL query parameters below.\n",
         "parameters": [
           {
             "$ref": "#/components/parameters/QueryParameterContext"
@@ -15733,6 +15736,9 @@
         "tags": [
           "Types"
         ],
+        "operationId": "typeGet",
+        "summary": "Retrieve a type",
+        "description": "Query this endpoint to retrieve to retrieve a specific type record.\n\nThe response you receive can be controlled and filtered using the URL query parameters below.\n",
         "parameters": [
           {
             "name": "type",
@@ -24488,31 +24494,6 @@
       "TypeBase": {
         "type": "object",
         "properties": {
-          "capabilities": {
-            "description": "All capabilities used by the post type.",
-            "type": "object",
-            "readOnly": true
-          },
-          "description": {
-            "description": "A human-readable description of the post type.",
-            "type": "string",
-            "readOnly": true
-          },
-          "hierarchical": {
-            "description": "Whether or not the post type should have children.",
-            "type": "boolean",
-            "readOnly": true
-          },
-          "viewable": {
-            "description": "Whether or not the post type can be viewed.",
-            "type": "boolean",
-            "readOnly": true
-          },
-          "labels": {
-            "description": "Human-readable labels for the post type for various contexts.",
-            "type": "object",
-            "readOnly": true
-          },
           "name": {
             "description": "The title for the post type.",
             "type": "string",
@@ -24521,27 +24502,6 @@
           "slug": {
             "description": "An alphanumeric identifier for the post type.",
             "type": "string",
-            "readOnly": true
-          },
-          "supports": {
-            "description": "All features, supported by the post type.",
-            "type": "object",
-            "readOnly": true
-          },
-          "has_archive": {
-            "description": "If the value is a string, the value will be used as the archive slug. If the value is false the post type has no archive.",
-            "type": [
-              "string",
-              "boolean"
-            ],
-            "readOnly": true
-          },
-          "taxonomies": {
-            "description": "Taxonomies associated with post type.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
             "readOnly": true
           },
           "rest_base": {
@@ -24600,81 +24560,6 @@
           }
         }
       },
-      "TypeBase-properties-description": {
-        "description": "A human-readable description of the post type.",
-        "type": "string",
-        "readOnly": true
-      },
-      "hierarchical": {
-        "description": "Whether or not the post type should have children.",
-        "type": "boolean",
-        "readOnly": true
-      },
-      "TypeBase-properties-name": {
-        "description": "The title for the post type.",
-        "type": "string",
-        "readOnly": true
-      },
-      "TypeBase-properties-slug": {
-        "description": "An alphanumeric identifier for the post type.",
-        "type": "string",
-        "readOnly": true
-      },
-      "has_archive": {
-        "description": "If the value is a string, the value will be used as the archive slug. If the value is false the post type has no archive.",
-        "type": [
-          "string",
-          "boolean"
-        ],
-        "readOnly": true
-      },
-      "taxonomies": {
-        "description": "Taxonomies associated with post type.",
-        "type": "array",
-        "items": {
-          "type": "string"
-        },
-        "readOnly": true
-      },
-      "properties-rest_base": {
-        "description": "REST base route for the post type.",
-        "type": "string",
-        "readOnly": true
-      },
-      "properties-rest_namespace": {
-        "description": "REST route's namespace for the post type.",
-        "type": "string",
-        "readOnly": true
-      },
-      "template": {
-        "description": "The block template associated with the post type.",
-        "type": [
-          "array"
-        ],
-        "readOnly": true
-      },
-      "template_lock": {
-        "description": "The template_lock associated with the post type, or false if none.",
-        "type": [
-          "string",
-          "boolean"
-        ],
-        "enum": [
-          "all",
-          "insert",
-          "contentOnly",
-          false
-        ],
-        "readOnly": true
-      },
-      "icon": {
-        "description": "The icon for the post type.",
-        "type": [
-          "string",
-          "null"
-        ],
-        "readOnly": true
-      },
       "TypeView": {
         "allOf": [
           {
@@ -24684,37 +24569,30 @@
             "type": "object",
             "properties": {
               "description": {
-                "$ref": "#/components/schemas/TypeBase-properties-description"
+                "description": "A human-readable description of the post type.",
+                "type": "string",
+                "readOnly": true
               },
               "hierarchical": {
-                "$ref": "#/components/schemas/hierarchical"
-              },
-              "name": {
-                "$ref": "#/components/schemas/TypeBase-properties-name"
-              },
-              "slug": {
-                "$ref": "#/components/schemas/TypeBase-properties-slug"
+                "description": "Whether or not the post type should have children.",
+                "type": "boolean",
+                "readOnly": true
               },
               "has_archive": {
-                "$ref": "#/components/schemas/has_archive"
+                "description": "If the value is a string, the value will be used as the archive slug. If the value is false the post type has no archive.",
+                "type": [
+                  "string",
+                  "boolean"
+                ],
+                "readOnly": true
               },
               "taxonomies": {
-                "$ref": "#/components/schemas/taxonomies"
-              },
-              "rest_base": {
-                "$ref": "#/components/schemas/properties-rest_base"
-              },
-              "rest_namespace": {
-                "$ref": "#/components/schemas/properties-rest_namespace"
-              },
-              "template": {
-                "$ref": "#/components/schemas/template"
-              },
-              "template_lock": {
-                "$ref": "#/components/schemas/template_lock"
-              },
-              "icon": {
-                "$ref": "#/components/schemas/icon"
+                "description": "Taxonomies associated with post type.",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "readOnly": true
               }
             }
           }
@@ -24724,69 +24602,8 @@
         "allOf": [
           {
             "$ref": "#/components/schemas/TypeBase"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "name": {
-                "$ref": "#/components/schemas/TypeBase-properties-name"
-              },
-              "slug": {
-                "$ref": "#/components/schemas/TypeBase-properties-slug"
-              },
-              "rest_base": {
-                "$ref": "#/components/schemas/properties-rest_base"
-              },
-              "rest_namespace": {
-                "$ref": "#/components/schemas/properties-rest_namespace"
-              },
-              "template": {
-                "$ref": "#/components/schemas/template"
-              },
-              "template_lock": {
-                "$ref": "#/components/schemas/template_lock"
-              },
-              "icon": {
-                "$ref": "#/components/schemas/icon"
-              }
-            }
           }
         ]
-      },
-      "capabilities": {
-        "description": "All capabilities used by the post type.",
-        "type": "object",
-        "readOnly": true
-      },
-      "labels": {
-        "description": "Human-readable labels for the post type for various contexts.",
-        "type": "object",
-        "readOnly": true
-      },
-      "supports": {
-        "description": "All features, supported by the post type.",
-        "type": "object",
-        "readOnly": true
-      },
-      "viewable": {
-        "description": "Whether or not the post type can be viewed.",
-        "type": "boolean",
-        "readOnly": true
-      },
-      "visibility": {
-        "description": "The visibility settings for the post type.",
-        "type": "object",
-        "readOnly": true,
-        "properties": {
-          "show_ui": {
-            "description": "Whether to generate a default UI for managing this post type.",
-            "type": "boolean"
-          },
-          "show_in_nav_menus": {
-            "description": "Whether to make the post type available for selection in navigation menus.",
-            "type": "boolean"
-          }
-        }
       },
       "TypeEdit": {
         "allOf": [
@@ -24797,19 +24614,65 @@
             "type": "object",
             "properties": {
               "capabilities": {
-                "$ref": "#/components/schemas/capabilities"
+                "description": "All capabilities used by the post type.",
+                "type": "object",
+                "readOnly": true
               },
-              "labels": {
-                "$ref": "#/components/schemas/labels"
+              "description": {
+                "description": "A human-readable description of the post type.",
+                "type": "string",
+                "readOnly": true
               },
-              "supports": {
-                "$ref": "#/components/schemas/supports"
+              "hierarchical": {
+                "description": "Whether or not the post type should have children.",
+                "type": "boolean",
+                "readOnly": true
               },
               "viewable": {
-                "$ref": "#/components/schemas/viewable"
+                "description": "Whether or not the post type can be viewed.",
+                "type": "boolean",
+                "readOnly": true
+              },
+              "labels": {
+                "description": "Human-readable labels for the post type for various contexts.",
+                "type": "object",
+                "readOnly": true
+              },
+              "supports": {
+                "description": "All features, supported by the post type.",
+                "type": "object",
+                "readOnly": true
+              },
+              "has_archive": {
+                "description": "If the value is a string, the value will be used as the archive slug. If the value is false the post type has no archive.",
+                "type": [
+                  "string",
+                  "boolean"
+                ],
+                "readOnly": true
+              },
+              "taxonomies": {
+                "description": "Taxonomies associated with post type.",
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "readOnly": true
               },
               "visibility": {
-                "$ref": "#/components/schemas/visibility"
+                "description": "The visibility settings for the post type.",
+                "type": "object",
+                "readOnly": true,
+                "properties": {
+                  "show_ui": {
+                    "description": "Whether to generate a default UI for managing this post type.",
+                    "type": "boolean"
+                  },
+                  "show_in_nav_menus": {
+                    "description": "Whether to make the post type available for selection in navigation menus.",
+                    "type": "boolean"
+                  }
+                }
               }
             }
           }
@@ -25136,7 +24999,7 @@
           "type": "string"
         }
       },
-      "properties-capabilities": {
+      "capabilities": {
         "description": "All capabilities assigned to the user.",
         "type": "object",
         "readOnly": true
@@ -25179,7 +25042,7 @@
                 "$ref": "#/components/schemas/roles"
               },
               "capabilities": {
-                "$ref": "#/components/schemas/properties-capabilities"
+                "$ref": "#/components/schemas/capabilities"
               },
               "extra_capabilities": {
                 "$ref": "#/components/schemas/extra_capabilities"

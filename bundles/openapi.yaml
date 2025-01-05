@@ -8925,42 +8925,6 @@ paths:
           required: true
           schema: {}
         - $ref: '#/components/parameters/QueryParameterContext'
-  /wp/v2/taxonomies:
-    get:
-      tags:
-        - Taxonomies
-      parameters:
-        - $ref: '#/components/parameters/QueryParameterContext'
-        - name: type
-          in: query
-          description: Limit results to taxonomies associated with a specific post type.
-          required: false
-          schema: {}
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TaxonomyResponse'
-  /wp/v2/taxonomies/{taxonomy}:
-    get:
-      tags:
-        - Taxonomies
-      parameters:
-        - name: taxonomy
-          in: path
-          description: An alphanumeric identifier for the taxonomy.
-          required: true
-          schema: {}
-        - $ref: '#/components/parameters/QueryParameterContext'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TaxonomyResponse'
   /wp/v2/tags:
     get:
       tags:
@@ -9231,6 +9195,54 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TagResponse'
+  /wp/v2/taxonomies:
+    get:
+      tags:
+        - Taxonomies
+      operationId: taxonomiesList
+      summary: List taxonomies
+      description: |
+        Query this endpoint to retrieve a collection of taxonomies.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
+      parameters:
+        - $ref: '#/components/parameters/QueryParameterContext'
+        - name: type
+          in: query
+          description: Limit results to taxonomies associated with a specific post type.
+          required: false
+          schema: {}
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxonomyCollectionResponse'
+  /wp/v2/taxonomies/{taxonomy}:
+    get:
+      tags:
+        - Taxonomies
+      operationId: taxonomyGet
+      summary: Retrieve a taxonomy
+      description: |
+        Query this endpoint to retrieve to retrieve a specific taxonomy record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
+      parameters:
+        - name: taxonomy
+          in: path
+          description: An alphanumeric identifier for the taxonomy.
+          required: true
+          schema: {}
+        - $ref: '#/components/parameters/QueryParameterContext'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxonomyResponse'
   /wp/v2/template-parts:
     get:
       tags:
@@ -15436,189 +15448,6 @@ components:
         - $ref: '#/components/schemas/StatusView'
         - $ref: '#/components/schemas/StatusEmbed'
         - $ref: '#/components/schemas/StatusEdit'
-    TaxonomyBase:
-      type: object
-      properties:
-        capabilities:
-          description: All capabilities used by the taxonomy.
-          type: object
-          readOnly: true
-        description:
-          description: A human-readable description of the taxonomy.
-          type: string
-          readOnly: true
-        hierarchical:
-          description: Whether or not the taxonomy should have children.
-          type: boolean
-          readOnly: true
-        labels:
-          description: Human-readable labels for the taxonomy for various contexts.
-          type: object
-          readOnly: true
-        name:
-          description: The title for the taxonomy.
-          type: string
-          readOnly: true
-        slug:
-          description: An alphanumeric identifier for the taxonomy.
-          type: string
-          readOnly: true
-        show_cloud:
-          description: Whether or not the term cloud should be displayed.
-          type: boolean
-          readOnly: true
-        types:
-          description: Types associated with the taxonomy.
-          type: array
-          items:
-            type: string
-          readOnly: true
-        rest_base:
-          description: REST base route for the taxonomy.
-          type: string
-          readOnly: true
-        rest_namespace:
-          description: REST namespace route for the taxonomy.
-          type: string
-          readOnly: true
-        visibility:
-          description: The visibility settings for the taxonomy.
-          type: object
-          readOnly: true
-          properties:
-            public:
-              description: Whether a taxonomy is intended for use publicly either via the admin interface or by front-end users.
-              type: boolean
-            publicly_queryable:
-              description: Whether the taxonomy is publicly queryable.
-              type: boolean
-            show_ui:
-              description: Whether to generate a default UI for managing this taxonomy.
-              type: boolean
-            show_admin_column:
-              description: Whether to allow automatic creation of taxonomy columns on associated post-types table.
-              type: boolean
-            show_in_nav_menus:
-              description: Whether to make the taxonomy available for selection in navigation menus.
-              type: boolean
-            show_in_quick_edit:
-              description: Whether to show the taxonomy in the quick/bulk edit panel.
-              type: boolean
-    properties-description:
-      description: A human-readable description of the taxonomy.
-      type: string
-      readOnly: true
-    hierarchical:
-      description: Whether or not the taxonomy should have children.
-      type: boolean
-      readOnly: true
-    TaxonomyBase-properties-name:
-      description: The title for the taxonomy.
-      type: string
-      readOnly: true
-    TaxonomyBase-properties-slug:
-      description: An alphanumeric identifier for the taxonomy.
-      type: string
-      readOnly: true
-    types:
-      description: Types associated with the taxonomy.
-      type: array
-      items:
-        type: string
-      readOnly: true
-    rest_base:
-      description: REST base route for the taxonomy.
-      type: string
-      readOnly: true
-    rest_namespace:
-      description: REST namespace route for the taxonomy.
-      type: string
-      readOnly: true
-    TaxonomyView:
-      allOf:
-        - $ref: '#/components/schemas/TaxonomyBase'
-        - type: object
-          properties:
-            description:
-              $ref: '#/components/schemas/properties-description'
-            hierarchical:
-              $ref: '#/components/schemas/hierarchical'
-            name:
-              $ref: '#/components/schemas/TaxonomyBase-properties-name'
-            slug:
-              $ref: '#/components/schemas/TaxonomyBase-properties-slug'
-            types:
-              $ref: '#/components/schemas/types'
-            rest_base:
-              $ref: '#/components/schemas/rest_base'
-            rest_namespace:
-              $ref: '#/components/schemas/rest_namespace'
-    TaxonomyEmbed:
-      allOf:
-        - $ref: '#/components/schemas/TaxonomyBase'
-        - type: object
-          properties:
-            name:
-              $ref: '#/components/schemas/TaxonomyBase-properties-name'
-            slug:
-              $ref: '#/components/schemas/TaxonomyBase-properties-slug'
-            rest_base:
-              $ref: '#/components/schemas/rest_base'
-            rest_namespace:
-              $ref: '#/components/schemas/rest_namespace'
-    capabilities:
-      description: All capabilities used by the taxonomy.
-      type: object
-      readOnly: true
-    labels:
-      description: Human-readable labels for the taxonomy for various contexts.
-      type: object
-      readOnly: true
-    show_cloud:
-      description: Whether or not the term cloud should be displayed.
-      type: boolean
-      readOnly: true
-    visibility:
-      description: The visibility settings for the taxonomy.
-      type: object
-      readOnly: true
-      properties:
-        public:
-          description: Whether a taxonomy is intended for use publicly either via the admin interface or by front-end users.
-          type: boolean
-        publicly_queryable:
-          description: Whether the taxonomy is publicly queryable.
-          type: boolean
-        show_ui:
-          description: Whether to generate a default UI for managing this taxonomy.
-          type: boolean
-        show_admin_column:
-          description: Whether to allow automatic creation of taxonomy columns on associated post-types table.
-          type: boolean
-        show_in_nav_menus:
-          description: Whether to make the taxonomy available for selection in navigation menus.
-          type: boolean
-        show_in_quick_edit:
-          description: Whether to show the taxonomy in the quick/bulk edit panel.
-          type: boolean
-    TaxonomyEdit:
-      allOf:
-        - $ref: '#/components/schemas/TaxonomyBase'
-        - type: object
-          properties:
-            capabilities:
-              $ref: '#/components/schemas/capabilities'
-            labels:
-              $ref: '#/components/schemas/labels'
-            show_cloud:
-              $ref: '#/components/schemas/show_cloud'
-            visibility:
-              $ref: '#/components/schemas/visibility'
-    TaxonomyResponse:
-      oneOf:
-        - $ref: '#/components/schemas/TaxonomyView'
-        - $ref: '#/components/schemas/TaxonomyEmbed'
-        - $ref: '#/components/schemas/TaxonomyEdit'
     TagBase:
       $schema: https://json-schema.org/draft/2020-12/schema
       type: object
@@ -15664,7 +15493,7 @@ components:
       description: Number of published posts for the term.
       type: integer
       readOnly: true
-    TagBase-properties-description:
+    properties-description:
       description: HTML description of the term.
       type: string
     properties-link:
@@ -15692,7 +15521,7 @@ components:
             count:
               $ref: '#/components/schemas/count'
             description:
-              $ref: '#/components/schemas/TagBase-properties-description'
+              $ref: '#/components/schemas/properties-description'
             link:
               $ref: '#/components/schemas/properties-link'
             name:
@@ -15724,6 +15553,150 @@ components:
       oneOf:
         - $ref: '#/components/schemas/TagViewEdit'
         - $ref: '#/components/schemas/TagEmbed'
+    TaxonomyBase:
+      $schema: https://json-schema.org/draft/2020-12/schema
+      type: object
+      properties:
+        name:
+          description: The title for the taxonomy.
+          type: string
+          readOnly: true
+        slug:
+          description: An alphanumeric identifier for the taxonomy.
+          type: string
+          readOnly: true
+        rest_base:
+          description: REST base route for the taxonomy.
+          type: string
+          readOnly: true
+        rest_namespace:
+          description: REST namespace route for the taxonomy.
+          type: string
+          readOnly: true
+    TaxonomyBase-properties-name:
+      description: The title for the taxonomy.
+      type: string
+      readOnly: true
+    TaxonomyBase-properties-slug:
+      description: An alphanumeric identifier for the taxonomy.
+      type: string
+      readOnly: true
+    rest_base:
+      description: REST base route for the taxonomy.
+      type: string
+      readOnly: true
+    rest_namespace:
+      description: REST namespace route for the taxonomy.
+      type: string
+      readOnly: true
+    TaxonomyView:
+      $schema: https://json-schema.org/draft/2020-12/schema
+      allOf:
+        - $ref: '#/components/schemas/TaxonomyBase'
+        - type: object
+          properties:
+            description:
+              description: A human-readable description of the taxonomy.
+              type: string
+              readOnly: true
+            hierarchical:
+              description: Whether or not the taxonomy should have children.
+              type: boolean
+              readOnly: true
+            name:
+              $ref: '#/components/schemas/TaxonomyBase-properties-name'
+            slug:
+              $ref: '#/components/schemas/TaxonomyBase-properties-slug'
+            types:
+              description: Types associated with the taxonomy.
+              type: array
+              items:
+                type: string
+              readOnly: true
+            rest_base:
+              $ref: '#/components/schemas/rest_base'
+            rest_namespace:
+              $ref: '#/components/schemas/rest_namespace'
+    TaxonomyEmbed:
+      $schema: https://json-schema.org/draft/2020-12/schema
+      allOf:
+        - $ref: '#/components/schemas/TaxonomyBase'
+        - type: object
+          properties:
+            name:
+              $ref: '#/components/schemas/TaxonomyBase-properties-name'
+            slug:
+              $ref: '#/components/schemas/TaxonomyBase-properties-slug'
+            rest_base:
+              $ref: '#/components/schemas/rest_base'
+            rest_namespace:
+              $ref: '#/components/schemas/rest_namespace'
+    TaxonomyEdit:
+      $schema: https://json-schema.org/draft/2020-12/schema
+      allOf:
+        - $ref: '#/components/schemas/TaxonomyBase'
+        - type: object
+          properties:
+            capabilities:
+              description: All capabilities used by the taxonomy.
+              type: object
+              readOnly: true
+            description:
+              description: A human-readable description of the taxonomy.
+              type: string
+              readOnly: true
+            hierarchical:
+              description: Whether or not the taxonomy should have children.
+              type: boolean
+              readOnly: true
+            labels:
+              description: Human-readable labels for the taxonomy for various contexts.
+              type: object
+              readOnly: true
+            show_cloud:
+              description: Whether or not the term cloud should be displayed.
+              type: boolean
+              readOnly: true
+            types:
+              description: Types associated with the taxonomy.
+              type: array
+              items:
+                type: string
+              readOnly: true
+            visibility:
+              description: The visibility settings for the taxonomy.
+              type: object
+              readOnly: true
+              properties:
+                public:
+                  description: Whether a taxonomy is intended for use publicly either via the admin interface or by front-end users.
+                  type: boolean
+                publicly_queryable:
+                  description: Whether the taxonomy is publicly queryable.
+                  type: boolean
+                show_ui:
+                  description: Whether to generate a default UI for managing this taxonomy.
+                  type: boolean
+                show_admin_column:
+                  description: Whether to allow automatic creation of taxonomy columns on associated post-types table.
+                  type: boolean
+                show_in_nav_menus:
+                  description: Whether to make the taxonomy available for selection in navigation menus.
+                  type: boolean
+                show_in_quick_edit:
+                  description: Whether to show the taxonomy in the quick/bulk edit panel.
+                  type: boolean
+    TaxonomyResponse:
+      $schema: https://json-schema.org/draft/2020-12/schema
+      oneOf:
+        - $ref: '#/components/schemas/TaxonomyView'
+        - $ref: '#/components/schemas/TaxonomyEmbed'
+        - $ref: '#/components/schemas/TaxonomyEdit'
+    TaxonomyCollectionResponse:
+      type: object
+      description: A collection of taxonomy objects where each key is a taxonomy identifier.
+      additionalProperties:
+        $ref: '#/components/schemas/TaxonomyResponse'
     WpTemplatePartBase:
       type: object
       required:
@@ -16686,7 +16659,7 @@ components:
       description: A human-readable description of the post type.
       type: string
       readOnly: true
-    properties-hierarchical:
+    hierarchical:
       description: Whether or not the post type should have children.
       type: boolean
       readOnly: true
@@ -16748,7 +16721,7 @@ components:
             description:
               $ref: '#/components/schemas/TypeBase-properties-description'
             hierarchical:
-              $ref: '#/components/schemas/properties-hierarchical'
+              $ref: '#/components/schemas/hierarchical'
             name:
               $ref: '#/components/schemas/TypeBase-properties-name'
             slug:
@@ -16786,11 +16759,11 @@ components:
               $ref: '#/components/schemas/template_lock'
             icon:
               $ref: '#/components/schemas/icon'
-    properties-capabilities:
+    capabilities:
       description: All capabilities used by the post type.
       type: object
       readOnly: true
-    properties-labels:
+    labels:
       description: Human-readable labels for the post type for various contexts.
       type: object
       readOnly: true
@@ -16802,7 +16775,7 @@ components:
       description: Whether or not the post type can be viewed.
       type: boolean
       readOnly: true
-    properties-visibility:
+    visibility:
       description: The visibility settings for the post type.
       type: object
       readOnly: true
@@ -16819,15 +16792,15 @@ components:
         - type: object
           properties:
             capabilities:
-              $ref: '#/components/schemas/properties-capabilities'
+              $ref: '#/components/schemas/capabilities'
             labels:
-              $ref: '#/components/schemas/properties-labels'
+              $ref: '#/components/schemas/labels'
             supports:
               $ref: '#/components/schemas/supports'
             viewable:
               $ref: '#/components/schemas/viewable'
             visibility:
-              $ref: '#/components/schemas/properties-visibility'
+              $ref: '#/components/schemas/visibility'
     TypeResponse:
       oneOf:
         - $ref: '#/components/schemas/TypeView'
@@ -17055,7 +17028,7 @@ components:
       type: array
       items:
         type: string
-    UserBase-properties-capabilities:
+    properties-capabilities:
       description: All capabilities assigned to the user.
       type: object
       readOnly: true
@@ -17085,7 +17058,7 @@ components:
             roles:
               $ref: '#/components/schemas/roles'
             capabilities:
-              $ref: '#/components/schemas/UserBase-properties-capabilities'
+              $ref: '#/components/schemas/properties-capabilities'
             extra_capabilities:
               $ref: '#/components/schemas/extra_capabilities'
             meta:
@@ -17284,9 +17257,6 @@ components:
       description: Unique identifier for the term.
       type: integer
       readOnly: true
-    WpPatternCategoryBase-properties-description:
-      description: HTML description of the term.
-      type: string
     properties-taxonomy:
       description: Type attribution for the term.
       type: string
@@ -17303,7 +17273,7 @@ components:
             count:
               $ref: '#/components/schemas/count'
             description:
-              $ref: '#/components/schemas/WpPatternCategoryBase-properties-description'
+              $ref: '#/components/schemas/properties-description'
             link:
               $ref: '#/components/schemas/properties-link'
             name:
@@ -17339,7 +17309,7 @@ components:
             count:
               $ref: '#/components/schemas/count'
             description:
-              $ref: '#/components/schemas/WpPatternCategoryBase-properties-description'
+              $ref: '#/components/schemas/properties-description'
             link:
               $ref: '#/components/schemas/properties-link'
             name:

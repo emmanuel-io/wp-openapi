@@ -100,7 +100,7 @@ Feel free to open issues for any bugs or improvements.
   - [ ] sidebars
   - [ ] statuses
   - [x] tags
-  - [ ] taxonomies
+  - [x] taxonomies
   - [ ] template-parts
   - [ ] templates
   - [ ] themes

@@ -212,15 +212,15 @@ paths:
   /wp/v2/statuses/{status}:
     $ref: './statuses/paths.yaml#/paths/~1wp~1v2~1statuses~1{status}'
 
-  /wp/v2/taxonomies:
-    $ref: './taxonomies/paths.yaml#/paths/~1wp~1v2~1taxonomies'
-  /wp/v2/taxonomies/{taxonomy}:
-    $ref: './taxonomies/paths.yaml#/paths/~1wp~1v2~1taxonomies~1{taxonomy}'
-
   /wp/v2/tags:
     $ref: './tags/paths.yaml#/paths/~1wp~1v2~1tags'
   /wp/v2/tags/{id}:
     $ref: './tags/paths.yaml#/paths/~1wp~1v2~1tags~1{id}'
+
+  /wp/v2/taxonomies:
+    $ref: './taxonomies/paths.yaml#/paths/~1wp~1v2~1taxonomies'
+  /wp/v2/taxonomies/{taxonomy}:
+    $ref: './taxonomies/paths.yaml#/paths/~1wp~1v2~1taxonomies~1{taxonomy}'
 
   /wp/v2/template-parts:
     $ref: './template-parts/paths.yaml#/paths/~1wp~1v2~1template-parts'

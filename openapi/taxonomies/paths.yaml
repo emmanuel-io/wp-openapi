@@ -3,6 +3,12 @@ paths:
     get:
       tags:
       - Taxonomies
+      operationId: taxonomiesList
+      summary: List taxonomies
+      description: |
+        Query this endpoint to retrieve a collection of taxonomies.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
       - $ref: '../components.yaml#/components/parameters/QueryParameterContext'
       - name: type
@@ -16,11 +22,17 @@ paths:
           content:
             application/json:
               schema:
-                $ref: './schemas.yaml#/schemas/TaxonomyResponse'
+                $ref: './schemas.yaml#/schemas/TaxonomyCollectionResponse'
   /wp/v2/taxonomies/{taxonomy}:
     get:
       tags:
       - Taxonomies
+      operationId: taxonomyGet
+      summary: Retrieve a taxonomy
+      description: |
+        Query this endpoint to retrieve to retrieve a specific taxonomy record.
+
+        The response you receive can be controlled and filtered using the URL query parameters below.
       parameters:
       - name: taxonomy
         in: path

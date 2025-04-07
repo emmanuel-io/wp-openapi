@@ -1,60 +1,75 @@
 # wp-openapi
 
-## Introduction
-
-**wp-openapi** is an open-source project created to fill the gap in OpenAPI documentation for the REST API of WordPress. While WordPress provides a robust REST API, comprehensive OpenAPI documentation is missing. This project aims to bridge that gap, making it easier for developers to explore, integrate, and utilize the WordPress REST API effectively.
+📘 OpenAPI (v3) documentation for the WordPress REST API
 
 ---
 
-## Features
+## 🔍 Overview
 
-- **OpenAPI Specification**: A complete OpenAPI (v3) specification for the WordPress REST API.
-- **API Endpoints**: Includes detailed descriptions, parameters, and responses for all REST API endpoints.
-- **Developer-Friendly**: Simplifies integration with tools like Swagger, Postman, and others.
-- **Extensible**: Easily extendable for custom WordPress endpoints.
+**wp-openapi** bridges the gap between the WordPress REST API and OpenAPI tooling.  
+While WordPress provides a powerful REST API, it lacks official OpenAPI documentation — this project fills that void to help developers explore, integrate, and automate interactions with WordPress more easily.
 
 ---
 
-## Installation
+## ✨ Features
 
-1. Clone the repository:
+- 🧩 Full **OpenAPI 3.0 specification** for the WordPress REST API  
+- 📚 Detailed endpoint descriptions, parameters, and responses  
+- 🔧 Compatible with Swagger UI, Postman, and client generators  
+- 🧱 Extensible for custom WP endpoints and plugin support  
+
+---
+
+## 🚀 Quick Start
 
 ```bash
-$ git clone https://github.com/emmanuel-io/wp-openapi.git
+git clone https://github.com/emmanuel-io/wp-openapi.git
+cd wp-openapi
 ```
 
-2. Switch to the `gh-pages` branch to access the published documentation and bundled files:
+Switch to the `gh-pages` branch to access the bundled OpenAPI spec files:
 
 ```bash
-$ git checkout gh-pages
+git checkout gh-pages
 ```
 
-3. Use the bundled OpenAPI specification files located in `./bundles`:
-   - `./bundles/openapi.yaml`
-   - `./bundles/openapi.json`
+### 🔗 Bundled Specs
 
-   These files can be used with your preferred API documentation or testing tool (e.g., Swagger UI, Postman).
+- `./bundles/openapi.yaml`  
+- `./bundles/openapi.json`
 
----
-
-
-## Usage
-
-1. **Swagger UI**
-   - Use [Swagger UI](https://swagger.io/tools/swagger-ui/) to visualize the OpenAPI documentation.
-   - Open the `./bundles/openapi.yaml` or `./bundles/openapi.json` file in Swagger UI.
-
-2. **Postman**
-   - Import the `./bundles/openapi.json` file into Postman to explore and test the WordPress REST API endpoints.
-
-3. **Integration**
-   - Use the OpenAPI specification to generate client libraries or integrate WordPress REST API into your applications.
+Use these files with your preferred OpenAPI documentation tools.
 
 ---
 
-## Documentation Hosting
+## 🧪 Usage
 
-The full documentation is hosted on GitHub Pages and can be accessed here: [wp-openapi Documentation](https://emmanuel-io.github.io/wp-openapi/).
+### ✅ Swagger UI
+
+Use [Swagger UI](https://swagger.io/tools/swagger-ui/) to explore the API visually:
+
+```bash
+swagger-ui ./bundles/openapi.yaml
+```
+
+### ✅ Postman
+
+Import `openapi.json` into Postman to interact with endpoints directly.
+
+### ✅ Integration
+
+Use the OpenAPI spec to:
+
+- Generate client libraries  
+- Validate integrations  
+- Automate workflows using WordPress REST endpoints  
+
+---
+
+## 📘 Live Documentation
+
+➡️ [Hosted via GitHub Pages](https://emmanuel-io.github.io/wp-openapi/)  
+Browse the OpenAPI docs online with Redoc UI.
 
 ---
 
@@ -70,55 +85,53 @@ Feel free to open issues for any bugs or improvements.
 
 ---
 
-## Roadmap
 
-- [ ] Document all core WordPress REST API endpoints:
-  - [x] block-directory
-  - [x] block-patterns
-  - [ ] block-renderer
-  - [ ] blocks
-  - [ ] block-types
-  - [x] categories
-  - [ ] comments
-  - [ ] components.yaml
-  - [ ] font-collections
-  - [ ] font-families
-  - [ ] global-styles
-  - [ ] media
-  - [ ] menu-items
-  - [ ] menu-locations
-  - [ ] menus
-  - [ ] navigation
-  - [ ] oembed
-  - [ ] openapi.yaml
-  - [ ] pages
-  - [ ] pattern-directory
-  - [ ] plugins
-  - [ ] posts
-  - [ ] search
-  - [ ] settings
-  - [ ] sidebars
-  - [ ] statuses
-  - [x] tags
-  - [x] taxonomies
-  - [ ] template-parts
-  - [ ] templates
-  - [x] themes
-  - [x] types
-  - [ ] users
-  - [ ] widgets
-  - [ ] widget-types
-  - [ ] wp-block-editor
-  - [ ] wp_pattern_category
-  - [x] wp-site-health
-- [ ] Add examples for common use cases.
-- [ ] Extend support for popular WordPress.
+## 🛠️ Roadmap
 
----
+- [ ] Document all core WordPress REST API endpoints  
+- [ ] Add examples for common use cases  
+- [ ] Extend support for popular WordPress plugins  
 
-## License
+### ✅ Completed endpoints
 
-This project is licensed under the [MIT License](LICENSE).
+- [x] block-directory
+- [x] block-patterns
+- [ ] block-renderer
+- [ ] blocks
+- [ ] block-types
+- [x] categories
+- [ ] comments
+- [ ] components.yaml
+- [ ] font-collections
+- [ ] font-families
+- [ ] global-styles
+- [ ] media
+- [ ] menu-items
+- [ ] menu-locations
+- [ ] menus
+- [ ] navigation
+- [ ] oembed
+- [ ] openapi.yaml
+- [ ] pages
+- [ ] pattern-directory
+- [ ] plugins
+- [ ] posts
+- [ ] search
+- [ ] settings
+- [ ] sidebars
+- [ ] statuses
+- [x] tags
+- [x] taxonomies
+- [ ] template-parts
+- [ ] templates
+- [x] themes
+- [x] types
+- [ ] users
+- [ ] widgets
+- [ ] widget-types
+- [ ] wp-block-editor
+- [ ] wp_pattern_category
+- [x] wp-site-health
 
 ---
 
@@ -128,10 +141,31 @@ Special thanks to the WordPress community for their ongoing contributions and su
 
 ---
 
-## Contact
+## 🤝 Contributing
 
-If you have any questions or feedback, feel free to [open an issue](https://github.com/emmanuel-io/wp-openapi/issues).
+Contributions are welcome!
+
+1. Fork the repository  
+2. Create a feature branch  
+3. Submit a pull request with your changes
+
+Please open [issues](https://github.com/emmanuel-io/wp-openapi/issues) for bugs, questions, or suggestions.
 
 ---
 
-### Let’s make the WordPress REST API more accessible together!
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 👤 Maintainer
+
+**Emmanuel Amadio**  
+🌍 [Website](https://emmanuel-io.github.io/en)  
+📫 [Email](mailto:emmanuel.amadio@gmail.com)  
+🐙 [GitHub](https://github.com/emmanuel-io)
+
+---
+
+> Let’s make the WordPress REST API more accessible — together!

@@ -303,8 +303,6 @@ paths:
   /wp-block-editor/v1/navigation-fallback:
     $ref: './wp-block-editor/paths.yaml#/paths/~1wp-block-editor~1v1~1navigation-fallback'
 
-  /wp-site-health/v1:
-    $ref: './wp-site-health/paths.yaml#/paths/~1wp-site-health~1v1'
   /wp-site-health/v1/tests/background-updates:
     $ref: './wp-site-health/paths.yaml#/paths/~1wp-site-health~1v1~1tests~1background-updates'
   /wp-site-health/v1/tests/loopback-requests:

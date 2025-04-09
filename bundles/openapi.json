@@ -18247,50 +18247,21 @@
         }
       }
     },
-    "/wp-site-health/v1": {
-      "get": {
-        "tags": [
-          "Site health"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "parameters": [
-          {
-            "name": "namespace",
-            "in": "query",
-            "description": "",
-            "required": false,
-            "schema": {
-              "default": "wp-site-health/v1"
-            }
-          },
-          {
-            "name": "context",
-            "in": "query",
-            "description": "",
-            "required": false,
-            "schema": {
-              "default": "view"
-            }
-          }
-        ]
-      }
-    },
     "/wp-site-health/v1/tests/background-updates": {
       "get": {
         "tags": [
           "Site health"
         ],
+        "operationId": "siteHealthTestBackgroundUpdatesGet",
+        "summary": "Test a site health for background updates",
+        "description": "Query this endpoint to test a site health for background updates.\n\nThere are no arguments for this endpoint.\n",
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/wp-site-health-test"
+                  "$ref": "#/components/schemas/SiteHealthTestResponse"
                 }
               }
             }
@@ -18303,13 +18274,16 @@
         "tags": [
           "Site health"
         ],
+        "operationId": "siteHealthTestLoopbackRequestsGet",
+        "summary": "Test a site health for loopback requests",
+        "description": "Query this endpoint to test a site health for loopback -requests.\n\nThere are no arguments for this endpoint.\n",
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/wp-site-health-test"
+                  "$ref": "#/components/schemas/SiteHealthTestResponse"
                 }
               }
             }
@@ -18322,13 +18296,16 @@
         "tags": [
           "Site health"
         ],
+        "operationId": "siteHealthTestHttpsStatusGet",
+        "summary": "Test a site health for https status",
+        "description": "Query this endpoint to test a site health for https status.\n\nThere are no arguments for this endpoint.\n",
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/wp-site-health-test"
+                  "$ref": "#/components/schemas/SiteHealthTestResponse"
                 }
               }
             }
@@ -18341,13 +18318,16 @@
         "tags": [
           "Site health"
         ],
+        "operationId": "siteHealthTestDotorgCommunicationGet",
+        "summary": "Test a site health for dotorg communication",
+        "description": "Query this endpoint to test a site health for dotorg communication.\n\nThere are no arguments for this endpoint.\n",
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/wp-site-health-test"
+                  "$ref": "#/components/schemas/SiteHealthTestResponse"
                 }
               }
             }
@@ -18360,13 +18340,16 @@
         "tags": [
           "Site health"
         ],
+        "operationId": "siteHealthTestAuthorizationHeaderGet",
+        "summary": "Test a site health for authorization header",
+        "description": "Query this endpoint to test a site health for authorization header.\n\nThere are no arguments for this endpoint.\n",
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/wp-site-health-test"
+                  "$ref": "#/components/schemas/SiteHealthTestResponse"
                 }
               }
             }
@@ -18379,6 +18362,9 @@
         "tags": [
           "Site health"
         ],
+        "operationId": "siteHealthTestDirectorySizesGet",
+        "summary": "Test a site health for directory sizes",
+        "description": "Query this endpoint to test a site health for directory sizes.\n\nThere are no arguments for this endpoint.\n",
         "responses": {
           "200": {
             "description": "OK"
@@ -18391,6 +18377,9 @@
         "tags": [
           "Site health"
         ],
+        "operationId": "siteHealthTestPageCacheGet",
+        "summary": "Test a site health for page cache",
+        "description": "Query this endpoint to test a site health for page cache.\n\nThere are no arguments for this endpoint.\n",
         "responses": {
           "200": {
             "description": "OK"
@@ -25526,7 +25515,7 @@
           }
         ]
       },
-      "wp-site-health-test": {
+      "SiteHealthTestResponse": {
         "$schema": "https://json-schema.org/draft/2020-12/schema",
         "title": "wp-site-health-test",
         "type": "object",
